@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes de Cours sur R FIN403</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Cours de data science à l’aide du logiciel R">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Notes de Cours sur R FIN403" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Cours de data science à l’aide du logiciel R" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes de Cours sur R FIN403" />
+  
+  <meta name="twitter:description" content="Cours de data science à l’aide du logiciel R" />
+  
+
+<meta name="author" content="Laurent POLITIS">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+
+<link rel="next" href="intro.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Finance quantitative FIN403 </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Syllabus</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#presentation-du-cours"><i class="fa fa-check"></i>Presentation du cours</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#plan-du-cours"><i class="fa fa-check"></i>Plan du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mode-devaluation"><i class="fa fa-check"></i>Mode d’évaluation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciement"><i class="fa fa-check"></i>Remerciement</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#la-popularite-de-r-et-sa-facilite"><i class="fa fa-check"></i><b>1.1.1</b> La popularité de R et sa facilité</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#dautres-raisons"><i class="fa fa-check"></i><b>1.1.2</b> D’autres raisons</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#environnement-r"><i class="fa fa-check"></i><b>1.2</b> Environnement R</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#pre-requis-installation-de-r"><i class="fa fa-check"></i><b>1.2.1</b> Pré requis Installation de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#presentation-de-rstusio"><i class="fa fa-check"></i><b>1.2.2</b> Présentation de Rstusio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vous-etes-ici"><i class="fa fa-check"></i><b>1.2.3</b> Vous êtes ici !</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#data-visualisation"><i class="fa fa-check"></i><b>1.3</b> Data Visualisation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#exemple-de-script"><i class="fa fa-check"></i><b>1.3.1</b> Exemple de Script</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes de Cours sur R FIN403</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">Notes de Cours sur R FIN403</h1>
+<h4 class="author"><em>Laurent POLITIS</em></h4>
+<h4 class="date"><em>Le 17 février 2017</em></h4>
+</div>
+<div id="syllabus" class="section level1 unnumbered">
+<h1>Syllabus</h1>
+<div id="presentation-du-cours" class="section level2 unnumbered">
+<h2>Presentation du cours</h2>
+<p>L’objectif du cours est d’utiliser le langage de programmation statistique R et d’outils en ligne simple afin de mettre en valeur vos résultats d’analyses statistiques. Le cours est constitué d’exemples de codes R et d’exercices que vous appliquerez directement sur votre ordinateur et console R sous cette forme :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(ggthemes)
+ 
+n &lt;-<span class="st"> </span><span class="dv">20000</span>
+a &lt;-<span class="st"> </span><span class="dv">3</span>
+ 
+<span class="kw">set.seed</span>(<span class="dv">101</span>)
+ 
+make_circle &lt;-<span class="st"> </span>function(tx, ty) {
+data &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">angle =</span> <span class="kw">runif</span>(n, <span class="dv">0</span>, <span class="dv">2</span> *<span class="st"> </span>pi)) %&gt;%
+<span class="kw">mutate</span>(<span class="dt">x =</span> a *<span class="st"> </span><span class="kw">cos</span>(angle) +<span class="st"> </span>tx, <span class="dt">y =</span> a *<span class="st"> </span><span class="kw">sin</span>(angle) +<span class="st"> </span>ty) %&gt;%
+<span class="kw">select</span>(x, y)
+data2 &lt;-<span class="st"> </span>data[<span class="kw">sample</span>(<span class="kw">nrow</span>(data)),]
+data &lt;-<span class="st"> </span><span class="kw">bind_cols</span>(data, data2)
+<span class="kw">names</span>(data) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;y2&quot;</span>)
+data
+}
+ 
+data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw">make_circle</span>(<span class="kw">cos</span>(<span class="dv">0</span>), <span class="kw">sin</span>(<span class="dv">0</span>)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(pi/<span class="dv">4</span>), <span class="kw">sin</span>(pi/<span class="dv">4</span>)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(pi/<span class="dv">2</span>), <span class="kw">sin</span>(pi/<span class="dv">2</span>)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(<span class="dv">3</span>*pi/<span class="dv">4</span>), <span class="kw">sin</span>(<span class="dv">3</span>*pi/<span class="dv">4</span>)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(pi), <span class="kw">sin</span>(pi)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(<span class="dv">5</span>*pi/<span class="dv">4</span>), <span class="kw">sin</span>(<span class="dv">5</span>*pi/<span class="dv">4</span>)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(<span class="dv">3</span>*pi/<span class="dv">2</span>), <span class="kw">sin</span>(<span class="dv">3</span>*pi/<span class="dv">2</span>)),
+<span class="kw">make_circle</span>(<span class="kw">cos</span>(<span class="dv">7</span>*pi/<span class="dv">4</span>), <span class="kw">sin</span>(<span class="dv">7</span>*pi/<span class="dv">4</span>)))
+ 
+<span class="kw">ggplot</span>() +
+<span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x1, <span class="dt">xend =</span> x2, <span class="dt">y =</span> y1, <span class="dt">yend =</span> y2), data %&gt;%<span class="st"> </span><span class="kw">filter</span>(x1 !=<span class="st"> </span>x2),
+<span class="dt">alpha =</span> <span class="fl">0.15</span>, <span class="dt">size =</span> <span class="fl">0.015</span>) +
+<span class="kw">coord_equal</span>() +
+<span class="kw">theme_tufte</span>() +
+<span class="kw">theme</span>(<span class="dt">line =</span> <span class="kw">element_blank</span>(),
+<span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+<span class="dt">axis.ticks.length =</span> <span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;null&quot;</span>),
+<span class="dt">axis.title =</span> <span class="kw">element_blank</span>(),
+<span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),
+<span class="co"># text = element_blank(),</span>
+<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,
+<span class="dt">legend.margin=</span><span class="kw">unit</span>(<span class="dv">0</span>, <span class="st">&quot;null&quot;</span>),
+<span class="dt">panel.background =</span> <span class="kw">element_blank</span>(),
+<span class="dt">panel.border=</span><span class="kw">element_blank</span>(),
+<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>(),
+<span class="dt">panel.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="st">&quot;null&quot;</span>),
+<span class="dt">plot.background =</span> <span class="kw">element_blank</span>(),
+<span class="dt">plot.margin=</span><span class="kw">unit</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="st">&quot;null&quot;</span>))+
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">caption=</span><span class="st">&quot;Source : http://www.r-graph-gallery.com/186-marcus-volz-dataart/&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/hello-1.png" width="672" /></p>
+<div id="plan-du-cours" class="section level3 unnumbered">
+<h3>Plan du cours</h3>
+<p>Durant ces 15 heures de cours les points abordés sont :</p>
+<ul>
+<li>Prise en main de R (rappel)</li>
+<li>Extraction et manipulation de données</li>
+<li><strong>Data visiualisation</strong> graphiques classiques et améliorations avec ggplot2</li>
+<li><strong>Data visiualisation</strong> interactives (html widget, plotly …)</li>
+<li><strong>Recherche reproductible</strong> (shiny, rmarkdow, )</li>
+</ul>
+<p>Dans un premier temps, nous allons découvrir les bases de R afin de savoir comment importer et explorer différentes données sous R. Nous allons apprendre comment préparer les données afin de créer des graphiques et applications interactives. Ces outils acquis durant le cours vous permettront de mettre en valeur vos études ou reportings, qui vous seront utiles dans un contexte académique ou professionnel.</p>
+</div>
+<div id="mode-devaluation" class="section level3 unnumbered">
+<h3>Mode d’évaluation</h3>
+<p>L’évaluation de ce cours consiste en la création d’un programme R qui formerat un projet informatique de recherche sur la météo sensibilité du flux de vélos en libre service type vélib ou autre. Le projet s’articulera en plusieurs partie :</p>
+<ul>
+<li>Data Mining</li>
+<li>Visualisation des résultats du data mining</li>
+<li>Modélisation</li>
+<li>Visualisation des résultats de la modélisation</li>
+<li>Application interactive</li>
+</ul>
+<div class="figure">
+<img src="/home/mrrobot/Pictures/data-science-explore.png" alt="schéma Script R" />
+<p class="caption">schéma Script R</p>
+</div>
+</div>
+<div id="themes-abordes" class="section level3 unnumbered">
+<h3>Thèmes abordés</h3>
+<div id="presentation-du-cours-et-de-r" class="section level4 unnumbered">
+<h4>Présentation du cours et de R</h4>
+<p>Le vendredi 17 févier 2017</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Au début du cours seront présentés le logiciel R.</p>
+<p>Un rappel sur l’utilisation de la console et de l’environnement de développement intégré (IDE) R studio sera effectué au début de cette première partie. Des fonctions de base sous R permettant d’importer les données depuis un fichiers texte, csv, excel et même directement depuis le web seront présentées. On examinera comment R stocke les données sous forme de variables, comment les manipuler et de créer des graphiques…</p>
+</div>
+<div id="visualiser-ces-donnees" class="section level4 unnumbered">
+<h4>Visualiser ces données</h4>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Le 22 février, 10h00/13h00 == 3h travaux dirigés</p>
+<p>Il existe des graphiques de base qui permettent d’examiner les différents jeux de données et modèles statistiques. Ces graphiques constituent des arguments et des preuves pour mettre en évidence les résultats que vous avancez et leurs pertinences de manière simple et synthétique. Les graphiques que nous allons créer sont entre autres :</p>
+<p>Les boites à moustaches Les histogrammes Les courbes de Des graphes en coordonnées polaire</p>
+<p>Dans le cours du semestre dernier vous avez appris comment modéliser des relations entre différents jeux de données à l’aide de modèle linéaire lm() et ARIMA… Nous allons découvrir les diverses graphiques diagnostiques de ces modélisations statistiques qui permettent entre autres de repérer les meilleures variables explicatives, de rejeter les mauvaises et de vérifier ces résultats de modélisation.</p>
+<p>Nuage de points, qqplots, séries temporelles …</p>
+</div>
+<div id="graphiques-interactifs-et-applications" class="section level4 unnumbered">
+<h4>Graphiques Interactifs et applications</h4>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>== 6h travaux dirigés</p>
+<p>Nous avons passé en revue différentes manières de présenter nos données sous forme d’illustration statistique. Dans cette partie, les outils de visualisation interactive faisant appel à des librairies codées en java et en html 5 seront présentés (html widget, shiny et r markdown). Les outils comme shiny, r markdown et plotly permettent de créer de véritables petites applications de visualisations et d’applications de vos résultats. Par exemple, le syllabus que vous lisez est entièrement fait sous R à l’aide de r markdown.</p>
+</div>
+<div id="travaux-pratiques" class="section level4 unnumbered">
+<h4>Travaux pratiques</h4>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>== 3h tp</p>
+<p>Le but de ce TP est de commencer à travailler sur les données de votre mémoire à l’aide d’un programme R et des notions apprises.</p>
+</div>
+</div>
+<div id="references-et-conseils-de-lecture" class="section level3 unnumbered">
+<h3>Références et conseils de lecture</h3>
+<div id="sur-la-visualisation-des-donnees" class="section level5 unnumbered">
+<h5>Sur la visualisation des données</h5>
+<ul>
+<li><a href="http://www.r-bloggers.com/" class="uri">http://www.r-bloggers.com/</a> un blog contenant des articles divers et variés sur les nouveautés R.</li>
+<li><a href="http://vissoc.co/" class="uri">http://vissoc.co/</a> cours de Data Visualisation avec R et en particulier avec ggplot2</li>
+<li><a href="https://sites.google.com/a/analytics.usfca.edu/msan-622-experimental-design-and-visualization/" class="uri">https://sites.google.com/a/analytics.usfca.edu/msan-622-experimental-design-and-visualization/</a> cours de data visualisation avec R ggplot2 et shiny</li>
+<li><a href="http://flowingdata.com/" class="uri">http://flowingdata.com/</a> site compilant de très belles illustrations faites en grande partie avec R</li>
+<li><a href="http://www.htmlwidgets.org/" class="uri">http://www.htmlwidgets.org/</a></li>
+</ul>
+</div>
+<div id="sur-les-bases-de-r" class="section level5 unnumbered">
+<h5>Sur les bases de R</h5>
+<ul>
+<li><a href="https://openclassrooms.com/courses/effectuez-vos-etudes-statistiques-avec-r" class="uri">https://openclassrooms.com/courses/effectuez-vos-etudes-statistiques-avec-r</a></li>
+<li><a href="http://www.statmethods.net/" class="uri">http://www.statmethods.net/</a> pour des exemples rapides en R</li>
+<li><a href="https://www.datacamp.com/" class="uri">https://www.datacamp.com/</a> des cours sur R interactifs</li>
+</ul>
+</div>
+<div id="autres" class="section level5 unnumbered">
+<h5>Autres</h5>
+<ul>
+<li><a href="https://www.kaggle.com/" class="uri">https://www.kaggle.com/</a> site de compétitions et de challenges sur des projets de statistique</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="remerciement" class="section level2 unnumbered">
+<h2>Remerciement</h2>
+<p>J’adresse mes remerciements aux personnes qui m’ont aidé dans la réalisation de ce cours.</p>
+<p>En premier lieu, je remercie M. Jean Louis Bertrand et Miia Parnaudeau, tous les deux professeurs à l’ESCCA. Ils m’ont donné l’occasion d’enseigner et de partager mes connaissances sur R.</p>
+<p>Je remercie aussi M.Arthur ROUSSEAU et Samia, qui m’ont aidé respectivement pour les questions informatique et administrative.</p>
+<p>Enfin je remercie les etudiants pour leurs attention et leurs feedbacks, qu’ils appportent aux cours.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page""><i class="fa fa-angle-right"></i></a>
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
