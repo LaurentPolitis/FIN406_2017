@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes de Cours sur R FIN403</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Cours de data science à l’aide du logiciel R">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Notes de Cours sur R FIN403" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Cours de data science à l’aide du logiciel R" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes de Cours sur R FIN403" />
+  
+  <meta name="twitter:description" content="Cours de data science à l’aide du logiciel R" />
+  
+
+<meta name="author" content="Laurent POLITIS">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Finance quantitative FIN403 </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Syllabus</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#presentation-du-cours"><i class="fa fa-check"></i>Presentation du cours</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#plan-du-cours"><i class="fa fa-check"></i>Plan du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mode-devaluation"><i class="fa fa-check"></i>Mode d’évaluation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciement"><i class="fa fa-check"></i>Remerciement</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#la-popularite-de-r-et-sa-facilite"><i class="fa fa-check"></i><b>1.1.1</b> La popularité de R et sa facilité</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#dautres-raisons"><i class="fa fa-check"></i><b>1.1.2</b> D’autres raisons</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#environnement-r"><i class="fa fa-check"></i><b>1.2</b> Environnement R</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#pre-requis-installation-de-r"><i class="fa fa-check"></i><b>1.2.1</b> Pré requis Installation de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#presentation-de-rstusio"><i class="fa fa-check"></i><b>1.2.2</b> Présentation de Rstusio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vous-etes-ici"><i class="fa fa-check"></i><b>1.2.3</b> Vous êtes ici !</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#data-visualisation"><i class="fa fa-check"></i><b>1.3</b> Data Visualisation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="intro.html"><a href="intro.html#section"><i class="fa fa-check"></i><b>1.3.1</b> </a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes de Cours sur R FIN403</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="pourquoi-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> Pourquoi R ?</h2>
+<div id="la-popularite-de-r-et-sa-facilite" class="section level3">
+<h3><span class="header-section-number">1.1.1</span> La popularité de R et sa facilité</h3>
+<p>Un nombre croissant de personnes utilisent R. Les graphiques montrent le nombre croissant de questions en relation au langage R sur le site <a href="http://stackoverflow.com/">stack overflow</a>. Ces graphiques sont obetenues en utilisant un script <em>R</em> (voir code ci-dessous), qui va automatiquement chercher la donnée sur internet, traiter la donnée et visualiser les résultats du nombre de questions sur R du site.<br />
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">Tendances depuis 2014</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>php</td>
+<td align="right">-1.0792137</td>
+</tr>
+<tr class="even">
+<td>c++</td>
+<td align="right">-0.9974439</td>
+</tr>
+<tr class="odd">
+<td>c</td>
+<td align="right">-0.7457762</td>
+</tr>
+<tr class="even">
+<td>java</td>
+<td align="right">-0.7372661</td>
+</tr>
+<tr class="odd">
+<td>ruby</td>
+<td align="right">-0.6277539</td>
+</tr>
+<tr class="even">
+<td>c#</td>
+<td align="right">-0.5924809</td>
+</tr>
+<tr class="odd">
+<td>matlab</td>
+<td align="right">-0.1945626</td>
+</tr>
+<tr class="even">
+<td>r</td>
+<td align="right">1.7374880</td>
+</tr>
+<tr class="odd">
+<td>javascript</td>
+<td align="right">5.0776664</td>
+</tr>
+<tr class="even">
+<td>python</td>
+<td align="right">5.8663485</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="dautres-raisons" class="section level3">
+<h3><span class="header-section-number">1.1.2</span> D’autres raisons</h3>
+<ul>
+<li>Open source &amp; Gratuit</li>
+<li>Une très grosse communauté de développeurs et d’utilisateurs</li>
+<li>Facile à utiliser pour des non-programmeurs pour des calculs statistiques</li>
+<li>Possibilité de créer de belles illustrations, applications web et même le cours que vous lisez actuellement (à l’aide du package Bookdown)</li>
+<li>Facile à installer sur les systèmes d’exploitations Linux, Windows et Apple</li>
+<li>Une quantité très importante de package</li>
+</ul>
+</div>
+</div>
+<div id="environnement-r" class="section level2">
+<h2><span class="header-section-number">1.2</span> Environnement R</h2>
+<div id="pre-requis-installation-de-r" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Pré requis Installation de R</h3>
+<p>Sur Windows</p>
+<ul>
+<li>aller à l’url <a href="http://cran.r-project.org/bin/windows/base/" class="uri">http://cran.r-project.org/bin/windows/base/</a> et télécharger la dernière version de R en fonction de votre ordinateur 32 bit ou 64 bit (pour le savoir aller sur paramètres&gt;système&gt;information système)</li>
+</ul>
+<p>Sur Apple</p>
+<ul>
+<li><a href="http://cran.r-project.org/bin/macosx/" class="uri">http://cran.r-project.org/bin/macosx/</a> et télécharger la dernière version de R</li>
+</ul>
+<p>Pour installer Rstudio</p>
+<ul>
+<li><a href="http://www.rstudio.com/ide/" class="uri">http://www.rstudio.com/ide/</a> pour télécharger la dernière version et installer l’environnement de travail R studio en suivant les indications du site</li>
+</ul>
+</div>
+<div id="presentation-de-rstusio" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Présentation de Rstusio</h3>
+<p>Rstudio est un IDE, un environnement de travail pour le langage R. Une interface graphique permet plus facilement d’interargir avec le language à l’aide de multiple fonctionnalité. Pour les connaîtres, la lecture de l’aide mémoire de Rstdudio est très utile <a href="https://www.rstudio.org/links/ide_cheat_sheet" class="uri">https://www.rstudio.org/links/ide_cheat_sheet</a>.</p>
+<div class="figure">
+<img src="Picture/IDE_1.png" alt="Editeur" />
+<p class="caption">Editeur</p>
+</div>
+<p>Une courte présentation du logiciel Rstudio est faite ci-dessous :</p>
+<p>Lors de l’ouverture de Rstudio, quatres fenêtres s’ouvrent par défaut. La fenêtre en haut à gauche est un éditeur de texte, qui permet d’êcrire un script en R (succession de ligne de commande composée de fonction permettant de créer un veritable programme informatique). En bas à gauche la console R estsemblable a un terminal de calculatrice ou d’un ordinateur (Dos, Unix) et nous pouvons l’utiliser pour lancer diverses commandes, fonction et scripts R. Généralement, lors de l’éxécution d’une commande par exemple <code>print(&quot;hello&quot;)</code>, <code>ls()</code>, <code>version</code> et même d’un script les résultats sont afficher à cet endroit.</p>
+<div class="figure">
+<img src="Picture/IDE_2.png" alt="Console" />
+<p class="caption">Console</p>
+</div>
+<p>La fenêtre en bas à droite sont composées de plusieurs tableaux :</p>
+<ul>
+<li>les fichiers ou dossiers présents dans le répertoire courant (dossier où nous sommes) <strong>Files</strong></li>
+<li>un tableau où les graphiques sont générées <strong>Plots</strong></li>
+<li>une liste des paquets déjà installés (charger ou non) <strong>Package</strong></li>
+<li>l’aide (très important) des fonctions qui peuvent-être affichées à l’aide de <code>?</code> si on connait la et <code>??</code> pour effectuer une recherche. <strong>Help</strong></li>
+<li>une fenêtre de visualisation des sorties du programme R en html <strong>Viewer</strong></li>
+</ul>
+<div class="figure">
+<img src="Picture" alt="Environnement de R" />
+<p class="caption">Environnement de R</p>
+</div>
+<p>La fenêtre en haut à droite sont composées de deux tableaux :</p>
+<ul>
+<li>La fenêtre d’environnement (objets, fonction chargée)</li>
+<li>L’historique</li>
+</ul>
+</div>
+<div id="vous-etes-ici" class="section level3">
+<h3><span class="header-section-number">1.2.3</span> Vous êtes ici !</h3>
+<p>La première étape lors du commencement d’un projet à l’aide du logiciel R est de se répérer et de pouvoir changer notre dossier courant de travail.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?<span class="kw">getwd</span>()
+<span class="kw">getwd</span>() <span class="co"># fonction pour savoir où l&#39;on est </span>
+<span class="kw">setwd</span>(<span class="st">&quot;~/Documents/&quot;</span>) <span class="co"># fonction pour changer de répertoire</span>
+<span class="kw">file.choose</span>() <span class="co"># permet d&#39;ouvrir un fichier </span></code></pre></div>
+<p>Lister les objets et les supprimer sont des étapes nécessaires avant de lancer un script. L’ommission ou le surplus d’un fichier dans la console R peut-être une source d’erreur.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>() </code></pre></div>
+<pre><code>##  [1] &quot;a&quot;              &quot;dat&quot;            &quot;data&quot;           &quot;make_circle&quot;   
+##  [5] &quot;mat&quot;            &quot;n&quot;              &quot;p&quot;              &quot;p1&quot;            
+##  [9] &quot;tagPlot&quot;        &quot;tendances&quot;      &quot;totalQuestions&quot; &quot;toto&quot;          
+## [13] &quot;url&quot;            &quot;z&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> </span><span class="dv">1</span> <span class="co"># création d&#39;un objet R  de type integer </span>
+b &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># création d&#39;un second objet </span>
+<span class="kw">ls</span>() <span class="co"># on peut voir apparaître les nouveaux objets que nous avons créé </span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot;              &quot;b&quot;              &quot;dat&quot;            &quot;data&quot;          
+##  [5] &quot;make_circle&quot;    &quot;mat&quot;            &quot;n&quot;              &quot;p&quot;             
+##  [9] &quot;p1&quot;             &quot;tagPlot&quot;        &quot;tendances&quot;      &quot;totalQuestions&quot;
+## [13] &quot;toto&quot;           &quot;url&quot;            &quot;z&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
+<span class="kw">ls</span>() </code></pre></div>
+<pre><code>## character(0)</code></pre>
+</div>
+<div id="variables" class="section level3">
+<h3><span class="header-section-number">1.2.4</span> Variables</h3>
+<p>Dans ce paragraphe nous ferons des rappels sur les variables et les fonctions.</p>
+<p>Pour reconnaître le type de varaible dans R la fonction <code>class()</code> est utilisée. Pour créer une variable ou un objet <code>&lt;-</code> est à préférer plustôt que le signe <code>=</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> &quot;Hello&quot;</span>
+
+<span class="kw">class</span>(a)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">b &lt;-<span class="st"> </span><span class="dv">1</span> 
+<span class="kw">class</span>(b)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#vecteurs</span>
+c &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)
+d &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>)
+e &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>=<span class="dv">1</span>,<span class="st">&quot;b&quot;</span>=<span class="dv">2</span>,<span class="st">&quot;c&quot;</span>=<span class="dv">3</span>,<span class="st">&quot;d&quot;</span>=<span class="dv">4</span>)
+f &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(c)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(d)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(e)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(f)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>Attention le vecteur <code>f</code> ne peut pas mélanger les types de variables. R traduit en string les éléments du vecteurs de type numérique.</p>
+<p>Les matrices permettent de stocker des numériques ou des caractères en 2 dimensions. Mais pas les deux en même temps cette action est impossible. Il faudrat utiliser une dataframe pour cela.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  f.m &lt;-<span class="st"> </span><span class="kw">cbind</span>(f)
+f.m</code></pre></div>
+<pre><code>##      f  
+## [1,] &quot;1&quot;
+## [2,] &quot;a&quot;
+## [3,] &quot;d&quot;
+## [4,] &quot;4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  c.m &lt;-<span class="st"> </span><span class="kw">cbind</span>(c)
+  c.m</code></pre></div>
+<pre><code>##      c
+## [1,] 1
+## [2,] 2
+## [3,] 3
+## [4,] 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  m.m &lt;-<span class="st"> </span><span class="kw">cbind</span>(f.m,c.m)
+    m.m</code></pre></div>
+<pre><code>##      f   c  
+## [1,] &quot;1&quot; &quot;1&quot;
+## [2,] &quot;a&quot; &quot;2&quot;
+## [3,] &quot;d&quot; &quot;3&quot;
+## [4,] &quot;4&quot; &quot;4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">        n.m &lt;-<span class="st"> </span><span class="kw">cbind</span>(c.m,c.m)
+        n.m</code></pre></div>
+<pre><code>##      c c
+## [1,] 1 1
+## [2,] 2 2
+## [3,] 3 3
+## [4,] 4 4</code></pre>
+<p>Ci dessus nous avons avons vu la limitation des matrices. La matice est soit de type numérique ou caractère. Pour résoudre ce problème, nous allons initialiser un nouveau objet une dataframe, qui très semblable à une matrice.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> c.m, <span class="dt">ncol=</span><span class="dv">4</span>,<span class="dt">nrow =</span> <span class="dv">3</span>)
+mat</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    3    2
+## [2,]    2    1    4    3
+## [3,]    3    2    1    4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df =<span class="st"> </span><span class="kw">data.frame</span>(<span class="st">&quot;numeriques&quot;</span>=<span class="st"> </span>c, <span class="dt">lettres=</span>f,<span class="dt">stringsAsFactors =</span> F)
+df$numeriques</code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$lettres</code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;a&quot; &quot;d&quot; &quot;4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[,<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] &quot;1&quot; &quot;a&quot; &quot;d&quot; &quot;4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(mat[,<span class="dv">1</span>])</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df[,<span class="st">&quot;numeriques&quot;</span>])</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(df[,<span class="st">&quot;lettres&quot;</span>])</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.matrix</span>(df)</code></pre></div>
+<pre><code>##      numeriques lettres
+## [1,] &quot;1&quot;        &quot;1&quot;    
+## [2,] &quot;2&quot;        &quot;a&quot;    
+## [3,] &quot;3&quot;        &quot;d&quot;    
+## [4,] &quot;4&quot;        &quot;4&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.numeric</span>(f)</code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1]  1 NA NA  4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">as.data.frame</span>(df)</code></pre></div>
+<pre><code>##   numeriques lettres
+## 1          1       1
+## 2          2       a
+## 3          3       d
+## 4          4       4</code></pre>
+<p>Une liste permet de stocker n’importe quel type d’objet même des graphiques.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### 
+<span class="kw">library</span>(ggplot2)
+
+liste_objet =<span class="st"> </span><span class="kw">list</span>(<span class="dt">dataframe=</span> df , <span class="dt">a=</span> a, <span class="dt">vec =</span> d, <span class="dt">mat =</span> mat,<span class="dt">plot=</span> <span class="kw">qplot</span>(<span class="kw">rnorm</span>(<span class="dv">1</span>:<span class="dv">100</span>)))
+liste_objet</code></pre></div>
+<pre><code>## $dataframe
+##   numeriques lettres
+## 1          1       1
+## 2          2       a
+## 3          3       d
+## 4          4       4
+## 
+## $a
+## [1] &quot;Hello&quot;
+## 
+## $vec
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+## 
+## $mat
+##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    3    2
+## [2,]    2    1    4    3
+## [3,]    3    2    1    4
+## 
+## $plot</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="dates" class="section level4">
+<h4><span class="header-section-number">1.2.4.1</span> Dates</h4>
+<p>Les dates et les heures sont gérer par R : * les dates avec <code>as.Date()</code> * les dates avec heures à l’aide de <code>as.POSIXct()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
+<pre><code>## [1] &quot;2017-02-16 00:07:12 CET&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.time</span>())</code></pre></div>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
+<pre><code>## [1] &quot;2017-02-16&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+</div>
+</div>
+<div id="relation-logique" class="section level3">
+<h3><span class="header-section-number">1.2.5</span> Relation logique</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>==<span class="dv">0</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>&gt;=<span class="dv">0</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span>&lt;=<span class="dv">0</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;a&quot;</span> ==<span class="st"> &quot;b&quot;</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>=<span class="dv">1</span>,<span class="st">&quot;b&quot;</span>=<span class="dv">2</span>,<span class="st">&quot;c&quot;</span>=<span class="dv">3</span>,<span class="st">&quot;d&quot;</span>=<span class="dv">4</span>)
+<span class="dv">2</span> %in%<span class="st"> </span>e</code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">e %in%<span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>) %in%<span class="st"> </span>e</code></pre></div>
+<pre><code>## [1] TRUE TRUE</code></pre>
+<p>Les commandes matrix(), cbind(), data.frame() sont des fonctions codées.</p>
+<p><strong>Définition d’une fonction</strong></p>
+<ul>
+<li>est un objet R</li>
+<li>composée de commandes R écrites dans un fichier qui effectuent une tâche prédéfinie</li>
+<li>permet de faire automatiquement la même tâche plusieurs fois</li>
+<li>garder un programme plus lisible</li>
+<li>un gain de temps à long terme</li>
+</ul>
+<p><strong>Exercice</strong> Votre première fonction :</p>
+<ul>
+<li>Ecrire un code qui prend en argument un texte et le renvoie (fonction équivalente à print) en console sous forme de fonction dans un nouveau fichier hello_fun.R</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hello &lt;-function(<span class="dt">texte=</span><span class="ot">NULL</span>){   <span class="co"># argument ou données d&#39;entrées</span>
+
+  <span class="co">#code manipulant les données</span>
+ 
+<span class="kw">return</span>(texte)  <span class="co">#  return  renvoie le résultat de la fonction  </span>
+}
+<span class="co"># source(&quot;C:/Users/Laurent/Documents/cours_data_visualisation/hello_fun.R&quot;)</span>
+
+ <span class="kw">hello</span>(<span class="st">&quot;hello world !&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;hello world !&quot;</code></pre>
+<p>Un petit ajout le nom de l’utilisateur :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">hello &lt;-function(<span class="dt">texte=</span><span class="ot">NULL</span>){  
+  <span class="co">#on souhaite coller le nom de l&#39;utilisateur à &quot;hello world&quot;</span>
+ <span class="co">#nom &lt;- Sys.getenv(&quot;USERNAME&quot;) </span>
+  nom &lt;-<span class="st"> </span><span class="kw">Sys.getenv</span>(<span class="st">&quot;USER&quot;</span>) <span class="co"># si on est sur linux </span>
+
+   <span class="co"># on colle le nom de l&#39;utilisateur</span>
+ texte &lt;-<span class="st"> </span><span class="kw">paste</span>(nom,texte)
+ 
+<span class="kw">return</span>(texte)  <span class="co">#  return  renvoie le r?sultat de la fonction  </span>
+}
+
+<span class="co"># source(&quot;C:/Users/Laurent/Documents/cours_data_visualisation/hello_fun2.R&quot;)</span>
+
+ <span class="kw">hello</span>(<span class="st">&quot;hello world !&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;mrrobot hello world !&quot;</code></pre>
+</div>
+<div id="les-packages-r" class="section level3">
+<h3><span class="header-section-number">1.2.6</span> Les Packages R</h3>
+<p>Les paquets sont constitués de fonctions, données et de code compilé dans un format bien précis. Le répertoire, où le paquet est stocké, est appelé librairie. Le logiciel R vient avec un nombre standard de paquet. D’autres sont disponibles pour le téléchargement. Une fois installé, ils doivent être installé dans la session pour être utilisé.</p>
+<p>La fonction <code>install.packages(&quot;devtools&quot;)</code> permet d’installler et de télécharger le pacquet devtools.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>) ### Pour plus facilement installer les packets 
+<span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>) ### pour faire de la data visualisation 
+<span class="co"># install.packages(&quot;ggmap&quot;)</span>
+<span class="co"># </span>
+<span class="co"># install.packages(&quot;leaflet&quot;)</span></code></pre></div>
+</div>
+</div>
+<div id="data-visualisation" class="section level2">
+<h2><span class="header-section-number">1.3</span> Data Visualisation</h2>
+<p>Cette partie va vous apprendre à visualiser vos premières données sous R avec ggplot2. Une des façons de mettre en forme vos données est d’utiliser le package ggplot2, qui utilise la (<a href="http://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">http://vita.had.co.nz/papers/layered-grammar.pdf</a>)[grammaire des graphiques]. Elle considére un graphique comme des données composées d’esthétiques de formes géométrique. Un graphique se décompose d’élément simple comme la posistion d’un objet géométrique sur l’axe des ordonnées, des abscises, de sa couleur et de sa taille … etc</p>
+<p>Un graphique en data science sert généralement à répondre à une question. Par exemple : * Quelle est la forme de mes données ? * Quelle est la relation entre mes jeux de données ? linéaires, non-linéaires … * (#Pourquoi R ?)[Pourquoi utiliser R ?]</p>
+<div id="section" class="section level3">
+<h3><span class="header-section-number">1.3.1</span> </h3>
+
+<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
+<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl+Shift+Enter</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(cars)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl+Alt+I</em>.</p>
+<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-intro.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
