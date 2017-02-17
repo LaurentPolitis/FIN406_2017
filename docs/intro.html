@@ -103,15 +103,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Finance quantitative FIN403 </a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Syllabus</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#presentation-du-cours"><i class="fa fa-check"></i>Presentation du cours</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#plan-du-cours"><i class="fa fa-check"></i>Plan du cours</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mode-devaluation"><i class="fa fa-check"></i>Mode d’évaluation</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciement"><i class="fa fa-check"></i>Remerciement</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Syllabus</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
 <li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#la-popularite-de-r-et-sa-facilite"><i class="fa fa-check"></i><b>1.1.1</b> La popularité de R et sa facilité</a></li>
@@ -155,8 +147,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">1.1</span> Pourquoi R ?</h2>
 <div id="la-popularite-de-r-et-sa-facilite" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> La popularité de R et sa facilité</h3>
-<p>Un nombre croissant de personnes utilisent R. Les graphiques montrent le nombre croissant de questions en relation au langage R sur le site <a href="http://stackoverflow.com/">stack overflow</a>. Ces graphiques sont obetenues en utilisant un script <em>R</em> (voir code ci-dessous), qui va automatiquement chercher la donnée sur internet, traiter la donnée et visualiser les résultats du nombre de questions sur R du site.<br />
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<p>Un nombre croissant de personnes utilisent R. Les graphiques montrent le nombre croissant de questions en relation au langage R sur le site <a href="http://stackoverflow.com/">stack overflow</a>. Ces graphiques sont obetenus en utilisant un script <em>R</em> (voir code en bas de la page), qui va automatiquement chercher la donnée sur internet, la traiter et visualiser les résultats du nombre de questions à propos de R sur le site.<br />
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
 <table>
 <thead>
 <tr class="header">
@@ -245,17 +237,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="caption">Editeur</p>
 </div>
 <p>Une courte présentation du logiciel Rstudio est faite ci-dessous :</p>
-<p>Lors de l’ouverture de Rstudio, quatres fenêtres s’ouvrent par défaut. La fenêtre en haut à gauche est un éditeur de texte, qui permet d’êcrire un script en R (succession de ligne de commande composée de fonction permettant de créer un veritable programme informatique). En bas à gauche la console R estsemblable a un terminal de calculatrice ou d’un ordinateur (Dos, Unix) et nous pouvons l’utiliser pour lancer diverses commandes, fonction et scripts R. Généralement, lors de l’éxécution d’une commande par exemple <code>print(&quot;hello&quot;)</code>, <code>ls()</code>, <code>version</code> et même d’un script les résultats sont afficher à cet endroit.</p>
+<p>Lors de l’ouverture de Rstudio, quatres fenêtres s’ouvrent par défaut. La fenêtre en haut à gauche est un éditeur de texte, qui permet d’êcrire un script en R (succession de ligne de commande composée de fonction permettant de créer un véritable programme informatique). En bas à gauche la console R est semblable a un terminal de calculatrice ou d’un ordinateur (Dos, Unix). Nous pouvons l’utiliser pour lancer diverses commandes, fonctions et scripts R. Généralement, lors de l’éxécution d’une commande par exemple <code>print(&quot;hello&quot;)</code>, <code>ls()</code>, <code>version</code> et même d’un script les résultats sont afficher à cet endroit.</p>
 <div class="figure">
 <img src="Picture/IDE_2.png" alt="Console" />
 <p class="caption">Console</p>
 </div>
-<p>La fenêtre en bas à droite sont composées de plusieurs tableaux :</p>
+<p>La fenêtre en bas à droite est composée de plusieurs tableaux :</p>
 <ul>
 <li>les fichiers ou dossiers présents dans le répertoire courant (dossier où nous sommes) <strong>Files</strong></li>
-<li>un tableau où les graphiques sont générées <strong>Plots</strong></li>
+<li>un tableau où les graphiques sont générés <strong>Plots</strong></li>
 <li>une liste des paquets déjà installés (charger ou non) <strong>Package</strong></li>
-<li>l’aide (très important) des fonctions qui peuvent-être affichées à l’aide de <code>?</code> si on connait la et <code>??</code> pour effectuer une recherche. <strong>Help</strong></li>
+<li>l’aide (très importante) des fonctions qui peuvent-être affichées à l’aide de <code>?</code> si on connait la fonction et <code>??</code> pour effectuer une recherche. <strong>Help</strong></li>
 <li>une fenêtre de visualisation des sorties du programme R en html <strong>Viewer</strong></li>
 </ul>
 <div class="figure">
@@ -277,17 +269,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="kw">file.choose</span>() <span class="co"># permet d&#39;ouvrir un fichier </span></code></pre></div>
 <p>Lister les objets et les supprimer sont des étapes nécessaires avant de lancer un script. L’ommission ou le surplus d’un fichier dans la console R peut-être une source d’erreur.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>() </code></pre></div>
-<pre><code>##  [1] &quot;a&quot;              &quot;dat&quot;            &quot;data&quot;           &quot;make_circle&quot;   
-##  [5] &quot;mat&quot;            &quot;n&quot;              &quot;p&quot;              &quot;p1&quot;            
-##  [9] &quot;tagPlot&quot;        &quot;tendances&quot;      &quot;totalQuestions&quot; &quot;toto&quot;          
-## [13] &quot;url&quot;            &quot;z&quot;</code></pre>
+<pre><code>## [1] &quot;dat&quot;            &quot;mat&quot;            &quot;p1&quot;             &quot;tagPlot&quot;       
+## [5] &quot;tendances&quot;      &quot;totalQuestions&quot; &quot;toto&quot;           &quot;url&quot;           
+## [9] &quot;z&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> </span><span class="dv">1</span> <span class="co"># création d&#39;un objet R  de type integer </span>
 b &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># création d&#39;un second objet </span>
 <span class="kw">ls</span>() <span class="co"># on peut voir apparaître les nouveaux objets que nous avons créé </span></code></pre></div>
-<pre><code>##  [1] &quot;a&quot;              &quot;b&quot;              &quot;dat&quot;            &quot;data&quot;          
-##  [5] &quot;make_circle&quot;    &quot;mat&quot;            &quot;n&quot;              &quot;p&quot;             
-##  [9] &quot;p1&quot;             &quot;tagPlot&quot;        &quot;tendances&quot;      &quot;totalQuestions&quot;
-## [13] &quot;toto&quot;           &quot;url&quot;            &quot;z&quot;</code></pre>
+<pre><code>##  [1] &quot;a&quot;              &quot;b&quot;              &quot;dat&quot;            &quot;mat&quot;           
+##  [5] &quot;p1&quot;             &quot;tagPlot&quot;        &quot;tendances&quot;      &quot;totalQuestions&quot;
+##  [9] &quot;toto&quot;           &quot;url&quot;            &quot;z&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rm</span>(<span class="dt">list=</span><span class="kw">ls</span>())
 <span class="kw">ls</span>() </code></pre></div>
 <pre><code>## character(0)</code></pre>
@@ -295,8 +285,9 @@ b &lt;-<span class="st"> </span><span class="dv">2</span> <span class="co"># cr�
 <div id="variables" class="section level3">
 <h3><span class="header-section-number">1.2.4</span> Variables</h3>
 <p>Dans ce paragraphe nous ferons des rappels sur les variables et les fonctions.</p>
-<p>Pour reconnaître le type de varaible dans R la fonction <code>class()</code> est utilisée. Pour créer une variable ou un objet <code>&lt;-</code> est à préférer plustôt que le signe <code>=</code></p>
+<p>Dans R la fonction <code>class()</code> permet de reconnaître le type de variable. Pour créer une variable ou un objet <code>&lt;-</code> est à préférer plustôt que le signe <code>=</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a =<span class="st"> &quot;Hello&quot;</span>
+a&lt;-<span class="st">&quot;Hello&quot;</span>
 
 <span class="kw">class</span>(a)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
@@ -408,12 +399,12 @@ liste_objet</code></pre></div>
 ## 
 ## $plot</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <div id="dates" class="section level4">
 <h4><span class="header-section-number">1.2.4.1</span> Dates</h4>
 <p>Les dates et les heures sont gérer par R : * les dates avec <code>as.Date()</code> * les dates avec heures à l’aide de <code>as.POSIXct()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-02-17 00:53:58 CET&quot;</code></pre>
+<pre><code>## [1] &quot;2017-02-17 01:14:45 CET&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.time</span>())</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
@@ -531,7 +522,7 @@ tagPlot &lt;-<span class="st"> </span>function(x, <span class="dt">title =</span
 
 <span class="co"># les question depuis 2016-01-01</span>
 dat %&gt;%<span class="st"> </span><span class="kw">filter</span>(Month &gt;=<span class="st"> &quot;2016-01-01&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">totalQuestions</span>() %&gt;%<span class="st"> </span><span class="kw">tagPlot</span>()</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  ------------------------------------------------------------------------</span>
 
 
@@ -561,11 +552,11 @@ mat=<span class="kw">do.call</span>(rbind,toto)
 tendances =<span class="st"> </span>mat[<span class="kw">order</span>(mat[,<span class="dv">2</span>,<span class="dt">drop=</span>T]),<span class="dv">2</span>,drop=F]
 <span class="kw">colnames</span>(tendances) =<span class="st"> &quot;Tendances depuis 2014&quot;</span>
 p1 +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>)</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggthemes)
  <span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> Month, <span class="dt">y =</span> Questions, <span class="dt">group =</span> TagName, <span class="dt">colour =</span> TagName)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_bw</span>(<span class="dv">20</span>)+<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">span =</span> <span class="fl">0.5</span>)</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-11-3.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(dat, <span class="kw">aes</span>(<span class="dt">x =</span> Month, <span class="dt">y =</span> Questions, <span class="dt">group =</span> TagName, <span class="dt">colour =</span> TagName)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_bw</span>(<span class="dv">20</span>)
 
