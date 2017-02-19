@@ -1,0 +1,483 @@
+# Introduction {#intro}
+
+## Pourquoi R ?
+
+
+### La popularité de R  et sa facilité  
+
+Un nombre croissant de personnes utilisent R. Les graphiques montrent le nombre croissant de questions en relation au langage R sur le site [stack overflow](http://stackoverflow.com/). Ces graphiques sont obtenus en utilisant un script *R* (voir code en bas de la page), qui va automatiquement chercher la donnée sur internet, la traiter et visualiser les résultats du nombre de questions à propos de R sur le site.  
+```{r, echo=FALSE,message=FALSE, warning=FALSE}
+rm(list=ls())
+# réquétes 
+# https://data.stackexchange.com/stackoverflow/query/338993/r-trends-questions-per-tag-per-month#resultSets
+
+
+# Importer les données 
+url <- "https://data.stackexchange.com/stackoverflow/csv/440417"
+# dat <- read.csv(url)
+load(file = "data_questions.Rdata")
+
+dat$Month <- as.Date(dat$Month)
+
+# Dessiner les graphes sous formes de fonctions 
+
+library(dplyr)
+library(ggplot2)
+# data mining 
+# sommer les question et les ordonner 
+totalQuestions <- function(x) {
+  z <- x %>% group_by(TagName) %>% summarise(total = sum(Questions)) %>% arrange(desc(total))
+  new <- as.character(z$TagName)
+  z$TagName <- factor(new, levels = new)
+  z
+}
+
+# fonctions graphiques  
+# 
+tagPlot <- function(x, title = "Tag popularity") {
+  ggplot(x, aes(x = TagName, y = total)) + 
+    geom_bar(stat = "identity") +
+    ggtitle(title) + 
+    xlab(NULL) + ylab(NULL)
+}
+
+# les question depuis 2016-01-01
+dat %>% filter(Month >= "2016-01-01") %>% totalQuestions() %>% tagPlot()
+
+
+
+#  ------------------------------------------------------------------------
+
+
+# Ordonner les Tags 
+z <- dat %>% filter(Month >= "2016-01-01") %>% totalQuestions()
+dat$TagName <- factor(as.character(dat$TagName), levels = as.character(z$TagName))
+
+library(ggplot2)
+
+
+# Tendances depuis le premier janvier 2014 
+#################
+
+
+toto=lapply(X =setNames(as.character( unique(dat$TagName)),as.character( unique(dat$TagName))),FUN = function(x) lm(data = dat[dat$TagName==x,] %>% filter(Month >= "2014-01-01"),formula =  Questions~Month)$coefficients)
+mat=do.call(rbind,toto)
+tendances = mat[order(mat[,2,drop=T]),2,drop=F]
+colnames(tendances) = "Tendances depuis 2014"
+ ggplot(dat, aes(x = Month, y = Questions, group = TagName, colour = TagName)) + 
+  theme_bw(20) + geom_line(size = 1)
+library(ggthemes)
+ ggplot(dat, aes(x = Month, y = Questions, group = TagName, colour = TagName)) + 
+  theme_bw(20)+ geom_smooth(size = 1, method = "lm", span = 0.5)
+# 
+# p1 <- ggplot(dat, aes(x = Month, y = Questions, group = TagName, colour = TagName)) + 
+#   theme_bw(20)
+
+# 
+#https://www.r-bloggers.com/the-most-popular-programming-languages-on-stackoverflow/
+
+# knitr::kable(tendances)
+
+```
+
+### D'autres raisons 
+
+
+* Open source & Gratuit
+* Une très grosse communauté de développeurs et d'utilisateurs
+* Facile à utiliser pour des non-programmeurs pour des calculs statistiques
+* Possibilité de créer de belles illustrations, applications web et même le cours que vous lisez actuellement (à l'aide du package Bookdown)
+* Facile à installer sur les systèmes d'exploitations Linux, Windows et Apple
+* Une quantité très importante de package 
+
+
+## Environnement R 
+
+### Pré requis Installation de R 
+
+Sur Windows
+
+* aller à l'url http://cran.r-project.org/bin/windows/base/ et télécharger la dernière version de R en fonction de votre ordinateur 32 bit ou 64 bit (pour le savoir aller sur paramètres>système>information système)
+
+Sur Apple
+
+* http://cran.r-project.org/bin/macosx/ et télécharger la dernière version de R
+
+Pour installer Rstudio
+
+* http://www.rstudio.com/ide/ pour télécharger la dernière version et installer l'environnement de travail R studio en suivant les indications du site
+
+### Présentation  de Rstusio 
+
+Rstudio est un IDE, un environnement de travail pour le langage R. Une interface graphique permet plus facilement d’interagir avec le langage à l'aide de multiple fonctionnalité. Pour les connaître, la lecture de l'aide mémoire de Rstdudio est très utile https://www.rstudio.org/links/ide_cheat_sheet. 
+
+![Editeur](/home/mrrobot/Documents/FIN406_2017/Picture/IDE_1.png)
+
+Une courte présentation du logiciel Rstudio est faite ci-dessous :
+
+Lors de l'ouverture de Rstudio, quatre fenêtres s'ouvrent par défaut. La fenêtre en haut à gauche est un éditeur de texte, qui permet d’écrire un script en R (succession de ligne de commande composée de fonction permettant de créer un véritable programme informatique). En bas à gauche la console R  est semblable a un terminal de calculatrice ou d'un ordinateur (Dos, UNIX). Nous pouvons l'utiliser pour lancer diverses commandes, fonctions et scripts R. Généralement, lors de l’exécution d'une commande par exemple `print("hello")`, `ls()`, `version` et même d'un script les résultats sont afficher à cet endroit. 
+
+![Console](/home/mrrobot/Documents/FIN406_2017/Picture/IDE_2.png)
+
+
+La fenêtre en bas à droite est composée de plusieurs tableaux : 
+
+ * les fichiers ou dossiers présents dans le répertoire courant (dossier où nous sommes) **Files**
+ * un tableau où les graphiques sont générés **Plots**
+ * une liste des paquets déjà installés (charger ou non) **Package**
+ * l'aide (très importante) des fonctions qui peuvent-être affichées à l'aide de `?` si on connait la fonction et `??` pour effectuer une recherche. **Help**
+ * une fenêtre de visualisation des sorties du programme R en html **Viewer**
+ 
+ 
+   ![Environnement de R](/home/mrrobot/Documents/FIN406_2017/Picture/IDE4.png)
+
+ 
+La fenêtre en haut à droite sont composées de deux tableaux : 
+
+* La fenêtre d'environnement (objets, fonction chargée)
+* L'historique 
+
+
+### Vous êtes ici !
+
+La première étape lors du commencement d'un projet à l'aide du logiciel R est de se repérer et de pouvoir changer notre dossier courant de travail.
+
+```{r, message=FALSE, warning=FALSE, eval=FALSE}
+?getwd()
+getwd() # fonction pour savoir où l'on est 
+setwd("~/Documents/") # fonction pour changer de répertoire
+file.choose() # permet d'ouvrir un fichier 
+
+```
+
+Lister les objets et les supprimer sont des étapes nécessaires avant de lancer un script. L’omission ou le surplus d'un fichier dans la console R peut-être une source d'erreur.
+
+```{r}
+ls() 
+a = 1 # création d'un objet R  de type integer 
+b <- 2 # création d'un second objet 
+ls() # on peut voir apparaître les nouveaux objets que nous avons créé 
+rm(list=ls())
+ls() 
+```
+
+### Variables
+Dans ce paragraphe nous ferons des rappels sur les variables et les fonctions.
+
+
+Dans R la fonction `class()` permet de reconnaître le type de variable. Pour créer une variable ou un objet `<-` est à préférer plutôt que le signe `=`
+```{r console, echo=TRUE, message=TRUE,eval=TRUE}
+a = "Hello"
+a<-"Hello"
+
+class(a)
+
+b <- 1 
+class(b)
+
+#vecteurs
+c <- c(1,2,3,4)
+d <- c("a","b","c","d")
+e <- c("a"=1,"b"=2,"c"=3,"d"=4)
+f <- c(1,"a","d",4)
+```
+
+
+```{r variables, echo=TRUE, message=TRUE,eval=TRUE}
+class(c)
+class(d)
+class(e)
+class(f)
+```
+ Attention le vecteur `f` ne peut pas mélanger les types de variables. R traduit en string les éléments du vecteurs de type numérique. 
+
+Les matrices permettent de stocker des numériques ou des caractères en 2 dimensions. Mais pas les deux en même temps cette action est impossible. Il faudra utiliser une dataframe  pour cela. 
+
+```{r matrix, echo=TRUE, message=TRUE}
+  f.m <- cbind(f)
+f.m
+  c.m <- cbind(c)
+  c.m
+  
+ 
+```
+
+```{r matrix1, echo=TRUE, message=TRUE}
+  m.m <- cbind(f.m,c.m)
+    m.m
+        n.m <- cbind(c.m,c.m)
+        n.m
+
+```
+Ci dessus nous avons avons vu la limitation des matrices. La matisse est soit de type numérique ou caractère. Pour résoudre ce problème, nous allons initialiser un nouveau objet une dataframe, qui très semblable à une matrice.
+
+```{r dataframe, echo=TRUE, message=TRUE}
+mat <- matrix(data = c.m, ncol=4,nrow = 3)
+mat
+df = data.frame("numeriques"= c, lettres=f,stringsAsFactors = F)
+df$numeriques
+df$lettres
+df[,2]
+```
+
+
+```{r dataframe1, echo=TRUE, message=TRUE}
+class(mat[,1])
+class(df[,"numeriques"])
+class(df[,"lettres"])
+```
+
+```{r as, echo=TRUE, message=TRUE}
+as.matrix(df)
+
+as.numeric(f)
+
+as.data.frame(df)
+
+```
+
+Une liste permet de stocker n'importe quel type d'objet même des graphiques. 
+
+```{r}
+### 
+library(ggplot2)
+
+liste_objet = list(dataframe= df , a= a, vec = d, mat = mat,plot= qplot(rnorm(1:100)))
+liste_objet
+```
+
+#### Dates 
+
+ Les dates et les heures sont gérer par R : 
+ * les dates avec `as.Date()`
+ * les dates avec heures à l'aide de `as.POSIXct()`
+ 
+ 
+```{r}
+Sys.time()
+class(Sys.time())
+
+Sys.Date()
+class(Sys.Date())
+
+
+```
+
+### Relation logique  
+```{r logique, echo=TRUE, message=TRUE}
+1==0
+1>=0
+1<=0
+"a" == "b"
+e <- c("a"=1,"b"=2,"c"=3,"d"=4)
+2 %in% e
+e %in% 2
+c(1,3) %in% e
+```
+
+Les commandes matrix(), cbind(), data.frame() sont des fonctions codées. 
+
+**Définition d'une fonction**
+
+* est un objet R
+* composée de commandes R écrites dans un fichier qui effectuent une tâche prédéfinie
+* permet de faire automatiquement la même tâche plusieurs fois 
+* garder un programme plus lisible 
+* un gain de temps à long terme 
+
+**Exercice**  Votre première fonction : 
+
+ * Ecrire un code qui prend en argument un texte et le renvoie (fonction équivalente à print) en console sous forme de fonction dans un nouveau fichier hello_fun.R
+
+```{r fonction2, echo=TRUE, message=TRUE}
+hello <-function(texte=NULL){   # argument ou données d'entrées
+
+  #code manipulant les données
+ 
+return(texte)  #  return  renvoie le résultat de la fonction  
+}
+# source("C:/Users/Laurent/Documents/cours_data_visualisation/hello_fun.R")
+
+ hello("hello world !")
+```
+
+
+Un petit ajout le nom de l'utilisateur :
+ 
+```{r fonction1, echo=TRUE, message=TRUE}
+hello <-function(texte=NULL){  
+  #on souhaite coller le nom de l'utilisateur à "hello world"
+ #nom <- Sys.getenv("USERNAME") 
+  nom <- Sys.getenv("USER") # si on est sur linux 
+
+   # on colle le nom de l'utilisateur
+ texte <- paste(nom,texte)
+ 
+return(texte)  #  return  renvoie le r?sultat de la fonction  
+}
+
+# source("C:/Users/Laurent/Documents/cours_data_visualisation/hello_fun2.R")
+
+ hello("hello world !")
+```
+
+### Les Packages R 
+
+
+
+Les paquets sont constitués de fonctions, données et de code compilé dans un format bien précis. Le répertoire, où le paquet est stocké, est appelé librairie. Le logiciel R vient avec un nombre standard de paquet. D'autres sont disponibles pour le téléchargement. Une fois installé, ils doivent être installé dans la session pour être utilisé. 
+
+ La fonction `install.packages("devtools")` permet d’installer et de télécharger le pacquer deltoïdes. 
+
+```{r,eval=F}
+install.packages("devtools") ### Pour plus facilement installer les packets 
+install.packages("ggplot2") ### pour faire de la data visualisation 
+# install.packages("ggmap")
+# 
+# install.packages("leaflet")
+
+
+
+
+```
+## Data Visualisation 
+
+Cette partie va vous apprendre à visualiser vos premières données sous R avec ggplot2. Une des façons de mettre en forme vos données est d'utiliser la librairie ggplot2, qui utilise la (http://vita.had.co.nz/papers/layered-grammar.pdf)[grammaire des graphiques]. Elle considère un graphique comme des données composées d'esthétiques de formes géométrique.  Un graphique se décompose d'élément simple comme la position d'un objet géométrique sur l'axe des ordonnées, des abscisses, de sa couleur et de sa taille ... etc 
+
+Un graphique en data science sert généralement à répondre à une question. Par exemple :
+* Quelle est la forme de mes données ? 
+* Quelle est la relation entre mes jeux de données ? linéaires, non-linéaires ...
+
+### Premier graphe avec ggplot2
+
+Nous allons utiliser des données dèja disponible dans R. 
+
+```{r}
+?cars
+class(cars)
+```
+
+Puis, nous allons charger la librairie ggplot2 afin de disposer des fonction de la librairie et créer notre premier graphique. 
+
+```{r}
+library(ggplot2)
+
+ggplot(cars) + geom_point(aes(x=speed,y=dist))
+```
+```{r}
+ggplot(cars) + geom_point(aes(x=speed,y=dist,size = speed))
+
+```
+```{r}
+ggplot(cars) + geom_point(aes(x=speed,y=dist),size=4)
+
+```
+```{r}
+ggplot(cars) + geom_point(aes(x=speed,y=dist,alpha=speed))
+
+```
+
+```{r}
+ggplot(cars) + geom_point(aes(x=speed,y=dist,colour=speed<15))
+
+```
+```{r}
+ggplot(cars,aes(x=speed,y=dist)) + geom_point(aes(colour=speed<15)) + geom_smooth(method = "lm")
+
+```
+```{r}
+ggplot(cars) + geom_point(aes(x=speed,y=dist,shape=speed<15),size=4)
+```
+
+
+### Exemple de Script
+
+```{r}
+
+# réquétes 
+# https://data.stackexchange.com/stackoverflow/query/338993/r-trends-questions-per-tag-per-month#resultSets
+
+
+# Importer les données 
+url <- "https://data.stackexchange.com/stackoverflow/csv/440417"
+# dat <- read.csv(url)
+load(file = "data_questions.Rdata")
+
+dat$Month <- as.Date(dat$Month)
+
+# Dessiner les graphes sous formes de fonctions 
+
+library(dplyr)
+library(ggplot2)
+# data mining 
+# sommer les question et les ordonner 
+totalQuestions <- function(x) {
+  z <- x %>% group_by(TagName) %>% summarise(total = sum(Questions)) %>% arrange(desc(total))
+  new <- as.character(z$TagName)
+  z$TagName <- factor(new, levels = new)
+  z
+}
+
+# fonctions graphiques  
+# 
+tagPlot <- function(x, title = "Tag popularity") {
+  ggplot(x, aes(x = TagName, y = total)) + 
+    geom_bar(stat = "identity") +
+    ggtitle(title) + 
+    xlab(NULL) + ylab(NULL)
+}
+
+# les question depuis 2016-01-01
+dat %>% filter(Month >= "2016-01-01") %>% totalQuestions() %>% tagPlot()
+
+
+
+#  ------------------------------------------------------------------------
+
+
+# Ordonner les Tags 
+z <- dat %>% filter(Month >= "2016-01-01") %>% totalQuestions()
+dat$TagName <- factor(as.character(dat$TagName), levels = as.character(z$TagName))
+
+
+
+#################
+#     DATA VISU #
+#               #
+#               #
+#################
+
+
+library(ggplot2)
+p1 <- ggplot(dat, aes(x = Month, y = Questions, group = TagName, colour = TagName)) + 
+  theme_bw(20)
+
+# Tendances depuis le premier janvier 2014 
+#################
+
+
+toto=lapply(X =setNames(as.character( unique(dat$TagName)),as.character( unique(dat$TagName))),FUN = function(x) lm(data = dat[dat$TagName==x,] %>% filter(Month >= "2014-01-01"),formula =  Questions~Month)$coefficients)
+mat=do.call(rbind,toto)
+tendances = mat[order(mat[,2,drop=T]),2,drop=F]
+colnames(tendances) = "Tendances depuis 2014"
+p1 + geom_line(size = 1)
+library(ggthemes)
+ ggplot(dat, aes(x = Month, y = Questions, group = TagName, colour = TagName)) + 
+  theme_bw(20)+ geom_smooth(size = 1, method = "lm", span = 0.5)
+
+p1 <- ggplot(dat, aes(x = Month, y = Questions, group = TagName, colour = TagName)) + 
+  theme_bw(20)
+
+# 
+#https://www.r-bloggers.com/the-most-popular-programming-languages-on-stackoverflow/
+
+
+```
+
+
+
+
+
+
+ 
+
