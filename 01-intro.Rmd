@@ -340,59 +340,11 @@ install.packages("ggplot2") ### pour faire de la data visualisation
 
 
 ```
-## Data Visualisation 
-
-Cette partie va vous apprendre à visualiser vos premières données sous R avec ggplot2. Une des façons de mettre en forme vos données est d'utiliser la librairie ggplot2, qui utilise la (http://vita.had.co.nz/papers/layered-grammar.pdf)[grammaire des graphiques]. Elle considère un graphique comme des données composées d'esthétiques de formes géométrique.  Un graphique se décompose d'élément simple comme la position d'un objet géométrique sur l'axe des ordonnées, des abscisses, de sa couleur et de sa taille ... etc 
-
-Un graphique en data science sert généralement à répondre à une question. Par exemple :
-* Quelle est la forme de mes données ? 
-* Quelle est la relation entre mes jeux de données ? linéaires, non-linéaires ...
-
-### Premier graphe avec ggplot2
-
-Nous allons utiliser des données dèja disponible dans R. 
-
-```{r}
-?cars
-class(cars)
-```
-
-Puis, nous allons charger la librairie ggplot2 afin de disposer des fonction de la librairie et créer notre premier graphique. 
-
-```{r}
-library(ggplot2)
-
-ggplot(cars) + geom_point(aes(x=speed,y=dist))
-```
-```{r}
-ggplot(cars) + geom_point(aes(x=speed,y=dist,size = speed))
-
-```
-```{r}
-ggplot(cars) + geom_point(aes(x=speed,y=dist),size=4)
-
-```
-```{r}
-ggplot(cars) + geom_point(aes(x=speed,y=dist,alpha=speed))
-
-```
-
-```{r}
-ggplot(cars) + geom_point(aes(x=speed,y=dist,colour=speed<15))
-
-```
-```{r}
-ggplot(cars,aes(x=speed,y=dist)) + geom_point(aes(colour=speed<15)) + geom_smooth(method = "lm")
-
-```
-```{r}
-ggplot(cars) + geom_point(aes(x=speed,y=dist,shape=speed<15),size=4)
-```
 
 
 ### Exemple de Script
 
-```{r}
+```{r,eval=F}
 
 # réquétes 
 # https://data.stackexchange.com/stackoverflow/query/338993/r-trends-questions-per-tag-per-month#resultSets
