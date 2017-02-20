@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes de Cours sur R FIN403</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Cours de data science à l’aide du logiciel R">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Notes de Cours sur R FIN403" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Cours de data science à l’aide du logiciel R" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes de Cours sur R FIN403" />
+  
+  <meta name="twitter:description" content="Cours de data science à l’aide du logiciel R" />
+  
+
+<meta name="author" content="Laurent POLITIS">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Finance quantitative FIN403 </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Syllabus</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#presentation-du-cours"><i class="fa fa-check"></i>Presentation du cours</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#plan-du-cours"><i class="fa fa-check"></i>Plan du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mode-devaluation"><i class="fa fa-check"></i>Mode d’évaluation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciement"><i class="fa fa-check"></i>Remerciement</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#la-popularite-de-r-et-sa-facilite"><i class="fa fa-check"></i><b>1.1.1</b> La popularité de R et sa facilité</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#dautres-raisons"><i class="fa fa-check"></i><b>1.1.2</b> D’autres raisons</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#environnement-r"><i class="fa fa-check"></i><b>1.2</b> Environnement R</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#pre-requis-installation-de-r"><i class="fa fa-check"></i><b>1.2.1</b> Pré requis Installation de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#presentation-de-rstusio"><i class="fa fa-check"></i><b>1.2.2</b> Présentation de Rstusio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vous-etes-ici"><i class="fa fa-check"></i><b>1.2.3</b> Vous êtes ici !</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
+<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-de-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple de Script</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data visualisation</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premier-graphe-avec-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Premier graphe avec ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>2.2</b> Ggplot2</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premiere-etape-data-mining"><i class="fa fa-check"></i><b>2.2.1</b> Première étape Data Mining</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#dessiner-de-lesthetique-gaphique"><i class="fa fa-check"></i><b>2.2.2</b> Dessiner de l’Esthétique gaphique</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#erreur-courantes"><i class="fa fa-check"></i><b>2.2.3</b> Erreur courantes</a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#panneaux"><i class="fa fa-check"></i><b>2.2.4</b> Panneaux</a></li>
+<li class="chapter" data-level="2.2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#geometries"><i class="fa fa-check"></i><b>2.2.5</b> Géométries</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#graphiques-et-statistiques"><i class="fa fa-check"></i><b>2.3</b> Graphiques et statistiques</a></li>
+<li class="chapter" data-level="2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.4</b> Positions et couleurs des graphes</a></li>
+<li class="chapter" data-level="2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.5</b> Système de coordonnées</a></li>
+<li class="chapter" data-level="2.6" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.6</b> Themes et addins</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes de Cours sur R FIN403</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualisation" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Data visualisation</h1>
+<p>Cette partie va vous apprendre à visualiser vos premières données sous R avec ggplot2. Une des façons de mettre en forme vos données est d’utiliser la librairie ggplot2, qui utilise la (<a href="http://vita.had.co.nz/papers/layered-grammar.pdf" class="uri">http://vita.had.co.nz/papers/layered-grammar.pdf</a>)[grammaire des graphiques]. Elle considère un graphique comme des données composées d’esthétiques de formes géométrique. Un graphique se décompose d’élément simple comme la position d’un objet géométrique sur l’axe des ordonnées, des abscisses, de sa couleur et de sa taille … etc <img src="bookdown-demo_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Un graphique, en plus du rendu visuel attractif, en data science sert généralement à répondre à une question. Par exemple</p>
+<ul>
+<li>Quelle est la forme de mes données ?</li>
+<li>Quelle est la relation entre mes jeux de données ? linéaires, non-linéaires …</li>
+</ul>
+<div id="premier-graphe-avec-ggplot2" class="section level2">
+<h2><span class="header-section-number">2.1</span> Premier graphe avec ggplot2</h2>
+<p>Nous allons utiliser des données dèja disponible dans R.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?cars
+<span class="kw">class</span>(cars)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p>Puis, nous allons charger la librairie ggplot2 afin de disposer des fonctions de la librairie et créer notre premier graphique.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+
+<span class="kw">ggplot</span>(cars) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cars) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist,<span class="dt">size =</span> speed))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cars) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist),<span class="dt">size=</span><span class="dv">4</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cars) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist,<span class="dt">alpha=</span>speed))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cars) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist,<span class="dt">colour=</span>speed&lt;<span class="dv">15</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cars,<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist)) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>speed&lt;<span class="dv">15</span>)) +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(cars) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist,<span class="dt">shape=</span>speed&lt;<span class="dv">15</span>),<span class="dt">size=</span><span class="dv">4</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Operator IF ELSE</span>
+if (!<span class="kw">require</span>(<span class="st">&quot;ggpmisc&quot;</span>)){
+  <span class="kw">install.packages</span>(<span class="st">&quot;ggpmisc&quot;</span>)
+} else {
+  
+}</code></pre></div>
+<pre><code>## Loading required package: ggpmisc</code></pre>
+<pre><code>## NULL</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Le package ggmisc permet facilement d&#39;afficher l&#39;équation du modèle linéaire ainsi que des métrique d&#39;erreur</span>
+ma_formule =<span class="st"> </span>y ~<span class="st"> </span>x -<span class="dv">1</span>
+<span class="co">#ma_formule = y ~ x</span>
+
+<span class="co">#ma_formule = y ~ poly(x = x,degree =2)</span>
+
+<span class="kw">ggplot</span>(cars,<span class="kw">aes</span>(<span class="dt">x=</span>speed,<span class="dt">y=</span>dist)) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour=</span>speed&lt;<span class="dv">15</span>)) +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,<span class="dt">formula =</span> ma_formule ) +<span class="st">  </span><span class="kw">stat_poly_eq</span>(<span class="kw">aes</span>(<span class="dt">label =</span><span class="kw">paste0</span>(<span class="st">&quot;atop(&quot;</span>,..eq.label..,<span class="st">&quot;,&quot;</span>,<span class="kw">paste</span>(..adj.rr.label..,..AIC.label..,..BIC.label..,<span class="dt">sep=</span><span class="st">&quot;~&quot;</span>),<span class="st">&quot;)&quot;</span>)),<span class="dt">formula =</span>ma_formule, <span class="dt">parse =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><strong>Définition</strong></p>
+<p>Le <em>coeffiecient de détermination</em> pour des observations <span class="math inline">\(y\)</span> et ses valeurs modélisées <span class="math inline">\(f\)</span> est défini comme :</p>
+<p><span class="math display">\[R^2  =1- \frac{\sum_i (y_i-f_i)^2}{\sum_i (y_i-\bar{y})^2}\]</span> <span class="math display">\[R^2_{adjusted} = {1-(1-R^2){n-1 \over n-p-1}} = {R^2-(1-R^2){p \over n-p-1}}\]</span></p>
+<p>avec <span class="math inline">\(p\)</span> le nombre de valeurs explicatives et <span class="math inline">\(n\)</span> la taille de <span class="math inline">\(y\)</span>.</p>
+<p>Plus <span class="math inline">\(R^2\)</span> est grand plus le modèle, qui prédit <span class="math inline">\(f\)</span>, explique la variance de <span class="math inline">\(y\)</span>.</p>
+<p><em>AIC</em> &amp; <em>BIC</em></p>
+<p>Le critère d’information d’Akaike (AIC) et le critère d’information bayésien (BIC) sont tous les deux une mesure de la qualité d’un modèle statistique.</p>
+<p>Il est possible d’augmenter la vraisemblance du modèle statistique testé en ajoutant plusieurs paramètres. Le critère d’information d’Akaike, tout comme le critère d’information bayésien (BIC), permet de pénaliser les modèles en fonction du nombre de paramètres afin de diminuer l’over fiting. On choisit alors le modèle avec le critère d’information d’Akaike ou bayésien le plus faible. Ils sont définis comme :</p>
+<p><span class="math display">\[AIC = 2k - 2\ln(L)\]</span> <span class="math display">\[BIC = -2\ln(L) + \ln(n)k\]</span> Avec avec <span class="math inline">\(n\)</span> le nombre d’observations dans l’échantillon étudié et <span class="math inline">\(k\)</span> le nombre de paramètres et <span class="math inline">\(L\)</span> la fonction de vraisemblance.</p>
+<p><strong>Exercice 1</strong></p>
+<p><em>Nous avons vu plusieurs modèles la dernière fois pour modéliser la vitesse et la distance de freinage. En fonction des différentes métriques d’erreurs présentées au dessus. Séléctionner le modèle satistique le plus pertinant en modifiant</em> ‘ma_formule.’</p>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">2.2</span> Ggplot2</h2>
+<p><strong>Définition</strong> Une librairie R de visualisation de données développée par Hadley Wickham en 2005 selon les principes développés par Leland Wilkinson dans son ouvrage The Grammar of Graphics</p>
+<p><span class="math display">\[ Plot = data +Geometry( Aesthetics  )\]</span></p>
+<ul>
+<li>Aesthetics (aes) : les couleurs, les tailles, les formes, les labels mais aussi les données en x et en y</li>
+<li>Geometry (geom_ …) va regrouper les options concernant les types de graphique (line, point, histogramme, heatmap, boxplot, etc.)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> &lt;DATA&gt;) +<span class="st"> </span>
+<span class="st">  </span><span class="er">&lt;</span>GEOM_FUNCTION&gt;(<span class="dt">mapping =</span> <span class="kw">aes</span>(&lt;MAPPINGS&gt;))</code></pre></div>
+<div id="premiere-etape-data-mining" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Première étape Data Mining</h3>
+<p>Nous allons utiliser des données de l’objet <code>mpg</code>, qui est préchargé dans le paquet ggplot.</p>
+<div id="information-sur-les-donnees" class="section level4">
+<h4><span class="header-section-number">2.2.1.1</span> Information sur les données</h4>
+<p>Il faut connaître ces données. <strong>Exercice 2</strong></p>
+<ul>
+<li><em>Quelle est le type de cet objet ?</em></li>
+<li><em>Que contient cet objet ? </em></li>
+<li><em>Que siginifie <code>displ</code> et <code>hwy</code> ?</em></li>
+<li><em>Quelle est le type des vecteurs hwy, displ et manufacturer ? </em></li>
+<li><em>Combien y-a-t il de ligne et de colonne dans mpg ?</em></li>
+</ul>
+</div>
+<div id="nuage-de-points" class="section level4">
+<h4><span class="header-section-number">2.2.1.2</span> Nuage de points</h4>
+<p>Un nuage de points ou un scatterplot est le graphe le plus utilisé en statistique.</p>
+<p><strong>Exercice 3</strong> Reproduisez le scatterplot ci-dessous entre hwy et displ puis entre hwy et cyl; entre class et drv. <img src="bookdown-demo_files/figure-html/unnamed-chunk-23-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-23-3.png" width="672" /></p>
+</div>
+</div>
+<div id="dessiner-de-lesthetique-gaphique" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Dessiner de l’Esthétique gaphique</h3>
+<p>Dans un graphe, le but est de mettre en évidence les caractéristiques des données que l’on souhaite développer et qui ne sont généralement pas visible à l’œil nu.<br />
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Dans ce scatterplot, les points en rouge ont l’air d’être particulier par rapport à l’ensemble de l’échantillon. La fonction aes() <em>aesthetic</em> permet de définir l’axe des x et des y mais aussi la taille, les couleurs, le type et la transparence des formes géométriques du graphe.</p>
+<p><strong>Exercice 3</strong></p>
+<ul>
+<li>Dessiner un nuage de points pour chaque esthétique aes(x,y,shape = class ) définit par la colonne <code>class</code> pour les couleurs <em>color</em>, les formes <em>shape</em>, la taille <em>size</em>, et la transparence <em>alpha</em>.</li>
+</ul>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-25-2.png" width="672" /></p>
+<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.</code></pre>
+<pre><code>## Warning: Removed 62 rows containing missing values (geom_point).</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-25-3.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-25-4.png" width="672" /></p>
+<ul>
+<li><p>Pourquoi il y a des points qui ont disparu de la classe suv dans le graphique où l’on dessine le nuage avec différentes formes de point <code>aes(x,y,shape=class)</code> ?</p></li>
+<li><p>Quel est le problème dans ce code ?</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy,<span class="dt">colour=</span><span class="st">&quot;class&quot;</span>))</code></pre></div>
+<ul>
+<li>Quelle est la différence avec les graphiques précédent et quel est l’impact sur les graphes du code ci-dessous ?</li>
+</ul>
+<p>```r ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy),colour=“blue”)</p>
+<p>ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy),size=10) ```</p>
+<ul>
+<li>Que faut il ajouter pour corriger le graphique avec ? (<a href="http://www.cookbook-r.com/Graphs/Shapes_and_line_types/">indice</a> et regarder le message de warning afficher en console)</li>
+</ul>
+<pre><code>## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.</code></pre>
+<pre><code>## Warning: Removed 62 rows containing missing values (geom_point).</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="erreur-courantes" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Erreur courantes</h3>
+<p>Vous avez depuis le début fait des erreurs ou lancé des commandes qui ne marchent pas. Ne vous inquiétiez pas tous les jours même les plus grands programmeurs, hackers et data scientiste en font aussi.</p>
+<p>Ci dessous la liste recense des erreurs communes, et décrit la manière de les éviter :</p>
+<ul>
+<li><code>(</code> vérifier que toutes les parenthèses se ferment <code>)</code></li>
+<li><code>&quot;&quot;</code> vérifier la même chose pour les guillemets</li>
+<li>Vérifier si votre ligne de commande ne finisse pas par un <code>+</code> ou qu’elle ne commence pas par <code>&gt;</code> ou <code>+</code></li>
+</ul>
+<p>Si vous êtes toujours bloqués, n’hésitez pas à demander de l’aide à R. La commande <code>?function_name</code> demande à R de l’aide pour une fonction spécifique. La commande <code>??function_name</code>comprend une recherche plus large de cette fonction si la première commande <code>?</code> ne marche pas.</p>
+<p>La lecture du message d’erreur est utile. Si le message n’est pas clair, vous avez toujours la possibilité de le Googler. Vous pourriez tomber sur quelqu’un qui a posté sur starck overflow par exemple la même erreur avec la solution au problème.</p>
+</div>
+<div id="panneaux" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Panneaux</h3>
+<p>Une des forces de ggplot2 est de pouvoir facilement faire plusieurs graphes en fonction d’une des colonnes de la dataframe du graphe. Par exemple, pour reprendre le travail ci-dessus nous pouvons avoir envie de faire un scatterplot pour différentes classes de voitures. Il faut utiliser la fonction <code>facet_wrap()</code> avec comme argument une formule.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +<span class="st">   </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> ~<span class="st"> </span>class)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Par contre, si vous souhaitez séparer votre graphique en fonction de deux variables alors il faut utiliser la fonction <code>facet_grid()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>(year ~<span class="st"> </span>cyl)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><strong>Exercice 4</strong> 1. A quoi sert le <code>.</code> dans la formule de facet_grid ? (Tester les exemples en dessous)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +
+<span class="st">  </span><span class="kw">facet_grid</span>(drv ~<span class="st"> </span>.)
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +
+<span class="st">  </span><span class="kw">facet_grid</span>(. ~<span class="st"> </span>cyl)</code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Quelles sont les avantages et les désavantages d’utiliser les fonctions <code>facet</code> par rapport à une esthétique <code>aes(x,y,color=...)</code> ?</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +<span class="st">   </span><span class="kw">facet_wrap</span>(<span class="dt">facets =</span> ~<span class="st"> </span>class)
+
+  <span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy,<span class="dt">color=</span>class)) </code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>Quelles sont les différences entre <code>facet_grid()</code> et <code>facet_wrap()</code> ? (Indice utiliser <code>?</code>)</li>
+</ol>
+</div>
+<div id="geometries" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> Géométries</h3>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+<p><strong>Quelles est la différence entre ces deux graphiques ? </strong></p>
+<p>Il y a plus de 30 types de géométrie dans ggplot2. Pour les connaîtres, l’aide mémoire R sur ggplot2 les extensions de ggplot2 <a href="https://www.ggplot2-exts.org" class="uri">https://www.ggplot2-exts.org</a> sont à lire. Chaque géométrie a ses propres esthétiques. Par exemple, les géométries avec des lignes n’ont pas d’esthétiques <code>shape</code>. Mais elles ont <code>linetype</code> et <code>group</code> en plus.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">linetype =</span> drv))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>On peut combiner les géométries pour que le graphe soit plus clair.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">linetype =</span> drv))+
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> drv))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>L’esthétique <code>group</code> permet de dessiner plusieurs ligne en fonction d’une colonne de la data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">group =</span> drv))</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-37-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-37-2.png" width="672" /></p>
+<p>Pour synthétiser le code, il est possible d’ajouter les esthétiques dans la fonction <code>ggplot(data=my_data,aes())</code>. Chaque géométrie prendra alors les esthétiques dans <code>ggplot(aes(...))</code>. On peut toujours ajouter des esthétiques spécifiques dans chaque géométrie.</p>
+<p><img src="Picture/visualization-geoms-1.png" alt="Géométrie basique" /> <img src="Picture/visualization-geoms-2.png" /> <img src="Picture/visualization-geoms-3.png" /> <img src="Picture/visualization-geoms-4.png" /></p>
+<p><em>Exercices</em></p>
+<ul>
+<li>Que font les options <code>se=FALSE</code> et <code>show.legend=FALSE</code> ?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy, <span class="dt">color =</span> drv)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">show.legend=</span>F) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>,<span class="dt">show.legend=</span><span class="ot">FALSE</span>)</code></pre></div>
+<ul>
+<li>Ces deux graphes sont ils différents ?</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()
+
+<span class="kw">ggplot</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy))</code></pre></div>
+<ul>
+<li>Refaire ces graphes ci-dessous :</li>
+</ul>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;
+## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-40-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-40-2.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;
+## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-41-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-41-2.png" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;
+## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-42-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-42-2.png" width="672" /></p>
+</div>
+</div>
+<div id="graphiques-et-statistiques" class="section level2">
+<h2><span class="header-section-number">2.3</span> Graphiques et statistiques</h2>
+<p>Nous allons étudier la géométrie <code>geom_bar()</code> en français des diagrammes en bâtons, rectangles. Cette géométrie est particulière comparée aux précédentes. Il y a en effet une transformation des données avant de les afficher sur un graphe. Nous allons prendre les données <code>diamonds</code>. Pour plus d’informations sur ces données tapez <code>?diamonds</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><strong>Question</strong></p>
+<ul>
+<li>Quel est l’axe des y ? Où se trouve les données de cet axe ?</li>
+<li>Quelle est la différence par rapport aux scatterplots précédents ?</li>
+</ul>
+<div class="figure">
+<img src="Picture/visualization-stat-bar.png" alt="Schéma du graphe" />
+<p class="caption">Schéma du graphe</p>
+</div>
+<p>Certaines géométries comme <code>geom_bar</code> utilisent des algorithmes pour calculer les nouvelles valeurs, que l’on nomme <em>stat</em> :</p>
+<ul>
+<li>histogrammes (compte vos données par fréquence)</li>
+<li>boîtes à moustache</li>
+<li><code>geom_smooth()</code> modélise vos données en direct sur le graphe</li>
+</ul>
+<p>Il y a plus de 20 stats dans ggplot2 à utiliser pour les découvrir, <code>?stat_bin</code>, <code>?stat_count</code>, <code>?stat_summary</code>.</p>
+<ul>
+<li>Dès fois, la situation oblige à dessiner que des valeurs déjà calculées. <code>stat = &quot;identity&quot;</code></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">demo &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">a=</span><span class="kw">seq</span>(<span class="dv">10</span>,<span class="dv">50</span>,<span class="dt">by=</span><span class="dv">10</span>),<span class="dt">b=</span> <span class="kw">paste</span>(<span class="st">&quot;bar&quot;</span>,<span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">5</span>)))
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> demo) +
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> b, <span class="dt">y =</span> a), <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-44-1.png" width="672" /> * Vous avez besoin de calculer une métrique particulière :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">y =</span> ..prop.., <span class="dt">group =</span> <span class="dv">1</span>))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div class="figure">
+<img src="Picture/visualization-stats.png" alt="Les métriques possibles à calculer en fonction de chaque stat" />
+<p class="caption">Les métriques possibles à calculer en fonction de chaque <strong>stat</strong></p>
+</div>
+<ul>
+<li>On peut créer sa propre boîte à moustache</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">stat_summary</span>(
+    <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">y =</span> depth),
+    <span class="dt">fun.ymin =</span> min,
+    <span class="dt">fun.ymax =</span> max,
+    <span class="dt">fun.y =</span> median
+  )</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>** Exercice 4**</p>
+<ol style="list-style-type: decimal">
+<li><p>Quel l’équivalent géométrique de <code>stat_summary()</code> ? Modifiez le code ci-dessus en utilisant une fonction <code>geom_</code>.</p></li>
+<li><p>Quelle est la différence entre les fonctions <code>stat_</code> et <code>geom_</code> ? Listez les paires entre les deux genres de fonctions.</p></li>
+<li><p>Quelle est le “bug” de ce graphique? Corrigez le.</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">y =</span> ..prop..))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+</div>
+<div id="positions-et-couleurs-des-graphes" class="section level2">
+<h2><span class="header-section-number">2.4</span> Positions et couleurs des graphes</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,<span class="dt">color=</span>clarity))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,<span class="dt">fill=</span>clarity))</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><strong>Question</strong></p>
+<ul>
+<li>Quel est le problème avec les graphes précédents ?</li>
+</ul>
+<p>Pour résoudre le problème de clarté des graphes précédents, nous pouvons utiliser l’argument <code>position</code> en-dehors de la fonction <code>aes()</code></p>
+<p><strong>Position Stack</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> clarity)) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Position = &quot;stack&quot;&#39;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><strong>Position Fill</strong></p>
+<p>Cette ajustement permet plus facilement de comparer les proportions entre chaque groupe.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> clarity), <span class="dt">position =</span> <span class="st">&quot;fill&quot;</span>) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Position = &quot;fill&quot;&#39;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><strong>Position dodge</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut, <span class="dt">fill =</span> clarity), <span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) +
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Position = &quot;dodge&quot;&#39;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p><strong>Position Jitter</strong></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy), <span class="dt">position =</span> <span class="st">&quot;jitter&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Position = &quot;jitter&quot;&#39;</span>)
+
+<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> displ, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&#39;Position = &quot;No jitter&quot;&#39;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-53-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-53-2.png" width="672" /></p>
+<p>** Exercice 5** 1. Quel est le problème avec ce graphique ? Comment pouvez vous l’améliorer ?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cty, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Quels sont les arguments de `geom_jitter()``?</li>
+<li>Comparer <code>geom_jitter()</code> et <code>geom_count()</code> ?</li>
+<li>Recréer ces graphiques : <img src="bookdown-demo_files/figure-html/unnamed-chunk-55-1.png" width="25%" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-55-2.png" width="25%" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-55-3.png" width="25%" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-55-4.png" width="25%" /></li>
+</ol>
+</div>
+<div id="systeme-de-coordonnees" class="section level2">
+<h2><span class="header-section-number">2.5</span> Système de coordonnées</h2>
+<p>Nous pouvons changer les coordonnées cartésiennes en coordonnées polaires. Nous allons commencer par reprendre le des diagrammes en colonnes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,<span class="dt">fill=</span>cut),<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-56-1.png" width="672" /> Puis nous allons ajouter la commande <code>coord_polar()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> diamonds) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> cut,<span class="dt">fill=</span>cut),<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>)+<span class="kw">coord_polar</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<p>Nous pouvons rester dans les coordonnées cartésiennes et changer l’axe des x et des y facilement avec <code>coord_flip()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()
+<span class="kw">ggplot</span>(<span class="dt">data =</span> mpg, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> hwy)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() +
+<span class="st">  </span><span class="kw">coord_flip</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-58-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-58-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;maps&quot;)</span>
+fr &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;france&quot;</span>)
+
+<span class="kw">ggplot</span>(fr, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) +
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>)
+
+<span class="kw">ggplot</span>(fr, <span class="kw">aes</span>(long, lat, <span class="dt">group =</span> group)) +
+<span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) +
+<span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-59-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-59-2.png" width="672" /></p>
+<div class="figure">
+<img src="Picture/coord.png" alt="Aide mémoire coordonnées avec ggplot2" />
+<p class="caption">Aide mémoire coordonnées avec ggplot2</p>
+</div>
+<p><strong>Exercie</strong></p>
+<ol style="list-style-type: decimal">
+<li>Dessiner le département et une région de votre choix ?</li>
+</ol>
+</div>
+<div id="themes-et-addins" class="section level2">
+<h2><span class="header-section-number">2.6</span> Themes et addins</h2>
+<p>Pour améliorer vos graphes :</p>
+<ul>
+<li>Installer l’addin <code>devtools::install_url(&quot;https://cran.r-project.org/src/contrib/rgeos_0.3-22.tar.gz&quot;)</code> <a href="https://github.com/calligross/ggthemeassist" class="uri">https://github.com/calligross/ggthemeassist</a></li>
+<li>Utiliser les thèmes prédéfinis</li>
+</ul>
+<div class="figure">
+<img src="Picture/visualization-themes.png" alt="Aide mémoire thèmes avec ggplot2" />
+<p class="caption">Aide mémoire thèmes avec ggplot2</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/DataVisualisation.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
