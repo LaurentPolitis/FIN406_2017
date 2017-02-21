@@ -131,15 +131,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premier-graphe-avec-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Premier graphe avec ggplot2</a></li>
 <li class="chapter" data-level="2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>2.2</b> Ggplot2</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premiere-etape-data-mining"><i class="fa fa-check"></i><b>2.2.1</b> Première étape Data Mining</a></li>
-<li class="chapter" data-level="2.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#dessiner-de-lesthetique-gaphique"><i class="fa fa-check"></i><b>2.2.2</b> Dessiner de l’Esthétique gaphique</a></li>
-<li class="chapter" data-level="2.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#erreur-courantes"><i class="fa fa-check"></i><b>2.2.3</b> Erreur courantes</a></li>
-<li class="chapter" data-level="2.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#panneaux"><i class="fa fa-check"></i><b>2.2.4</b> Panneaux</a></li>
-<li class="chapter" data-level="2.2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#geometries"><i class="fa fa-check"></i><b>2.2.5</b> Géométries</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#lesthetique-gaphique"><i class="fa fa-check"></i><b>2.2.2</b> L’esthétique gaphique</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#graphiques-et-statistiques"><i class="fa fa-check"></i><b>2.3</b> Graphiques et statistiques</a></li>
-<li class="chapter" data-level="2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.4</b> Positions et couleurs des graphes</a></li>
-<li class="chapter" data-level="2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.5</b> Système de coordonnées</a></li>
-<li class="chapter" data-level="2.6" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.6</b> Themes et addins</a></li>
+<li class="chapter" data-level="2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#erreurs-courantes"><i class="fa fa-check"></i><b>2.3</b> Erreurs courantes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#panneaux"><i class="fa fa-check"></i><b>2.4</b> Panneaux</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#geometries"><i class="fa fa-check"></i><b>2.4.1</b> Géométries</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#graphiques-et-statistiques"><i class="fa fa-check"></i><b>2.5</b> Graphiques et statistiques</a></li>
+<li class="chapter" data-level="2.6" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.6</b> Positions et couleurs des graphes</a></li>
+<li class="chapter" data-level="2.7" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.7</b> Système de coordonnées</a></li>
+<li class="chapter" data-level="2.8" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.8</b> Themes et addins</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -373,11 +374,11 @@ liste_objet</code></pre></div>
 <h4><span class="header-section-number">1.2.4.1</span> Dates</h4>
 <p>Les dates et les heures sont gérer par R : * les dates avec <code>as.Date()</code> * les dates avec heures à l’aide de <code>as.POSIXct()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-02-20 23:18:54 CET&quot;</code></pre>
+<pre><code>## [1] &quot;2017-02-21 11:43:50 CET&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.time</span>())</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-02-20&quot;</code></pre>
+<pre><code>## [1] &quot;2017-02-21&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 </div>
