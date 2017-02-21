@@ -1,0 +1,7 @@
+"0","ggplot(data = diamonds) + "
+"0","  stat_summary("
+"0","    mapping = aes(x = cut, y = depth),"
+"0","    fun.ymin = min,"
+"0","    fun.ymax = max,"
+"0","    fun.y = median"
+"0","  )"
