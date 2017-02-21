@@ -96,7 +96,7 @@ L’évaluation de ce cours consiste en la création d’un programme R qui form
 * Visualisation des résultats de la modélisation 
 * Application interactive 
 
-![schéma Script R](/home/mrrobot/Pictures/data-science-explore.png)
+![schéma Script R](Picture/data-science-explore.png)
 
 ### Thèmes abordés {-}
 
@@ -134,14 +134,13 @@ Le but du cours est de continuer à utiliser la libraries GGplot2.
 
 Il existe des graphiques  de base qui permettent d’examiner les différents jeux de données et modèles statistiques. Ces graphiques constituent des arguments et des preuves pour mettre en évidence les résultats que vous avancez et leurs pertinences de manière simple et synthétique. Les graphiques que nous allons créer sont entre autres :
 
-Les boites à moustaches
-Les histogrammes
-Les courbes de 
-Des graphes en coordonnées polaire 
+* Les boites à moustaches
+* Les histogrammes
+* Des graphes en coordonnées polaire 
 
-Dans le cours du semestre dernier vous avez appris comment modéliser des relations entre différents jeux de données à l’aide de modèle linéaire lm() et ARIMA… Nous allons découvrir les diverses graphiques diagnostiques de ces modélisations statistiques qui permettent entre autres de repérer les meilleures variables explicatives, de rejeter les mauvaises et de vérifier ces résultats de modélisation.
+<!-- Dans le cours du semestre dernier vous avez appris comment modéliser des relations entre différents jeux de données à l’aide de modèle linéaire lm() et ARIMA… Nous allons découvrir les diverses graphiques diagnostiques de ces modélisations statistiques qui permettent entre autres de repérer les meilleures variables explicatives, de rejeter les mauvaises et de vérifier ces résultats de modélisation. -->
 
-Nuage de points, qqplots, séries temporelles …
+<!-- Nuage de points, qqplots, séries temporelles … -->
 
 #### Graphiques Interactifs et applications {-}
 

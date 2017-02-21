@@ -131,15 +131,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premier-graphe-avec-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Premier graphe avec ggplot2</a></li>
 <li class="chapter" data-level="2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>2.2</b> Ggplot2</a><ul>
 <li class="chapter" data-level="2.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premiere-etape-data-mining"><i class="fa fa-check"></i><b>2.2.1</b> Première étape Data Mining</a></li>
-<li class="chapter" data-level="2.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#dessiner-de-lesthetique-gaphique"><i class="fa fa-check"></i><b>2.2.2</b> Dessiner de l’Esthétique gaphique</a></li>
-<li class="chapter" data-level="2.2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#erreur-courantes"><i class="fa fa-check"></i><b>2.2.3</b> Erreur courantes</a></li>
-<li class="chapter" data-level="2.2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#panneaux"><i class="fa fa-check"></i><b>2.2.4</b> Panneaux</a></li>
-<li class="chapter" data-level="2.2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#geometries"><i class="fa fa-check"></i><b>2.2.5</b> Géométries</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#lesthetique-gaphique"><i class="fa fa-check"></i><b>2.2.2</b> L’esthétique gaphique</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#graphiques-et-statistiques"><i class="fa fa-check"></i><b>2.3</b> Graphiques et statistiques</a></li>
-<li class="chapter" data-level="2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.4</b> Positions et couleurs des graphes</a></li>
-<li class="chapter" data-level="2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.5</b> Système de coordonnées</a></li>
-<li class="chapter" data-level="2.6" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.6</b> Themes et addins</a></li>
+<li class="chapter" data-level="2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#erreurs-courantes"><i class="fa fa-check"></i><b>2.3</b> Erreurs courantes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#panneaux"><i class="fa fa-check"></i><b>2.4</b> Panneaux</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="data-visualisation.html"><a href="data-visualisation.html#geometries"><i class="fa fa-check"></i><b>2.4.1</b> Géométries</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#graphiques-et-statistiques"><i class="fa fa-check"></i><b>2.5</b> Graphiques et statistiques</a></li>
+<li class="chapter" data-level="2.6" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.6</b> Positions et couleurs des graphes</a></li>
+<li class="chapter" data-level="2.7" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.7</b> Système de coordonnées</a></li>
+<li class="chapter" data-level="2.8" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.8</b> Themes et addins</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -164,7 +165,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Notes de Cours sur R FIN403</h1>
 <h4 class="author"><em>Laurent POLITIS</em></h4>
-<h4 class="date"><em>Le 20 février 2017</em></h4>
+<h4 class="date"><em>Le 21 février 2017</em></h4>
 </div>
 <div id="syllabus" class="section level1 unnumbered">
 <h1>Syllabus</h1>
@@ -243,7 +244,7 @@ data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw
 <li>Application interactive</li>
 </ul>
 <div class="figure">
-<img src="/home/mrrobot/Pictures/data-science-explore.png" alt="schéma Script R" />
+<img src="Picture/data-science-explore.png" alt="schéma Script R" />
 <p class="caption">schéma Script R</p>
 </div>
 </div>
@@ -262,9 +263,13 @@ data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw
 <p>Le 21 février, 14 à 17h45 == 3h45 travaux dirigés</p>
 <p>Le but du cours est de continuer à utiliser la libraries GGplot2.</p>
 <p>Il existe des graphiques de base qui permettent d’examiner les différents jeux de données et modèles statistiques. Ces graphiques constituent des arguments et des preuves pour mettre en évidence les résultats que vous avancez et leurs pertinences de manière simple et synthétique. Les graphiques que nous allons créer sont entre autres :</p>
-<p>Les boites à moustaches Les histogrammes Les courbes de Des graphes en coordonnées polaire</p>
-<p>Dans le cours du semestre dernier vous avez appris comment modéliser des relations entre différents jeux de données à l’aide de modèle linéaire lm() et ARIMA… Nous allons découvrir les diverses graphiques diagnostiques de ces modélisations statistiques qui permettent entre autres de repérer les meilleures variables explicatives, de rejeter les mauvaises et de vérifier ces résultats de modélisation.</p>
-<p>Nuage de points, qqplots, séries temporelles …</p>
+<ul>
+<li>Les boites à moustaches</li>
+<li>Les histogrammes</li>
+<li>Des graphes en coordonnées polaire</li>
+</ul>
+<!-- Dans le cours du semestre dernier vous avez appris comment modéliser des relations entre différents jeux de données à l’aide de modèle linéaire lm() et ARIMA… Nous allons découvrir les diverses graphiques diagnostiques de ces modélisations statistiques qui permettent entre autres de repérer les meilleures variables explicatives, de rejeter les mauvaises et de vérifier ces résultats de modélisation. -->
+<!-- Nuage de points, qqplots, séries temporelles … -->
 </div>
 <div id="graphiques-interactifs-et-applications" class="section level4 unnumbered">
 <h4>Graphiques Interactifs et applications</h4>

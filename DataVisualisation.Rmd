@@ -1,7 +1,7 @@
 # Data visualisation
 
 
-Cette partie va vous apprendre à visualiser vos premières données sous R avec ggplot2. Une des façons de mettre en forme vos données est d'utiliser la librairie ggplot2, qui utilise la (http://vita.had.co.nz/papers/layered-grammar.pdf)[grammaire des graphiques]. Elle considère un graphique comme des données composées d'esthétiques de formes géométrique.  Un graphique se décompose d'élément simple comme la position d'un objet géométrique sur l'axe des ordonnées, des abscisses, de sa couleur et de sa taille ... etc 
+Cette partie va vous apprendre à visualiser vos premières données sous R avec ggplot2. Une des façons de mettre en forme vos données est d'utiliser la librairie ggplot2, qui utilise la [grammaire des graphiques](http://vita.had.co.nz/papers/layered-grammar.pdf). Elle considère un graphique comme des données composées d'esthétiques de formes géométrique.  Un graphique se décompose d'élément simple comme la position d'un objet géométrique sur l'axe des ordonnées, des abscisses, de sa couleur et de sa taille ... etc 
 ```{r,echo=F,fig.show='hold',message=FALSE, echo=F, message=FALSE, warning=FALSE, show.figure="hold"}
  
 # Packages ----------------------------------------------------------------
@@ -310,7 +310,8 @@ if (!require("ggpmisc")){
   
 }
 
-# Le package ggmisc permet facilement d'afficher l'équation du modèle linéaire ainsi que des métrique d'erreur
+# Le package ggmisc permet facilement d'afficher l'équation du modèle linéaire ainsi que 
+#des métrique d'erreur
 ma_formule = y ~ x -1
 #ma_formule = y ~ x
 
@@ -367,6 +368,7 @@ Nous allons  utiliser des données de l'objet `mpg`, qui est préchargé dans le
 
 #### Information sur les données 
 Il faut connaître ces données. 
+
 **Exercice 2**
 
 * *Quelle est le type de cet objet ?*
@@ -380,8 +382,11 @@ Il faut connaître ces données.
 Un nuage de points ou un scatterplot est le graphe le plus utilisé en statistique.
 
 **Exercice 3**
-Reproduisez le scatterplot ci-dessous entre hwy et displ puis entre hwy et cyl; entre class et drv.
-```{r,echo=FALSE}
+
+
+Reproduisez le scatterplot ci-dessous entre hwy et displ puis entre hwy et cyl; entre class et drv. Expliquez pourquoi ces graphes ont ces formes.
+
+```{r,echo=FALSE,fig.show='hold',out.width='33%'}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy))
 
@@ -393,16 +398,13 @@ ggplot(data = mpg) +
 ```
 
 
-
-
-
-### Dessiner de l'Esthétique gaphique
+### L'esthétique gaphique
 
 Dans un graphe, le but est de mettre en évidence les caractéristiques des données que l'on souhaite développer et qui ne sont généralement pas visible à l’œil nu.   
 ```{r,echo=FALSE}
 ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy,color=(class=="2seater"|(class=="midsize"&displ>5))))+
-  scale_color_manual(values = c("black","red"),guide=F)
+  geom_point(mapping = aes(x = displ, y = hwy,color=(class=="2seater"|(class=="midsize"&displ>5)),size=(class=="2seater"|(class=="midsize"&displ>5))))+
+  scale_color_manual(values = c("black","red"),guide=F)+scale_size_manual(values = c(2,4),guide=F)
 
 ```
 
@@ -411,22 +413,24 @@ ggplot(data = mpg) +
 Dans ce scatterplot, les points en rouge ont l'air d'être particulier par rapport à l'ensemble de l'échantillon.
 La fonction aes() *aesthetic* permet de définir l'axe des x et des y mais aussi la taille, les couleurs, le type et la transparence des formes géométriques du graphe. 
 
-**Exercice 3**
+**Exercice 4**
 
  * Dessiner un nuage de points pour chaque esthétique aes(x,y,shape = class ) définit par la colonne `class` pour les couleurs *color*, les formes *shape*, la taille *size*, et la transparence *alpha*.
  
-```{r,echo=FALSE}
+```{r,echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
  ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
   ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, size = class)) 
+ 
+```
+```{r,echo=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
     ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, shape = class)) 
     
     ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy, alpha = class)) 
 ```
-
 
  * Pourquoi il y a des points qui ont disparu de la classe suv dans le graphique où l'on dessine le nuage avec différentes formes de point `aes(x,y,shape=class)` ?
  
@@ -438,16 +442,17 @@ La fonction aes() *aesthetic* permet de définir l'axe des x et des y mais aussi
 ```
 
   * Quelle est la différence avec les graphiques précédent et quel est l'impact sur les graphes du code ci-dessous ?
-  ```{r,eval=FALSE}
+```{r,eval=FALSE}
  ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy),colour="blue")
   
    ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy),size=10)
 ```
+
   
  
- * Que faut il ajouter pour corriger le graphique avec ? ([indice](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/) et regarder le message de warning afficher en console)
+ * Que faut il ajouter pour corriger le graphique  ? ([indice](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/) et regardez le message de warning afficher en console)
 
 ```{r,echo=FALSE}
     ggplot(data = mpg) + 
@@ -460,7 +465,7 @@ La fonction aes() *aesthetic* permet de définir l'axe des x et des y mais aussi
   geom_point(mapping = aes(x = displ, y = hwy, shape = class,fill=class)) +scale_shape_manual(values=seq(1,7))
 ```
 
-### Erreur courantes 
+## Erreurs courantes 
 
 Vous avez depuis le début fait des erreurs ou lancé des commandes qui ne marchent pas. Ne vous inquiétiez pas tous les jours même les plus grands programmeurs, hackers et data scientiste en font aussi. 
 
@@ -474,9 +479,10 @@ Si vous êtes toujours bloqués, n'hésitez pas à demander de l'aide à R. La c
 
 La lecture du message d'erreur est utile. Si le message n'est pas clair, vous avez toujours la possibilité de le Googler. Vous pourriez tomber sur quelqu'un qui a posté sur starck overflow par exemple la même erreur avec la solution au problème. 
 
-### Panneaux 
+## Panneaux 
 
 Une des forces de ggplot2 est de pouvoir facilement faire plusieurs graphes en fonction d'une des colonnes de la dataframe du graphe. Par exemple, pour reprendre le travail ci-dessus nous pouvons avoir envie de faire un scatterplot pour différentes classes de voitures. Il faut utiliser la fonction `facet_wrap()` avec comme argument une formule.
+
 ```{r}
 
     ggplot(data = mpg) + 
@@ -485,20 +491,19 @@ Une des forces de ggplot2 est de pouvoir facilement faire plusieurs graphes en f
 ```
 
 Par contre, si vous souhaitez séparer votre graphique en fonction de deux variables alors il faut utiliser la fonction `facet_grid()`.
+
 ```{r}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) + 
   facet_grid(year ~ cyl)
 
-
-
-
-
 ```
 
 
-**Exercice 4**
-1. A quoi sert le `.` dans la formule de facet_grid ? (Tester les exemples en dessous)
+**Exercice 5**
+
+
+1. A quoi sert le `.` dans la formule de facet_grid ? (Testez les exemples en dessous)
 ```{r, eval = F}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy)) +
@@ -524,11 +529,6 @@ ggplot(data = mpg) +
 3. Quelles sont les différences entre `facet_grid()` et `facet_wrap()` ? (Indice utiliser `?`)
 
 
-
-
-
-
-
 ### Géométries
 
 
@@ -542,7 +542,7 @@ ggplot(cars) + geom_smooth(aes(speed,dist))
 **Quelles est la différence entre ces deux graphiques ? **
 
 
-Il y a plus de 30 types de géométrie dans ggplot2. Pour les connaîtres, l'aide mémoire R sur ggplot2  les extensions de ggplot2 https://www.ggplot2-exts.org sont à lire. Chaque géométrie a ses propres esthétiques. Par exemple, les géométries avec des lignes n'ont pas d'esthétiques `shape`. Mais elles ont `linetype` et `group` en plus. 
+Il y a plus de 30 types de géométrie dans ggplot2. Pour les connaîtres, l'aide mémoire R sur ggplot2  et les extensions de ggplot2 https://www.ggplot2-exts.org sont à lire. Chaque géométrie a ses propres esthétiques. Par exemple, les géométries avec des lignes n'ont pas d'esthétiques `shape`. Mais elles ont `linetype` et `group` en plus. 
 
 ```{r}
 ggplot(data = mpg) + 
@@ -551,9 +551,6 @@ ggplot(data = mpg) +
 
 On peut combiner les géométries pour que le graphe soit plus clair. 
 
-
-
-
 ```{r}
 ggplot(data = mpg) + 
   geom_smooth(mapping = aes(x = displ, y = hwy, linetype = drv))+
@@ -561,7 +558,7 @@ ggplot(data = mpg) +
 
 ```
 
-L'esthétique `group` permet de dessiner plusieurs ligne en fonction d'une colonne de la data frame.
+L'esthétique `group` permet de dessiner plusieurs lignes en fonction d'une colonne de la data frame.
 
 ```{r,fig.show="hold"}
 ggplot(data = mpg) +
@@ -579,7 +576,7 @@ Pour synthétiser le code, il est possible d'ajouter les esthétiques dans la fo
 ![](/home/mrrobot/Documents/FIN406_2017/Picture/visualization-geoms-3.png)
 ![](/home/mrrobot/Documents/FIN406_2017/Picture/visualization-geoms-4.png)
 
-*Exercices*
+**Exercices 6**
 
 * Que font les options `se=FALSE` et `show.legend=FALSE` ?
 
@@ -592,7 +589,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) +
 
 * Ces deux graphes sont ils différents   ? 
 
-```{r,eval=FALSE}
+```{r,eval=FALSE,fig.show='hold',out.width='50%'}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_point() + 
   geom_smooth()
@@ -601,13 +598,11 @@ ggplot() +
   geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) + 
   geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
 ```
-* Refaire ces graphes ci-dessous : 
+* Refaire les graphes ci-dessous : 
 
 ```{r,echo=FALSE,fig.show='hold'}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +geom_smooth() +geom_point()
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy))  +geom_smooth(aes(group=drv),se=F) +geom_point()
-
-
 ```
 
 ```{r,echo=FALSE,fig.show='hold'}
@@ -617,7 +612,6 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy))  +geom_smooth(se=F) +geom_
 
 ```{r,echo=FALSE,fig.show='hold'}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy))  +geom_smooth(se=F,aes(linetype=drv)) +geom_point(aes(color=drv))
-
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy))  +geom_smooth(se=F,aes(linetype=drv))+geom_point(size = 5, color="white") +geom_point(aes(color=drv))
 
 ```
@@ -680,9 +674,9 @@ ggplot(data = diamonds) +
 ```
 
 
-** Exercice 4**
+**Exercice 7**
  
- 1. Quel l'équivalent géométrique de `stat_summary()` ? Modifiez le code ci-dessus en utilisant une fonction `geom_`.
+ 1. Quel est l'équivalent géométrique de `stat_summary()` ? Modifiez le code ci-dessus en utilisant une fonction `geom_`.
  
  2. Quelle est la différence entre les fonctions `stat_` et `geom_` ? Listez les paires entre les deux genres de fonctions.
 
@@ -715,7 +709,7 @@ ggplot(data = diamonds) +
 Pour résoudre le problème de clarté des graphes précédents, nous pouvons utiliser l'argument `position` en-dehors de la fonction `aes()` 
 
 **Position Stack**
-
+La position par défaut du diagramme en bâton. 
 ```{r}
 ggplot(data = diamonds) + 
   geom_bar(mapping = aes(x = cut, fill = clarity)) +
@@ -745,8 +739,7 @@ ggplot(data = diamonds) +
 **Position Jitter**
 
 
-
-```{r,fig.show='hold'}
+```{r,fig.show='hold',out.width='50%'}
 ggplot(data = mpg) + 
   geom_point(mapping = aes(x = displ, y = hwy), position = "jitter") + 
   ggtitle('Position = "jitter"')
@@ -758,33 +751,54 @@ ggplot(data = mpg) +
 
 ```
 
-** Exercice 5**
-1. Quel est le problème avec ce graphique ? Comment pouvez vous l'améliorer ? 
+**Exercice 8**
+
+1. Quel est le problème avec ce graphique ? Comment pouvez vous l'améliorer ?
+
 ```{r}
 ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
   geom_point()
 
 ```
 
-
-
-2. Quels sont les arguments de `geom_jitter()``?
+2. Quels sont les arguments de `geom_jitter()`?
 3. Comparer `geom_jitter()` et  `geom_count()` ?
-4. Recréer ces graphiques :
-```{r,fig.show='hold',out.width = '25%',echo=FALSE}
+4. Recréer ces graphiques
 
+
+```{r,fig.show='hold',out.width = '50%',echo=FALSE}
 ggplot(data = diamonds, mapping = aes( x= cut,y=depth)) +
   geom_boxplot()
 ggplot(data = diamonds, mapping = aes( x= cut,y=depth)) +
   geom_jitter()
 
+```
+
+```{r,fig.show='hold',out.width = '50%',echo=FALSE}
 ggplot(data = diamonds, mapping = aes( x= cut,y=depth)) +
   geom_violin()
 
 ggplot(data = diamonds, mapping = aes( x= cut,y=depth))+
   geom_jitter(alpha=0.5)+ geom_violin(alpha=0.7)
 
+
 ```
+
+5. A quelles valeurs/métriques correspondent les traits horizontaux de la boîte à moustache ? (Indice utiliser `stat_summary`)
+
+```{r,fig.show='hold',out.width='50%'}
+ggplot(data = diamonds, mapping = aes(x=cut,y=depth)) +
+geom_boxplot()
+
+ggplot(data = diamonds, mapping = aes(x=cut,y=depth)) +
+geom_boxplot()+
+stat_summary( color="red", fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median)
+```
+
+
+
 
 ## Système de coordonnées 
 
@@ -802,11 +816,10 @@ ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut,fill=cut),colour="black")+coord_polar()
 ```
 
-Nous pouvons rester dans les coordonnées cartésiennes et changer l'axe des x et des y facilement avec `coord_flip()`
+Nous pouvons rester dans les coordonnées cartésiennes et changer l'axe des x et des y facilement avec `coord_flip()`.
 
 
-```{r,fig.show='hold'}
-
+```{r,fig.show='hold',out.width='50%'}
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
   geom_boxplot()
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
@@ -833,9 +846,12 @@ ggplot(fr, aes(long, lat, group = group)) +
 ![Aide mémoire coordonnées avec ggplot2](/home/mrrobot/Documents/FIN406_2017/Picture/coord.png)
 
 
-**Exercie**
+**Exercie 9**
 
-1. Dessiner le département et une région de votre choix ?
+1. Dessinez le département et une région de votre choix ?
+
+2. Quelle est la différence entre `coord_map()` et `coord_quickmap()` ? 
+
 
 ## Themes et addins 
 
@@ -843,6 +859,17 @@ Pour améliorer vos graphes :
 
 * Installer l'addin `devtools::install_url("https://cran.r-project.org/src/contrib/rgeos_0.3-22.tar.gz")` https://github.com/calligross/ggthemeassist
 * Utiliser les thèmes prédéfinis 
+
+
+**Exercice 10**
+
+1. Changer le thème du précédent graphes ?
+
+```{r,eval=FALSE}
+ggplot(fr, aes(long, lat, group = group)) +
+  geom_polygon(fill = "white", colour = "black") +
+  coord_quickmap()
+```
 
 
 ![Aide mémoire thèmes avec ggplot2](/home/mrrobot/Documents/FIN406_2017/Picture/visualization-themes.png)
