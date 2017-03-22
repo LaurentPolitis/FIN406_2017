@@ -48,6 +48,55 @@
 
 
 
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.5.6/plotly.js"></script>
+<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-5.0.6/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-5.0.6/highstock.js"></script>
+<script src="libs/highcharts-5.0.6/highcharts-3d.js"></script>
+<script src="libs/highcharts-5.0.6/highcharts-more.js"></script>
+<script src="libs/highcharts-5.0.6/modules/annotations.js"></script>
+<script src="libs/highcharts-5.0.6/modules/broken-axis.js"></script>
+<script src="libs/highcharts-5.0.6/modules/data.js"></script>
+<script src="libs/highcharts-5.0.6/modules/drilldown.js"></script>
+<script src="libs/highcharts-5.0.6/modules/exporting.js"></script>
+<script src="libs/highcharts-5.0.6/modules/funnel.js"></script>
+<script src="libs/highcharts-5.0.6/modules/heatmap.js"></script>
+<script src="libs/highcharts-5.0.6/modules/map.js"></script>
+<script src="libs/highcharts-5.0.6/modules/no-data-to-display.js"></script>
+<script src="libs/highcharts-5.0.6/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-5.0.6/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-5.0.6/modules/treemap.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/annotations.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/draggable-legend.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/draggable-points.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/export-csv.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/grouped-categories.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/motion.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/pattern-fill-v2.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/tooltip-delay.js"></script>
+<script src="libs/highcharts-5.0.6/custom/reset.js"></script>
+<script src="libs/highcharts-5.0.6/custom/symbols-extra.js"></script>
+<script src="libs/highcharts-5.0.6/custom/text-symbols.js"></script>
+<link href="libs/fontawesome-4.5.0/font-awesome.min.css" rel="stylesheet" />
+<link href="libs/htmlwdgtgrid-1/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="libs/highchart-binding-0.5.0/highchart.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.4/dygraphs.js"></script>
 
 
 <style type="text/css">
@@ -110,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciement"><i class="fa fa-check"></i>Remerciement</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
@@ -140,6 +189,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.7</b> Positions et couleurs des graphes</a></li>
 <li class="chapter" data-level="2.8" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.8</b> Système de coordonnées</a></li>
 <li class="chapter" data-level="2.9" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.9</b> Themes et addins</a></li>
+<li class="chapter" data-level="2.10" data-path="data-visualisation.html"><a href="data-visualisation.html#histogrammes-et-courbes-de-distribution"><i class="fa fa-check"></i><b>2.10</b> Histogrammes et courbes de distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="visualisation-ii.html"><a href="visualisation-ii.html"><i class="fa fa-check"></i><b>3</b> Visualisation II</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphe-interactif"><i class="fa fa-check"></i><b>3.2</b> Graphe interactif</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#leaflet"><i class="fa fa-check"></i><b>3.2.1</b> Leaflet</a></li>
+<li class="chapter" data-level="3.2.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#higcharter-dygraph"><i class="fa fa-check"></i><b>3.2.2</b> Higcharter &amp; Dygraph</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="visualisation-ii.html"><a href="visualisation-ii.html#plotly"><i class="fa fa-check"></i><b>3.3</b> Plotly</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphes-interactif"><i class="fa fa-check"></i><b>3.3.1</b> Graphes interactif</a></li>
+<li class="chapter" data-level="3.3.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphes-en-3d"><i class="fa fa-check"></i><b>3.3.2</b> Graphes en 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualisation-ii.html"><a href="visualisation-ii.html#recherche-reproductible"><i class="fa fa-check"></i><b>3.4</b> Recherche reproductible</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#rmarkdown"><i class="fa fa-check"></i><b>3.4.1</b> Rmarkdown</a></li>
+<li class="chapter" data-level="3.4.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#shiny"><i class="fa fa-check"></i><b>3.4.2</b> Shiny</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -164,7 +229,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="header">
 <h1 class="title">Notes de Cours sur R FIN403</h1>
 <h4 class="author"><em>Laurent POLITIS</em></h4>
-<h4 class="date"><em>Le 26 février 2017</em></h4>
+<h4 class="date"><em>Le 22 mars 2017</em></h4>
 </div>
 <div id="syllabus" class="section level1 unnumbered">
 <h1>Syllabus</h1>
@@ -234,11 +299,11 @@ data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw
 </div>
 <div id="mode-devaluation" class="section level3 unnumbered">
 <h3>Mode d’évaluation</h3>
-<p>L’évaluation de ce cours consiste en la création d’un programme R qui formerat un projet informatique de recherche sur la météo sensibilité du flux de vélos en libre service type vélib ou autre. Le projet s’articulera en plusieurs partie :</p>
+<p>L’évaluation de ce cours consiste en la création d’un programme , qui formera un projet informatique et statistique de recherche sur une thématique éconimique et de finance. Le projet s’articulera en plusieurs partie :</p>
 <ul>
-<li>Data Mining</li>
-<li>Visualisation des résultats du data mining</li>
-<li>Modélisation</li>
+<li>Data Mining (exploration de vos données en relation avec votre problématique)</li>
+<li>Visualisation des résultats du data mining (utilisation des techniques apprises)</li>
+<li>Modélisation (explication de vos données)</li>
 <li>Visualisation des résultats de la modélisation</li>
 <li>Application interactive</li>
 </ul>
@@ -252,13 +317,13 @@ data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw
 <div id="presentation-du-cours-et-de-r" class="section level4 unnumbered">
 <h4>Présentation du cours et de R</h4>
 <p>Le vendredi 17 févier 2017</p>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/fev17-1.png" width="672" /></p>
 <p>Au début du cours seront présentés le logiciel R.</p>
 <p>Un rappel sur l’utilisation de la console et de l’environnement de développement intégré (IDE) R studio sera effectué au début de cette première partie. Des fonctions de base sous R permettant d’importer les données depuis un fichiers texte, csv, excel et même directement depuis le web seront présentées. On examinera comment R stocke les données sous forme de variables, comment les manipuler et de créer des graphiques…</p>
 </div>
 <div id="visualiser-ces-donnees" class="section level4 unnumbered">
 <h4>Visualiser ces données</h4>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/fev%2021-1.png" width="672" /></p>
 <p>Le 21 février, 14 à 17h45 == 3h45 travaux dirigés</p>
 <p>Le but du cours est de continuer à utiliser la libraries GGplot2.</p>
 <p>Il existe des graphiques de base qui permettent d’examiner les différents jeux de données et modèles statistiques. Ces graphiques constituent des arguments et des preuves pour mettre en évidence les résultats que vous avancez et leurs pertinences de manière simple et synthétique. Les graphiques que nous allons créer sont entre autres :</p>
@@ -272,13 +337,13 @@ data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw
 </div>
 <div id="graphiques-interactifs-et-applications" class="section level4 unnumbered">
 <h4>Graphiques Interactifs et applications</h4>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/22%20mars-1.png" width="672" /></p>
 <p>Le mercredi 22 mars 2017, == 3h travaux dirigés</p>
 <p>Nous avons passé en revue différentes manières de présenter nos données sous forme d’illustration statistique. Dans cette partie, les outils de visualisation interactive faisant appel à des librairies codées en java et en html 5 seront présentés (html widget, shiny et r markdown). Les outils comme shiny, r markdown et plotly permettent de créer de véritables petites applications de visualisations et d’applications de vos résultats. Par exemple, le syllabus que vous lisez est entièrement fait sous R à l’aide de r markdown.</p>
 </div>
 <div id="travaux-pratiques" class="section level4 unnumbered">
 <h4>Travaux pratiques</h4>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>== 3h tp</p>
 <p>Le but de ce TP est de commencer à travailler sur les données de votre mémoire à l’aide d’un programme R et des notions apprises.</p>
 </div>
@@ -312,12 +377,12 @@ data &lt;-<span class="st"> </span><span class="kw">rbind</span>(<span class="kw
 </div>
 </div>
 </div>
-<div id="remerciement" class="section level2 unnumbered">
-<h2>Remerciement</h2>
+<div id="remerciements" class="section level2 unnumbered">
+<h2>Remerciements</h2>
 <p>J’adresse mes remerciements aux personnes qui m’ont aidé dans la réalisation de ce cours.</p>
 <p>En premier lieu, je remercie M. Jean Louis Bertrand et Miia Parnaudeau, tous les deux professeurs à l’ESCCA. Ils m’ont donné l’occasion d’enseigner et de partager mes connaissances sur R.</p>
-<p>Je remercie aussi M.Arthur ROUSSEAU et Samia, qui m’ont aidé respectivement pour les questions informatique et administrative.</p>
-<p>Enfin je remercie les etudiants pour leurs attention et leurs feedbacks, qu’ils appportent aux cours.</p>
+<p>Je remercie aussi M.Arthur ROUSSEAU et Samia BEN AMAR, qui m’ont aidé respectivement pour les questions informatique et administrative.</p>
+<p>Enfin je remercie les etudiants pour leurs attentions et leurs feedbacks, qu’ils appportent aux cours.</p>
 
 </div>
 </div>

@@ -48,6 +48,55 @@
 
 
 
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.5.6/plotly.js"></script>
+<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-5.0.6/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-5.0.6/highstock.js"></script>
+<script src="libs/highcharts-5.0.6/highcharts-3d.js"></script>
+<script src="libs/highcharts-5.0.6/highcharts-more.js"></script>
+<script src="libs/highcharts-5.0.6/modules/annotations.js"></script>
+<script src="libs/highcharts-5.0.6/modules/broken-axis.js"></script>
+<script src="libs/highcharts-5.0.6/modules/data.js"></script>
+<script src="libs/highcharts-5.0.6/modules/drilldown.js"></script>
+<script src="libs/highcharts-5.0.6/modules/exporting.js"></script>
+<script src="libs/highcharts-5.0.6/modules/funnel.js"></script>
+<script src="libs/highcharts-5.0.6/modules/heatmap.js"></script>
+<script src="libs/highcharts-5.0.6/modules/map.js"></script>
+<script src="libs/highcharts-5.0.6/modules/no-data-to-display.js"></script>
+<script src="libs/highcharts-5.0.6/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-5.0.6/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-5.0.6/modules/treemap.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/annotations.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/draggable-legend.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/draggable-points.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/export-csv.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/grouped-categories.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/motion.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/pattern-fill-v2.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/tooltip-delay.js"></script>
+<script src="libs/highcharts-5.0.6/custom/reset.js"></script>
+<script src="libs/highcharts-5.0.6/custom/symbols-extra.js"></script>
+<script src="libs/highcharts-5.0.6/custom/text-symbols.js"></script>
+<link href="libs/fontawesome-4.5.0/font-awesome.min.css" rel="stylesheet" />
+<link href="libs/htmlwdgtgrid-1/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="libs/highchart-binding-0.5.0/highchart.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.4/dygraphs.js"></script>
 
 
 <style type="text/css">
@@ -110,7 +159,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciement"><i class="fa fa-check"></i>Remerciement</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
@@ -140,6 +189,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.7" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.7</b> Positions et couleurs des graphes</a></li>
 <li class="chapter" data-level="2.8" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.8</b> Système de coordonnées</a></li>
 <li class="chapter" data-level="2.9" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.9</b> Themes et addins</a></li>
+<li class="chapter" data-level="2.10" data-path="data-visualisation.html"><a href="data-visualisation.html#histogrammes-et-courbes-de-distribution"><i class="fa fa-check"></i><b>2.10</b> Histogrammes et courbes de distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="visualisation-ii.html"><a href="visualisation-ii.html"><i class="fa fa-check"></i><b>3</b> Visualisation II</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphe-interactif"><i class="fa fa-check"></i><b>3.2</b> Graphe interactif</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#leaflet"><i class="fa fa-check"></i><b>3.2.1</b> Leaflet</a></li>
+<li class="chapter" data-level="3.2.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#higcharter-dygraph"><i class="fa fa-check"></i><b>3.2.2</b> Higcharter &amp; Dygraph</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="visualisation-ii.html"><a href="visualisation-ii.html#plotly"><i class="fa fa-check"></i><b>3.3</b> Plotly</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphes-interactif"><i class="fa fa-check"></i><b>3.3.1</b> Graphes interactif</a></li>
+<li class="chapter" data-level="3.3.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphes-en-3d"><i class="fa fa-check"></i><b>3.3.2</b> Graphes en 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualisation-ii.html"><a href="visualisation-ii.html#recherche-reproductible"><i class="fa fa-check"></i><b>3.4</b> Recherche reproductible</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#rmarkdown"><i class="fa fa-check"></i><b>3.4.1</b> Rmarkdown</a></li>
+<li class="chapter" data-level="3.4.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#shiny"><i class="fa fa-check"></i><b>3.4.2</b> Shiny</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -168,7 +233,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="la-popularite-de-r-et-sa-facilite" class="section level3">
 <h3><span class="header-section-number">1.1.1</span> La popularité de R et sa facilité</h3>
 <p>Un nombre croissant de personnes utilisent R. Les graphiques montrent le nombre croissant de questions en relation au langage R sur le site <a href="http://stackoverflow.com/">stack overflow</a>. Ces graphiques sont obtenus en utilisant un script <em>R</em> (voir code en bas de la page), qui va automatiquement chercher la donnée sur internet, la traiter et visualiser les résultats du nombre de questions à propos de R sur le site.<br />
-<img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<img src="bookdown-demo_files/figure-html/unnamed-chunk-2-1.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-2.png" width="672" /><img src="bookdown-demo_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
 </div>
 <div id="dautres-raisons" class="section level3">
 <h3><span class="header-section-number">1.1.2</span> D’autres raisons</h3>
@@ -368,16 +433,16 @@ liste_objet</code></pre></div>
 ## 
 ## $plot</code></pre>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <div id="dates" class="section level4">
 <h4><span class="header-section-number">1.2.4.1</span> Dates</h4>
 <p>Les dates et les heures sont gérer par R : * les dates avec <code>as.Date()</code> * les dates avec heures à l’aide de <code>as.POSIXct()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-02-26 17:44:24 CET&quot;</code></pre>
+<pre><code>## [1] &quot;2017-03-22 02:59:35 CET&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.time</span>())</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-02-26&quot;</code></pre>
+<pre><code>## [1] &quot;2017-03-22&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 </div>
