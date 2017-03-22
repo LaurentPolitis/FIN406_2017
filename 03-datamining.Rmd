@@ -1,7 +1,7 @@
 # Visualisation II 
 
 
-Le cours précendent nous avons travaillé à l'aide de la librairie ggplot. Elle permet d'explorer vos données à l'aide d'illustration et de faire des statistiques à l'intérieur du graphique avec la fonctionnalité `stats` du paquet *ggplot*. Aujourd'hui nous allons toujours explorer vos données mais à l'aide de visualisation interactive. Exemple :    
+Le cours précédent nous avons travaillé à l'aide de la librairie ggplot. Elle permet d'explorer vos données à l'aide d'illustration et de faire des statistiques à l'intérieur du graphique avec la fonctionnalité `stats` du paquet *ggplot*. Aujourd'hui nous allons toujours explorer vos données mais à l'aide de visualisation interactive. Exemple :    
 
 ```{r interractive_Ex,message=FALSE,warning=FALSE}
 library(plotly)
@@ -39,7 +39,7 @@ Les quelques principes généralistes sur l'infographie à garder en mémoires l
 * mémoire courte quelques secondes d'attention ou de réflexion
 un max de ≃11
 
-* 4 ou 5 classes  de couleurs, tailles et de styles  sont  facilements distinguables http://jfly.iam.u-tokyo.ac.jp/color/
+* 4 ou 5 classes  de couleurs, tailles et de styles  sont  facilement distinguables http://jfly.iam.u-tokyo.ac.jp/color/
 
 * notion de perspective données et vérités (source "How to Lie With Statistics", 1954, Huff)
 
@@ -51,9 +51,9 @@ un max de ≃11
 #### Intro
 
 
-Leaflet est une bibliothéque open source codée en JavaScript,CSS et HTML5, qui permet de construire des cartes et des applications interactive de géolocalisation de vos données. Une librarie en R vous autorise  de l'utiliser au sein de vos scripts d'exploration de vos données https://rstudio.github.io/leaflet. Grâce à cette librairie vous entrez dans le monde des *SIG "Système d'information géographique".
+Leaflet est une bibliothèque open source codée en JavaScript,CSS et HTML5, qui permet de construire des cartes et des applications interactive de géolocalisation de vos données. Une librairie en R vous autorise  de l'utiliser au sein de vos scripts d'exploration de vos données https://rstudio.github.io/leaflet. Grâce à cette librairie vous entrez dans le monde des *SIG "Système d'information géographique".
 
-Il  a été devellopépar Vladimir Agafonkin, qui a rejoint MapBox. 
+Il  a été développé par  Vladimir Agafonkin, qui a rejoint MapBox. 
 
 ***Définition SIG***
 
@@ -225,7 +225,7 @@ highchart(type = "map") %>%
 
 * Changer la couleur des océans, des continents et des courants marins ? Aide (utiliser l'add in du package colourpicker ) 
 
-* Quelles sont les plus grandes différences avec la carte précedente qui utilisait `leaflet`  ? 
+* Quelles sont les plus grandes différences avec la carte précédente qui utilisait `leaflet`  ? 
 
 
 
@@ -261,14 +261,116 @@ ggplot(data=data.frame(val = rnorm(10,sd = 8,mean=10), date = Sys.Date()+1:10),a
 
 ### Graphes interactif
 
-La grande force du paquet `plotly` est de pouvoir transformer vos graphiques que vous avez crée au cours précedent `ggplot`, qui sont statique
+La grande force du paquet `plotly` est de pouvoir transformer vos graphiques que vous avez crée au cours du précédent TD en `ggplot`, qui sont statique. 
+
+
+```{r,eval=FALSE}
+library(ggplot2)
+
+g_plot = ggplot(data=data.frame(val = rnorm(10,sd = 8,mean=10), date = Sys.Date()+1:10),aes(x=date,y=val))+ geom_line() +geom_point()+
+  theme_bw()
+
+
+ggplotly(g_plot) 
+```
 
 ### Graphes en 3D 
 
-## Recherche reproductible 
+```{r}
+
+data(volcano)
+library(plotly)
+# volcano is a numeric matrix that ships with R
+p <- plot_ly(z = ~volcano) %>% add_surface()
+p
+```
+
+
+
+## Recherche et cotation reproductible 
+
+La question de la répétabilité et reproductibilité de vos études statistiques est cruciale : 
+http://www.lemonde.fr/sciences/article/2013/07/15/pour-une-recherche-reproductible-publiez-vos-codes-et-donnees_3447825_1650684.html
+
+En particulier, dans le monde de la finance les erreurs de calcul liées à des artéfacts numériques mais aussi informatiques peuvent être néfaste à termes. 
+
+Pour les éviter, je vous conseille de sauvegarder souvent vos résultats intermédiaire et de stocker vos procédures de calculs sous forme de commentaires dans le scripts ou d'utiliser des documents comme rmarkdown et notebook ainsi que de créer des applications shiny d'exploration de vos données (pour automatiser vos calculs mais aussi de repérer les possibles jeux de données défectueuses). 
 
 ### Rmarkdown 
 
+https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-
+https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf 
+
+```{r, eval=FALSE}
+install.packages("rmarkdown")
+```
+
+
 ### Shiny 
+
+Le package shiny permet de créer à partir de R des applications web pour interagir avec vos données et programmes R.
+
+https://laurent7352.shinyapps.io/population/ 
+
+Le code de cette application utilise des données collectées à cette adresse. 
+
+https://www.quandl.com/data/INSEE/29_000067684_A-Demography-Municipal-population-at-the-census-Angers
+
+**Server.R**
+
+```{r,eval=FALSE}
+load(file = "data.Rdata")
+
+
+library(shiny)
+
+# Define server logic required to draw a scatter plot 
+shinyServer(function(input, output) {
+   
+  output$distPlot <- renderPlot({
+
+    library(ggplot2)
+ 
+    
+    ggplot(data = tmp.m[tmp.m$Communes==input$select,], aes(x = variable,  y =value)) +
+      geom_point() +geom_smooth(method = "lm")    + labs(title=input$select)
+  })
+  
+})
+```
+
+
+
+
+**Ui.R**
+
+
+```{r,eval=FALSE}
+load(file = "data.Rdata")
+
+library(shiny)
+
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+  
+  # Application title
+  titlePanel("Mod. tendances"),
+  
+  # Sidebar with a slider input for city 
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("select", label = h3("Choisir une ville"), 
+                  choices = nom, 
+                  selected = 1)),
+    
+    # Show a plot of the generated distribution
+    mainPanel(
+       plotOutput("distPlot")
+    )
+  )
+))
+```
+
+
 
 
