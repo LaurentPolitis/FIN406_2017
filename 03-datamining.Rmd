@@ -1,0 +1,274 @@
+# Visualisation II 
+
+
+Le cours précendent nous avons travaillé à l'aide de la librairie ggplot. Elle permet d'explorer vos données à l'aide d'illustration et de faire des statistiques à l'intérieur du graphique avec la fonctionnalité `stats` du paquet *ggplot*. Aujourd'hui nous allons toujours explorer vos données mais à l'aide de visualisation interactive. Exemple :    
+
+```{r interractive_Ex,message=FALSE,warning=FALSE}
+library(plotly)
+ 
+# Let's use the diamonds data set :
+df <- diamonds[sample(nrow(diamonds), 1000), ]
+ 
+# First we do a ggplot with several graphs
+p <- ggplot(data = df, aes(x = carat, y = price)) +
+  geom_point(aes(text = paste("Clarity:", clarity,fill=price,size=depth))) +
+  geom_smooth(aes(colour = cut),method="lm") + facet_wrap(~ cut)
+ 
+# Then we make them interactive with ggplotly
+p=ggplotly(p)
+p
+```
+
+## Introduction 
+
+De plus en plus d'acteurs dans le monde de l'entreprise utilisent l'infographie et la data visualisation pour  : 
+
+* Communiquer de façon visuelle et simple des résultats complexes 
+
+* Appuyer un raisonnement 
+
+* Transformer des données bruts, abstraites en information (utiles et compréhensibles)
+
+Cette tendance est très anciennes : 
+
+![Codex Atlanticus *Léonard de Vinci*](/home/mrrobot/Documents/FIN406_2017/Picture/Leonardo.png)
+
+
+Les quelques principes généralistes sur l'infographie à garder en mémoires lors de la création d'un graphiques sont listés ci-dessous : 
+
+* mémoire courte quelques secondes d'attention ou de réflexion
+un max de ≃11
+
+* 4 ou 5 classes  de couleurs, tailles et de styles  sont  facilements distinguables http://jfly.iam.u-tokyo.ac.jp/color/
+
+* notion de perspective données et vérités (source "How to Lie With Statistics", 1954, Huff)
+
+
+##  Graphe interactif 
+
+### Leaflet 
+
+#### Intro
+
+
+Leaflet est une bibliothéque open source codée en JavaScript,CSS et HTML5, qui permet de construire des cartes et des applications interactive de géolocalisation de vos données. Une librarie en R vous autorise  de l'utiliser au sein de vos scripts d'exploration de vos données https://rstudio.github.io/leaflet. Grâce à cette librairie vous entrez dans le monde des *SIG "Système d'information géographique".
+
+Il  a été devellopépar Vladimir Agafonkin, qui a rejoint MapBox. 
+
+***Définition SIG***
+
+Un système d'information géographique (SIG) est un système d'information conçu pour recueillir, stocker, traiter, analyser, gérer et présenter tous les types de données spatiales et géographiques. 
+
+**Exemple SIG**
+
+* GoogleMap
+* CityMapper
+* https://www.geoportail.gouv.fr/
+
+#### Utilisation
+
+Il faut installer leaflet. 
+
+```{r install_leaflet,eval=FALSE}
+install.packages("leaflet")
+# to install the development version from Github, run
+# devtools::install_github("rstudio/leaflet")
+```
+
+Une fois que nous avons installé leaflet. Nous allons créer une data.frame des liens de l'Essca à travers le monde. 
+
+
+```{r carte_data,message=FALSE}
+library(leaflet)
+library(ggmap)
+essca=geocode(location = c("Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"))
+essca$ville= c("Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai")
+head(essca)
+```
+
+```{r}
+
+m <- leaflet() %>% addTiles()  %>%  addMarkers(lng = essca$lon ,lat = essca$lat,popup = essca$ville) 
+m
+
+
+```
+
+Comme pour ggplot nous pouvons ajouter des couches supplémentaires à l'aide d'un pipe `%>%`, qui  est un opérateur du paquet magrittr.
+https://github.com/tidyverse/magrittr 
+
+L'équivalent sans pipe du code précédent est : 
+
+```{r}
+
+m <- leaflet() 
+m <- addTiles(m)  
+m <- addMarkers(m,lng = essca$lon ,lat = essca$lat,popup = essca$ville) 
+m 
+
+```
+
+
+Ajoutons un "mètre" à cette carte ! 
+
+
+```{r}
+m <- leaflet() %>% addTiles()  %>%  addMarkers(lng = essca$lon ,lat = essca$lat,popup = essca$ville) %>% addScaleBar()
+m
+```
+
+**Exercice 1**
+
+* Quelle est l'école de l'Essca la plus éloignée par rapport à celle d'Angers en Europe ? 
+
+* Quelle est la distance de cette ville par rapport à Angers ? 
+
+* Même question avec l'utilisation de la fonction  `ggmap::mapdist()` à l'aide de la data.frame `essca` ? 
+Indice (utiliser `?mapdist()`  `?which.max`)
+
+```{r,echo=FALSE,eval=FALSE}
+df=ggmap::mapdist(from =essca$ville,to = "Angers",mode = "walking")
+df[df$km %>% which.max(),]
+```
+
+#### Carte choroplèthe
+
+
+```{r}
+library(rgdal)
+# Download .shp file on the web:
+# download.file("http://thematicmapping.org/downloads/TM_WORLD_BORDERS_SIMPL-0.3.zip" , destfile="world_shape_file.zip")
+# system("unzip world_shape_file.zip")
+# Read the file with rgdal
+library(rgdal)
+world_spdf=readOGR( dsn= getwd() , layer="TM_WORLD_BORDERS_SIMPL-0.3")
+
+ # Color by quantile
+m=leaflet(world_spdf)%>% addTiles()  %>% setView( lat=10, lng=0 , zoom=2) %>%
+  addPolygons(stroke = F, fillOpacity = 0.5, smoothFactor = 0.5, popup = format(world_spdf$POP2005,big.mark = ","),color = ~colorNumeric("YlOrRd", domain=sqrt(POP2005),n = 9)(sqrt(POP2005)) ) %>% addLegend(pal = colorNumeric("YlOrRd", domain=world_spdf$POP2005,n = 9),values = ~POP2005)
+m
+
+```
+
+
+
+### Higcharter & Dygraph
+
+Je vous conseille la lecture du site https://www.htmlwidgets.org/. Dans ce site, en plus du précédent paquet sur la création de carte interactive deux librairies permettent de générer des graphiques de qualités : 
+
+* Dygraph (pour les times series)
+
+* Higcharter (pour tout type de graphe, mais plus compliqué à manipuler)
+
+```{r}
+library("highcharter")
+library("forecast") # appels des paquets 
+
+airforecast <- forecast(auto.arima(AirPassengers), level = 90) # 
+
+hchart(airforecast) %>%
+  hc_title(text = "Utilsation de graphe interactif") 
+```
+
+#### Carte choroplèthe avec higcharter 
+
+Une partie data mining est nécessaire pour extraire les données  géophysiques de la carte. On télécharge directement les données sous forme json. Un paquet R jsonlite prend la relève pour pouvoir les lire. 
+
+```{r}
+# getContent <- function(url) {
+#   library(httr)
+#   content(GET(url))
+# }
+# 
+# world <- getContent("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json")
+# # is text
+# world <- jsonlite::fromJSON(world, simplifyVector = FALSE)
+# 
+# # http://cedeusdata.geosteiniger.cl/layers/geonode:mundo_corrientes_maritimas
+# marine <- getContent("http://cedeusdata.geosteiniger.cl/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Amundo_corrientes_maritimas&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature")
+# # marine <- geojsonio::as.json(marine)
+# 
+# 
+# # http://cedeusdata.geosteiniger.cl/layers/geonode:mundo_limites_placas
+# plates <- getContent("http://cedeusdata.geosteiniger.cl/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Amundo_limites_placas&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature")
+# # plates <- geojsonio::as.json(plates)
+# 
+# # http://cedeusdata.geosteiniger.cl/layers/geonode:mundo_volcanes
+# volcano <- getContent("http://cedeusdata.geosteiniger.cl/geoserver/wfs?srsName=EPSG%3A4326&typename=geonode%3Amundo_volcanes&outputFormat=json&version=1.0.0&service=WFS&request=GetFeature")
+# # volcano <- geojsonio::as.json(volcano)
+# 
+ #save(list = c("world","marine","plates","volcano"),file = "plot_highmap.Rdata")
+
+load("plot_highmap.Rdata")
+```
+
+```{r}
+highchart(type = "map") %>%
+  hc_chart(backgroundColor = "#FFFFFF") %>% 
+  hc_add_series(mapData = world, showInLegend = FALSE, nullColor = "#424242",
+                borderWidth = 0) %>%
+  hc_add_series(data = marine, type = "mapline", geojson = TRUE,
+                color = "#2980b9", name = "Marine currents",
+                tooltip = list(pointFormat = "{point.properties.NOMBRE}")) %>%
+  hc_add_series(data = plates, type = "mapline", lineWidth = 2, zIndex = -1, geojson = TRUE,
+                color = "#d35400", name = "Plates",
+                tooltip = list(pointFormat = "{point.properties.TIPO}")) %>%
+  hc_add_series(data = volcano, type = "mappoint", color = hex_to_rgba("#f1c40f", 0.4),
+                geojson = TRUE, name = "Volcanos",
+                tooltip = list(pointFormat = "{point.properties.NOMBRE}"),
+                marker = list(lineWidth = 0, radius = 2))
+```
+
+**Exercice 2**
+
+* Tester l'intervalle de confiance de prévision du modèle arima à  95 % et 99 %, et quel est l'effet sur le graphe ?
+
+* Changer la couleur des océans, des continents et des courants marins ? Aide (utiliser l'add in du package colourpicker ) 
+
+* Quelles sont les plus grandes différences avec la carte précedente qui utilisait `leaflet`  ? 
+
+
+
+
+```{r, fig.width=6, fig.height=2.5}
+library(dygraphs)
+dygraph(nhtemp, main = "New Haven Temperatures", ylab = "Temp (F)") 
+```
+
+***Exercie 3**
+
+* Quelle est la classe de l'objet `nhtemp` ? 
+
+* A votre tour vous allez créer un objet `xts` à l'aide du code ci-dessous  et faire un graphique time series en `Dygraphs`.
+
+```{r,eval=FALSE}
+library(xts)
+xts(rnorm(10,sd = 8,mean=10), Sys.Date()+1:10)
+```
+
+* Recréer ce graphique à l'aide de `ggplot`.
+
+```{r,eval=FALSE}
+library(ggplot2)
+
+ggplot(data=data.frame(val = rnorm(10,sd = 8,mean=10), date = Sys.Date()+1:10),aes(x=date,y=val))+ geom_line() +geom_point()
+
+```
+
+
+
+## Plotly
+
+### Graphes interactif
+
+La grande force du paquet `plotly` est de pouvoir transformer vos graphiques que vous avez crée au cours précedent `ggplot`, qui sont statique
+
+### Graphes en 3D 
+
+## Recherche reproductible 
+
+### Rmarkdown 
+
+### Shiny 
+
+

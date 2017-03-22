@@ -88,11 +88,11 @@ Dans un premier temps, nous allons découvrir les bases de R afin de savoir comm
 
 ### Mode d’évaluation {-}
 
-L’évaluation de ce cours consiste en la création d’un programme R qui formerat un projet informatique de recherche sur la météo sensibilité du flux de vélos en libre service type vélib ou autre. Le projet s'articulera en plusieurs partie : 
+L’évaluation de ce cours consiste en la création d’un programme , qui formera un projet informatique et statistique de recherche sur une thématique éconimique et de finance. Le projet s'articulera en plusieurs partie : 
 
-* Data Mining 
-* Visualisation des résultats du data mining 
-* Modélisation 
+* Data Mining (exploration de vos données en relation avec votre problématique)
+* Visualisation des résultats du data mining (utilisation des techniques apprises)
+* Modélisation (explication de vos données)
 * Visualisation des résultats de la modélisation 
 * Application interactive 
 
@@ -104,7 +104,7 @@ L’évaluation de ce cours consiste en la création d’un programme R qui form
 
 Le vendredi 17 févier 2017
 
-```{r,echo=F}
+```{r fev17,echo=F}
 
 p =ggplot(data = data.frame(x =seq(to = 15, from =3, by =3), nom = c("Intro","Visu. 1","Visu 2.","Avancé", "TP"), 
                             cours = as.character(c(1,0,0,0,0)),stringsAsFactors = F )) + geom_bar(stat = "identity",aes(x = x,y =x,alpha=cours,colour=cours))+scale_colour_manual(values =c("0"="black","1"="white"),guide=F) + coord_polar()+ theme_minimal()  +scale_x_continuous(  breaks = c(3, 6, 9,12,15),label =c("Intro","Visu. 1", "Visu 2.","Avancé", "TP")) +scale_fill_continuous(  breaks = c(3, 6, 9,12,15)) +scale_alpha_manual(values = c("0"=0.1,"1"=1),guide=FALSE)
@@ -119,7 +119,7 @@ Au début du cours seront présentés le logiciel R.
 Un rappel sur l’utilisation de la console et de l’environnement de développement intégré (IDE) R studio sera effectué au début de cette première partie. Des fonctions de base sous R permettant d’importer les données depuis un fichiers texte, csv, excel et même directement depuis le web seront présentées. On examinera comment R stocke les données sous forme de variables, comment les manipuler et de créer des graphiques…
 
 #### Visualiser ces données {-}
-```{r,echo=F}
+```{r fev 21,echo=F}
 p =ggplot(data = data.frame(x =seq(to = 15, from =3, by =3), nom = c("Intro","Visu. 1","Visu 2.","Avancé", "TP"), 
                             cours = as.character(c(0,1,0,0,0)),stringsAsFactors = F )) + geom_bar(stat = "identity",aes(x = x,y =x,alpha=cours,colour=cours))+scale_colour_manual(values =c("0"="black","1"="white"),guide=F) + coord_polar()+ theme_minimal()  +scale_x_continuous(  breaks = c(3, 6, 9,12,15),label =c("Intro","Visu. 1", "Visu 2.","Avancé", "TP")) +scale_fill_continuous(  breaks = c(3, 6, 9,12,15)) +scale_alpha_manual(values = c("0"=0.1,"1"=1),guide=FALSE)
 p + labs(fill="Nombre d'heures \n de cours passé",y="Heures",x="") +theme(axis.text.x = element_text(size=16))
@@ -144,7 +144,7 @@ Il existe des graphiques  de base qui permettent d’examiner les différents je
 
 #### Graphiques Interactifs et applications {-}
 
-```{r,echo=F}
+```{r 22 mars,echo=F}
 p =ggplot(data = data.frame(x =seq(to = 15, from =3, by =3), nom = c("Intro","Visu. 1","Visu 2.","Avancé", "TP"), 
                             cours = as.character(c(0,0,1,1,0)),stringsAsFactors = F )) + geom_bar(stat = "identity",aes(x = x,y =x,alpha=cours,colour=cours))+scale_colour_manual(values =c("0"="black","1"="white"),guide=F) + coord_polar()+ theme_minimal()  +scale_x_continuous(  breaks = c(3, 6, 9,12,15),label =c("Intro","Visu. 1", "Visu 2.","Avancé", "TP")) +scale_fill_continuous(  breaks = c(3, 6, 9,12,15)) +scale_alpha_manual(values = c("0"=0.1,"1"=1),guide=FALSE)
 p + labs(fill="Nombre d'heures \n de cours passé",y="Heures",x="") +theme(axis.text.x = element_text(size=16))
@@ -156,7 +156,7 @@ Nous avons passé en revue différentes manières de présenter nos données sou
 
 #### Travaux pratiques {-}
 
-```{r,echo=F}
+```{r ,echo=F}
 p =ggplot(data = data.frame(x =seq(to = 15, from =3, by =3), nom = c("Intro","Visu. 1","Visu 2.","Avancé", "TP"), 
                             cours = as.character(c(0,0,0,0,1)),stringsAsFactors = F )) + geom_bar(stat = "identity",aes(x = x,y =x,alpha=cours,colour=cours))+scale_colour_manual(values =c("0"="black","1"="white"),guide=F) + coord_polar()+ theme_minimal()  +scale_x_continuous(  breaks = c(3, 6, 9,12,15),label =c("Intro","Visu. 1", "Visu 2.","Avancé", "TP")) +scale_fill_continuous(  breaks = c(3, 6, 9,12,15)) +scale_alpha_manual(values = c("0"=0.1,"1"=1),guide=FALSE)
 p + labs(fill="Nombre d'heures \n de cours passé",y="Heures",x="") +theme(axis.text.x = element_text(size=16))
@@ -188,11 +188,11 @@ Le but de ce TP est de commencer à travailler sur les données de votre mémoir
 * http://deanattali.com/shiny/
 
 
-##  Remerciement {-}
+##  Remerciements {-}
 J'adresse mes remerciements aux personnes qui m'ont aidé dans la réalisation de ce cours. 
 
 En premier lieu, je remercie M. Jean Louis Bertrand et Miia Parnaudeau, tous les deux professeurs à l'ESCCA. Ils m'ont donné l'occasion d'enseigner et de partager mes connaissances sur R.
 
-Je remercie aussi M.Arthur ROUSSEAU et Samia, qui m'ont aidé respectivement pour les questions informatique et administrative.
+Je remercie aussi M.Arthur ROUSSEAU et Samia BEN AMAR, qui m'ont aidé respectivement pour les questions informatique et administrative.
 
-Enfin je remercie les etudiants pour leurs attention et leurs feedbacks, qu'ils appportent aux cours. 
+Enfin je remercie les etudiants pour leurs attentions et leurs feedbacks, qu'ils appportent aux cours. 
