@@ -1,7 +1,9 @@
 # Visualisation II 
 
 
-Le cours précédent nous avons travaillé à l'aide de la librairie ggplot. Elle permet d'explorer vos données à l'aide d'illustration et de faire des statistiques à l'intérieur du graphique avec la fonctionnalité `stats` du paquet *ggplot*. Aujourd'hui nous allons toujours explorer vos données mais à l'aide de visualisation interactive. Exemple :    
+Le cours précédent nous avons travaillé à l'aide de la librairie ggplot. Elle permet d'explorer vos données à l'aide de graphiques et   de statistiques à l'intérieur même du graphe avec la fonctionnalité `stats`. Aujourd'hui nous allons toujours explorer vos données mais à l'aide de visualisation interactive. 
+
+Exemple :    
 
 ```{r interractive_Ex,message=FALSE,warning=FALSE}
 library(plotly)
@@ -27,7 +29,7 @@ De plus en plus d'acteurs dans le monde de l'entreprise utilisent l'infographie 
 
 * Appuyer un raisonnement 
 
-* Transformer des données bruts, abstraites en information (utiles et compréhensibles)
+* Transformer des données bruts, abstraites en information (utile et compréhensible)
 
 Cette tendance est très anciennes : 
 

@@ -8,7 +8,7 @@ output: pdf_document
 
 ## Exercice 1
 
-Nous avons vu plusieurs modèles la dernière fois pour modéliser la vitesse et la distance de freinage en fonction des différentes métriques d'erreurs présentées au-dessus. Séléctionner le modèle satistique le plus pertinant en modifiant `ma_formule`.
+*Nous avons vu plusieurs modèles la dernière fois pour modéliser la vitesse et la distance de freinage. En fonction des différentes métriques d'erreurs présentées  séléctionnez le modèle satistique le plus pertinant en modifiant `ma_formule`*.*
 
 **Réponse**
 
@@ -184,7 +184,7 @@ Le graphique comprend qu'il y a qu'une classe de couleur pour le nuage de point.
   
  Les caractéristiques du graphe sont spécifiées en dehors de la fonction `aes()`.
  
- **Exercice 5**
+## Exercice 5 
  
  
 1. *A quoi sert le `.` dans la formule de facet_grid ? (Tester les exemples en dessous)*
@@ -217,7 +217,7 @@ Les avantages dépendent de vos données : l'avantage principal de facet est de 
 La fonction `facet_wrap` optimise l'espace du graphe grâce à la possibilité de créer des séquences de panneaux en 2 dimensions alors que `facet_grid` constitue une matrice de panneaux en fonction que d'un critère en 1d.
 
 
-**Exercice 6**
+## Exercice 6
 
 * *Que font les options `se=FALSE` et `show.legend=FALSE` ?*
 
@@ -264,7 +264,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy))  +geom_smooth(se=F,aes(lin
 ```
 
 
-**Exercice 7**
+## Exercice 7
  
  1. *Quel est l'équivalent géométrique de `stat_summary()` ? Modifiez le code ci-dessus en utilisant une fonction `geom_`.*
  
@@ -282,7 +282,7 @@ ggplot(data = diamonds) +
 ```
 
 
-**Exercice 8**
+## Exercice 8
 
 1. *Quel est le problème avec ce graphique ? Comment pouvez vous l'améliorer ?*
 
@@ -344,7 +344,7 @@ stat_summary( color="red", fun.ymin = min,
 ```
 
 
-**Exercice 9**
+## Exercice 9
 
 1. Dessinez le département et une région de votre choix ?
 

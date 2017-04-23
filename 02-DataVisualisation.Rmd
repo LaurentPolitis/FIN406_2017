@@ -897,7 +897,7 @@ ggplot(fr, aes(long, lat, group = group)) +
 
 ## Histogrammes et courbes de distribution 
 
-Les histogrammes et les courbes de distribution sont des outils d'exploration des données très souvent utiliser. 
+Les histogrammes et les courbes de distribution sont des outils d'exploration des données très souvent utilisées. 
 L'histogramme permet de rapidement étudier la répartition d'un échantillon. 
 
 ```{r histo1}
