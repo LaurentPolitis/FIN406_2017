@@ -262,7 +262,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul>
 <div id="format-texte" class="section level3">
 <h3><span class="header-section-number">4.1.1</span> Format Texte</h3>
-<p>Il se peut que les données que vous essayez de télécharger et d’ouvrir sur R soient sous cette forme. Les fichiers sous format texte sont généralement des tableaux séparés par des espaces, virgules, des points vigurles, des lettres etc…</p>
+<p>Il se peut que les données que vous essayez de télécharger et d’ouvrir sur R soient sous cette forme. Les fichiers sous format texte sont généralement des tableaux séparés par des espaces, virgules, des points virgules, des lettres etc…</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## source Google trend sur le terme Blockchain
 
  data_blockchain =<span class="st">  </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;data/BlockChain.txt&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot; &quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
@@ -274,6 +274,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 2004-04          0
 ## 5 2004-05          0
 ## 6 2004-06          0</code></pre>
+<p><em>Tracer la série temporelle en ggplot que vous venez d’importer</em></p>
 </div>
 <div id="format-csv" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Format Csv</h3>
@@ -289,8 +290,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 2004-03                                 7
 ## 2004-04                                 6
 ## 2004-05                                 6</code></pre>
-<p>Dans cet exemple, le fichier ne posséde pas le bon nom de colonne. Pour utiliser les bons noms des colonnes, il est nécessaire d’utiliser une option de la fonction <code>read.csv</code>.</p>
-<p><strong>Question</strong> : <em>Quelle est l’option, qui permet de passer des lignes dans le début de la lecture du fichier ?</em></p>
+<p>Dans cet exemple, le fichier ne possède pas le bon nom de colonne. Pour manipuler les noms des colonnes adéquates, il est nécessaire d’utiliser une option de la fonction <code>read.csv</code>.</p>
+<p><strong>Question</strong> :</p>
+<p><em>Quelle est l’option, qui permet de passer des lignes dans le début de la lecture du fichier ?</em></p>
 <pre><code>##      Mois Big.data...Dans.tous.les.pays.
 ## 1 2004-01                              8
 ## 2 2004-02                              6
@@ -298,10 +300,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 2004-04                              6
 ## 5 2004-05                              6
 ## 6 2004-06                              7</code></pre>
+<p><em>Tracer la série temporelle en ggplot que vous venez d’importer</em></p>
 </div>
 <div id="format-excel" class="section level3">
 <h3><span class="header-section-number">4.1.3</span> Format excel</h3>
-<p>Un format très utiliser dans le monde professionnel les formats de type excel. Ils sont plus difficille à lire que les autres avec le logiciel R.</p>
+<p>Le qui est très utilisé dans le monde professionnel est Excel. Ils sont plus difficile à lire que les autres avec le logiciel R.Il nécessite un paquet de R à installer.</p>
 <pre><code>## # A tibble: 6 × 2
 ##                  Date `Close Price`
 ##                 &lt;chr&gt;         &lt;dbl&gt;
@@ -311,13 +314,13 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## 4 2010-07-21 00:00:00          0.08
 ## 5 2010-07-22 00:00:00          0.05
 ## 6 2010-07-23 00:00:00          0.06</code></pre>
+<p><em>Tracer la série temporelle en ggplot que vous venez d’importer</em></p>
 </div>
 <div id="html-et-webscraping" class="section level3">
 <h3><span class="header-section-number">4.1.4</span> Html et webscraping</h3>
-<p>Le webscaping consiste en traduire la page généralement codé en html d’un site web en données numérique come dans l’exemple ci dessous. Ces techniques de web scraping demande une connaisance en code html et même dans certain des connaissances en java script.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)</code></pre></div>
-<pre><code>## Loading required package: xml2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url=<span class="st">&#39;http://statbel.fgov.be/en/statistics/figures/economy/indicators/prix_prod_con/&#39;</span>
+<p>Le webscraping consiste à traduire de la page généralement codée en html d’un site web en données numérique comme dans l’exemple ci dessous. Ces techniques de web scraping demande une connaissance en code html et même dans certain cas des connaissances en java script.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)
+url=<span class="st">&#39;http://statbel.fgov.be/en/statistics/figures/economy/indicators/prix_prod_con/&#39;</span>
 TAB=<span class="kw">read_html</span>(url)%&gt;%<span class="kw">html_nodes</span>(<span class="st">&#39;td&#39;</span>)%&gt;%<span class="kw">html_text</span>()
 NAMES=<span class="kw">read_html</span>(url)%&gt;%<span class="kw">html_nodes</span>(<span class="st">&#39;th&#39;</span>)%&gt;%<span class="kw">html_text</span>()
 M=<span class="kw">data.frame</span>(<span class="kw">matrix</span>(TAB,<span class="dt">ncol=</span><span class="dv">5</span>,<span class="dt">nrow=</span><span class="dv">9</span>,<span class="dt">byrow=</span>T))
@@ -327,14 +330,14 @@ M=<span class="kw">cbind</span>(NAMES[<span class="dv">7</span>:<span class="dv"
 </div>
 <div id="traiter-vos-donnees" class="section level2">
 <h2><span class="header-section-number">4.2</span> Traiter vos données</h2>
-<p>Dans cette partie nous allons voir comment organiser nos données et les traiter. Nous avons appris comment les visualiser précédemments. Mais en général elles ne sont généralement pas dans une forme expoitable pour notre étude. Une des étapes importantes avant toute étude est de les organiser. Pour cela R dispose de paquets qui permettent de faciliter cette tâche. Nous allons découvrir la librairie dplyr. Généralement, nous voulons tout simplement créer une nouvelle variable, filtrer les données en fonction de certaines caractéristiques et connaître des métriques statistiques résumant nos échantillons.</p>
+<p>Dans cette partie nous allons voir comment organiser nos données et les traiter. Nous avons appris comment les visualiser précédemment. Mais en général elles ne sont généralement pas dans une forme exploitable pour notre étude. Une des étapes importantes avant toute étude est de les organiser. Pour cela R dispose de paquets qui permettent de faciliter cette tâche. Nous allons découvrir la librairie dplyr. Généralement, nous voulons tout simplement créer une nouvelle variable, filtrer les données en fonction de certaines caractéristiques et connaître des métriques statistiques résumant nos échantillons.</p>
 <p>Nous allons commencer par découvrir 6 fonctions du paquet dplyr, qui permettent de résoudre les classiques problèmes rencontrés lors de la manipulation de vos données.</p>
 <ul>
-<li>Filtrer les valeurs de vos échantillons en fonction de divers paramètres `filter</li>
-<li>Séléctionner les lignes les collones <code>select()</code></li>
-<li>Séléctionner les lignes de votre data.frame <code>arrange()</code>.</li>
-<li>Créer de nouvelles variables dépendants de vos données <code>mutate()</code></li>
-<li>Simplifier vos données en statitiques résumant par divers métriques votre échantillon <code>summarise()</code></li>
+<li>Filtrer les valeurs de vos échantillons en fonction de divers paramètres <code>filter</code></li>
+<li>Sélectionner les colonnes <code>select()</code></li>
+<li>Ordonner les lignes de votre data.frame <code>arrange()</code>.</li>
+<li>Créer de nouvelles variables en fonction de vos données <code>mutate()</code></li>
+<li>Simplifier vos données en statistiques résumant par divers métriques votre échantillon <code>summarise()</code></li>
 </ul>
 <p>Nous allons utiliser les données du Penn World Table qui permettent d’avoir le produit intérieur brut au cours du temps et dans différents pays. <a href="https://cran.r-project.org/web/packages/pwt/index.html" class="uri">https://cran.r-project.org/web/packages/pwt/index.html</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(pwt)</span>
@@ -363,8 +366,8 @@ M=<span class="kw">cbind</span>(NAMES[<span class="dv">7</span>:<span class="dv"
 </div>
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> filter()</h3>
-<p><img src="Picture/filter.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon" /> filter() permet de sélectionner des observations en fonction de leurs valeurs ou caractéristiques. Le premier argument est le nom de votre <code>data.frame</code>. Le deuxième argument est un booléen les relations logiques qui permettent de filtrer les valeurs de votre data.frame.</p>
-<p>Utilisation classique sous R</p>
+<p><img src="Picture/filter.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon par les lignes" /> filter() permet de sélectionner des observations en fonction de leurs valeurs ou caractéristiques. Le premier argument est le nom de votre <code>data.frame</code>. Le deuxième argument est un booléen. Les relations logiques qui permettent de filtrer les valeurs de votre data.frame.</p>
+<p>Utilisation classique sous R :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span>[pwt7<span class="fl">.1</span>$country ==<span class="st"> &quot;France&quot;</span> &amp;<span class="st"> </span>pwt7<span class="fl">.1</span>$year &gt;<span class="dv">2000</span> , ]</code></pre></div>
 <pre><code>##          country isocode year      pop     xrat currency       ppp   tcgdp
 ## FRA-2001  France     FRA 2001 61479.30 1.117510     Euro 0.8947424 1671491
@@ -540,7 +543,7 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 ## 10 68386.06  68556.76 31203.40</code></pre>
 <div id="rappels-sur-les-operateurs-logiques" class="section level4">
 <h4><span class="header-section-number">4.2.2.1</span> Rappels sur les opérateurs logiques</h4>
-<p>En plus de connaître les opérateurs de comparaison classiques (<code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>, et<code>==</code>), il est nécessaire de possèder les notions d’opérateurs logiques.</p>
+<p>En plus de connaître les opérateurs de comparaison classiques (<code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>, et<code>==</code>), il est nécessaire de posséder les notions d’opérateurs logiques.</p>
 <div class="figure">
 <img src="Picture/logiques.png" alt="Les opérations logiques où x est le cercle de gauche et y celui de droite. La zone grise illustre le résultat de l’opération" />
 <p class="caption">Les opérations logiques où <code>x</code> est le cercle de gauche et <code>y</code> celui de droite. La zone grise illustre le résultat de l’opération</p>
@@ -642,9 +645,9 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 ## 17  57.46605 1346.5908 3979.863  3948.905  934.2637</code></pre>
 <p><em>Exercice 2</em></p>
 <ul>
-<li><p>Sélectionner 5 pays d’Europe, les Etats-Unis, la Chine et l’inde</p></li>
-<li><p>Sélectionner les pays au-dessus du quantile 95% de <code>tcgdp</code> pour l’année 2010 et refaire le graphe ? <img src="bookdown-demo_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p></li>
-<li><p>Sélectionner les pays en-dessous du quantile 5% de <code>tcgdp</code> pour l’année 2010 ?</p></li>
+<li><p>Sélectionner 5 pays d’Europe, les Etats-Unis, la Chine et l’inde.</p></li>
+<li><p>Sélectionner les pays au-dessus du quantile 95% de <code>tcgdp</code> pour l’année 2010 et refaire le graphe. <img src="bookdown-demo_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p></li>
+<li><p>Sélectionner les pays en-dessous du quantile 5% de <code>tcgdp</code> pour l’année 2010 et faire le graphe ci-dessous.</p></li>
 </ul>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 </div>
@@ -652,10 +655,10 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 <div id="select" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> select()</h3>
 <div class="figure">
-<img src="Picture/select.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon" />
-<p class="caption">Les fonctions de sélection d’un sous ensemble de données de votre échantillon</p>
+<img src="Picture/select.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon en fonction des colonnes" />
+<p class="caption">Les fonctions de sélection d’un sous ensemble de données de votre échantillon en fonction des colonnes</p>
 </div>
-<p>Comme filter() qui sélectionne les lignes en fonction de caractéristique, select() permet de selectionner les colonnes d’une data.frame.</p>
+<p>Comme filter() qui sélectionne les lignes en fonction de lignes présentes dans vos données, select() permet de sélectionner les colonnes d’une data.frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(pwt7<span class="fl">.1</span>[,<span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;pop&quot;</span>)])</code></pre></div>
 <pre><code>##          year      pop
 ## AFG-1950 1950 8150.368
@@ -681,7 +684,7 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 ## AFG-1953 1953 8573.217  NA
 ## AFG-1954 1954 8728.408  NA
 ## AFG-1955 1955 8891.209  NA</code></pre>
-<p>On peut encore simplifier la ligne de code précedente.</p>
+<p>On peut encore simplifier la ligne de code précédente.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(pwt7<span class="fl">.1</span> ,year:ppp))</code></pre></div>
 <pre><code>##          year      pop   xrat currency ppp
 ## AFG-1950 1950 8150.368     NA     &lt;NA&gt;  NA
@@ -713,7 +716,7 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 ## AFG-1953        NA     NA
 ## AFG-1954        NA     NA
 ## AFG-1955        NA     NA</code></pre>
-<p>De plus, il y a pas de fonction utile que nous pouvons insérer dans cette fonction :</p>
+<p>De plus, il y a d’autres, que nous pouvons insérer dans cette fonction :</p>
 <ul>
 <li><p>starts_with(“p”): sélectionne les noms des colonnes qui commence par p</p></li>
 <li><p>ends_with (“p”): la même chose mais par la fin</p></li>
@@ -761,7 +764,7 @@ pwt7<span class="fl">.1</span> %&gt;%
 ## 6 17150.336 1950</code></pre>
 <p><strong>Exercice 4</strong></p>
 <ul>
-<li>Selectionner les valeurs pour la France de <code>cgdp</code>,<code>ppp</code> et <code>year</code>. Recréer le graphe ci dessous ?</li>
+<li>Sélectionner les valeurs pour la France de <code>cgdp</code>,<code>ppp</code> et <code>year</code>. Recréer le graphe ci dessous ?</li>
 </ul>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <ul>
@@ -780,7 +783,7 @@ pwt7<span class="fl">.1</span> %&gt;%
 <img src="Picture/mutate_1.png" alt="Les fonctions de création de nouvelles variables" />
 <p class="caption">Les fonctions de création de nouvelles variables</p>
 </div>
-<p>La fonction mutate() est utilisé pour créer de nouvelle varaible dans la data.frame.</p>
+<p>La fonction mutate() est utilisé pour créer de nouvelle variable dans la data.frame.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R approach to create a new variable Speed (in mph)</span>
 pwt7<span class="fl">.1</span>$pop_percent &lt;-<span class="st"> </span>pwt7<span class="fl">.1</span>$pop/<span class="kw">mean</span>(pwt7<span class="fl">.1</span>$pop)*<span class="dv">100</span>
 <span class="kw">head</span>(pwt7<span class="fl">.1</span>$pop_percent)</code></pre></div>
@@ -803,7 +806,7 @@ pwt7<span class="fl">.1</span> %&gt;%
 <img src="Picture/summarise_1.png" alt="Les fonctions de calcul de métriques stat" />
 <p class="caption">Les fonctions de calcul de métriques stat</p>
 </div>
-<p>Nous allons calculer en fonction de variables groupées au préalable avec group_by() des statistiques (mean,max,min,ect…).</p>
+<p>Nous allons calculer en fonction de variables groupées au préalable avec group_by() des statistiques (mean,max,min, …).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R </span>
 <span class="kw">head</span>(<span class="kw">aggregate</span>(<span class="dt">x =</span> pwt7<span class="fl">.1</span>$pop,<span class="dt">by=</span> <span class="kw">list</span>(pwt7<span class="fl">.1</span>$country), sd,<span class="dt">na.rm=</span>T))</code></pre></div>
 <pre><code>##               Group.1           x
@@ -898,13 +901,10 @@ pwt7<span class="fl">.1</span> %&gt;%
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;maps&quot;</span>)
 <span class="kw">library</span>(dplyr)
-<span class="kw">library</span>(pwt)
-df =<span class="st"> </span>pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">filter</span>(year==<span class="dv">2010</span> )
-map =<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;world&quot;</span>) <span class="co"># load world map</span>
-df.map =<span class="st"> </span><span class="kw">inner_join</span>(df, map, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span> =<span class="st">&quot;region&quot;</span>)) </code></pre></div>
+<span class="kw">library</span>(pwt)</code></pre></div>
+<p>Recréer ce graphique à l’aide de filter() et de inner_join(). Le graphique montre le <code>tcgdp</code> de l’année 2010.</p>
 <pre><code>## Warning in inner_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
 ## factor and character vector, coercing into character vector</code></pre>
-<p>Recréer ce graphique à l’aide de filter().</p>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <p>Pourquoi manque t il des pays ?</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R </span>
@@ -952,6 +952,7 @@ map$iso3c =<span class="st">  </span><span class="kw">countrycode</span>(map$reg
 p +<span class="st"> </span><span class="kw">geom_polygon</span>( <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) +
 <span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p>Ce n’est pas tout a fait ça encore.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$isocode =<span class="st"> </span><span class="kw">as.character</span>(df$isocode)
 germ =<span class="st">  </span>df %&gt;%<span class="st"> </span><span class="kw">filter</span>( country==<span class="st">&quot;Germany&quot;</span>)  %&gt;%<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">isocode=</span><span class="st">&quot;DEU&quot;</span>) 
 df[df$country==<span class="st">&quot;Germany&quot;</span>,<span class="st">&quot;isocode&quot;</span>]=<span class="st"> </span>germ[<span class="dv">1</span>,<span class="dv">1</span>]
@@ -960,7 +961,9 @@ p =<span class="st"> </span><span class="kw">ggplot</span>(df.map, <span class="
 p +<span class="st"> </span><span class="kw">geom_polygon</span>( <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) +
 <span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<p>Recréer ce graphique à l’aide de filter().</p>
+<p>Recréer ce graphique.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df.map$continent =<span class="st"> </span><span class="kw">countrycode</span>(df.map$region,
+                                 <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">destination =</span> <span class="st">&quot;continent&quot;</span>)</code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 
 </div>
