@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Notes de Cours sur R FIN403</title>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta name="description" content="Cours de data science à l’aide du logiciel R">
+  <meta name="generator" content="bookdown 0.3 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Notes de Cours sur R FIN403" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Cours de data science à l’aide du logiciel R" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Notes de Cours sur R FIN403" />
+  
+  <meta name="twitter:description" content="Cours de data science à l’aide du logiciel R" />
+  
+
+<meta name="author" content="Laurent POLITIS">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="visualisation-ii.html">
+
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="libs/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.5.6/plotly.js"></script>
+<link href="libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-5.0.6/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-5.0.6/highstock.js"></script>
+<script src="libs/highcharts-5.0.6/highcharts-3d.js"></script>
+<script src="libs/highcharts-5.0.6/highcharts-more.js"></script>
+<script src="libs/highcharts-5.0.6/modules/annotations.js"></script>
+<script src="libs/highcharts-5.0.6/modules/broken-axis.js"></script>
+<script src="libs/highcharts-5.0.6/modules/data.js"></script>
+<script src="libs/highcharts-5.0.6/modules/drilldown.js"></script>
+<script src="libs/highcharts-5.0.6/modules/exporting.js"></script>
+<script src="libs/highcharts-5.0.6/modules/funnel.js"></script>
+<script src="libs/highcharts-5.0.6/modules/heatmap.js"></script>
+<script src="libs/highcharts-5.0.6/modules/map.js"></script>
+<script src="libs/highcharts-5.0.6/modules/no-data-to-display.js"></script>
+<script src="libs/highcharts-5.0.6/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-5.0.6/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-5.0.6/modules/treemap.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/annotations.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/draggable-legend.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/draggable-points.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/export-csv.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/grouped-categories.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/motion.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/pattern-fill-v2.js"></script>
+<script src="libs/highcharts-5.0.6/plugins/tooltip-delay.js"></script>
+<script src="libs/highcharts-5.0.6/custom/reset.js"></script>
+<script src="libs/highcharts-5.0.6/custom/symbols-extra.js"></script>
+<script src="libs/highcharts-5.0.6/custom/text-symbols.js"></script>
+<link href="libs/fontawesome-4.5.0/font-awesome.min.css" rel="stylesheet" />
+<link href="libs/htmlwdgtgrid-1/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="libs/highchart-binding-0.5.0/highchart.js"></script>
+<link href="libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet" />
+<script src="libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="libs/moment-2.8.4/moment.js"></script>
+<script src="libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="libs/dygraphs-binding-1.1.1.4/dygraphs.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Finance quantitative FIN403 </a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Syllabus</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#presentation-du-cours"><i class="fa fa-check"></i>Presentation du cours</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#plan-du-cours"><i class="fa fa-check"></i>Plan du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#mode-devaluation"><i class="fa fa-check"></i>Mode d’évaluation</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#themes-abordes"><i class="fa fa-check"></i>Thèmes abordés</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references-et-conseils-de-lecture"><i class="fa fa-check"></i>Références et conseils de lecture</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#pourquoi-r"><i class="fa fa-check"></i><b>1.1</b> Pourquoi R ?</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="intro.html"><a href="intro.html#la-popularite-de-r-et-sa-facilite"><i class="fa fa-check"></i><b>1.1.1</b> La popularité de R et sa facilité</a></li>
+<li class="chapter" data-level="1.1.2" data-path="intro.html"><a href="intro.html#dautres-raisons"><i class="fa fa-check"></i><b>1.1.2</b> D’autres raisons</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#environnement-r"><i class="fa fa-check"></i><b>1.2</b> Environnement R</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="intro.html"><a href="intro.html#pre-requis-installation-de-r"><i class="fa fa-check"></i><b>1.2.1</b> Pré requis Installation de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="intro.html"><a href="intro.html#presentation-de-rstusio"><i class="fa fa-check"></i><b>1.2.2</b> Présentation de Rstusio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="intro.html"><a href="intro.html#vous-etes-ici"><i class="fa fa-check"></i><b>1.2.3</b> Vous êtes ici !</a></li>
+<li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
+<li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
+<li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
+<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-de-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple de Script</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data visualisation</a><ul>
+<li class="chapter" data-level="2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premier-graphe-avec-ggplot2"><i class="fa fa-check"></i><b>2.1</b> Premier graphe avec ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#grammaire-graphique-avec-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Grammaire graphique avec ggplot2</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="data-visualisation.html"><a href="data-visualisation.html#premiere-etape-data-mining"><i class="fa fa-check"></i><b>2.2.1</b> Première étape Data Mining</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation.html"><a href="data-visualisation.html#lesthetique-gaphique"><i class="fa fa-check"></i><b>2.2.2</b> L’esthétique gaphique</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-visualisation.html"><a href="data-visualisation.html#erreurs-courantes"><i class="fa fa-check"></i><b>2.3</b> Erreurs courantes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-visualisation.html"><a href="data-visualisation.html#panneaux"><i class="fa fa-check"></i><b>2.4</b> Panneaux</a></li>
+<li class="chapter" data-level="2.5" data-path="data-visualisation.html"><a href="data-visualisation.html#geometries"><i class="fa fa-check"></i><b>2.5</b> Géométries</a></li>
+<li class="chapter" data-level="2.6" data-path="data-visualisation.html"><a href="data-visualisation.html#graphiques-et-statistiques"><i class="fa fa-check"></i><b>2.6</b> Graphiques et statistiques</a></li>
+<li class="chapter" data-level="2.7" data-path="data-visualisation.html"><a href="data-visualisation.html#positions-et-couleurs-des-graphes"><i class="fa fa-check"></i><b>2.7</b> Positions et couleurs des graphes</a></li>
+<li class="chapter" data-level="2.8" data-path="data-visualisation.html"><a href="data-visualisation.html#systeme-de-coordonnees"><i class="fa fa-check"></i><b>2.8</b> Système de coordonnées</a></li>
+<li class="chapter" data-level="2.9" data-path="data-visualisation.html"><a href="data-visualisation.html#themes-et-addins"><i class="fa fa-check"></i><b>2.9</b> Themes et addins</a></li>
+<li class="chapter" data-level="2.10" data-path="data-visualisation.html"><a href="data-visualisation.html#histogrammes-et-courbes-de-distribution"><i class="fa fa-check"></i><b>2.10</b> Histogrammes et courbes de distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="visualisation-ii.html"><a href="visualisation-ii.html"><i class="fa fa-check"></i><b>3</b> Visualisation II</a><ul>
+<li class="chapter" data-level="3.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphe-interactif"><i class="fa fa-check"></i><b>3.2</b> Graphe interactif</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#leaflet"><i class="fa fa-check"></i><b>3.2.1</b> Leaflet</a></li>
+<li class="chapter" data-level="3.2.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#higcharter-dygraph"><i class="fa fa-check"></i><b>3.2.2</b> Higcharter &amp; Dygraph</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="visualisation-ii.html"><a href="visualisation-ii.html#plotly"><i class="fa fa-check"></i><b>3.3</b> Plotly</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphes-interactif"><i class="fa fa-check"></i><b>3.3.1</b> Graphes interactif</a></li>
+<li class="chapter" data-level="3.3.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#graphes-en-3d"><i class="fa fa-check"></i><b>3.3.2</b> Graphes en 3D</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="visualisation-ii.html"><a href="visualisation-ii.html#recherche-et-cotation-reproductible"><i class="fa fa-check"></i><b>3.4</b> Recherche et cotation reproductible</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="visualisation-ii.html"><a href="visualisation-ii.html#rmarkdown"><i class="fa fa-check"></i><b>3.4.1</b> Rmarkdown</a></li>
+<li class="chapter" data-level="3.4.2" data-path="visualisation-ii.html"><a href="visualisation-ii.html#shiny"><i class="fa fa-check"></i><b>3.4.2</b> Shiny</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-mining.html"><a href="data-mining.html"><i class="fa fa-check"></i><b>4</b> Data Mining</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-mining.html"><a href="data-mining.html#importer-ou-exporter-des-donnees"><i class="fa fa-check"></i><b>4.1</b> Importer ou exporter des données</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="data-mining.html"><a href="data-mining.html#format-texte"><i class="fa fa-check"></i><b>4.1.1</b> Format Texte</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-mining.html"><a href="data-mining.html#format-csv"><i class="fa fa-check"></i><b>4.1.2</b> Format Csv</a></li>
+<li class="chapter" data-level="4.1.3" data-path="data-mining.html"><a href="data-mining.html#format-excel"><i class="fa fa-check"></i><b>4.1.3</b> Format excel</a></li>
+<li class="chapter" data-level="4.1.4" data-path="data-mining.html"><a href="data-mining.html#html-et-webscraping"><i class="fa fa-check"></i><b>4.1.4</b> Html et webscraping</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-mining.html"><a href="data-mining.html#traiter-vos-donnees"><i class="fa fa-check"></i><b>4.2</b> Traiter vos données</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="data-mining.html"><a href="data-mining.html#pourquoi-utiliser-dplyr"><i class="fa fa-check"></i><b>4.2.1</b> Pourquoi utiliser dplyr ?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="data-mining.html"><a href="data-mining.html#filter"><i class="fa fa-check"></i><b>4.2.2</b> filter()</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data-mining.html"><a href="data-mining.html#select"><i class="fa fa-check"></i><b>4.2.3</b> select()</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data-mining.html"><a href="data-mining.html#arrange"><i class="fa fa-check"></i><b>4.2.4</b> arrange()</a></li>
+<li class="chapter" data-level="4.2.5" data-path="data-mining.html"><a href="data-mining.html#mutate"><i class="fa fa-check"></i><b>4.2.5</b> mutate()</a></li>
+<li class="chapter" data-level="4.2.6" data-path="data-mining.html"><a href="data-mining.html#summarise"><i class="fa fa-check"></i><b>4.2.6</b> summarise()</a></li>
+<li class="chapter" data-level="4.2.7" data-path="data-mining.html"><a href="data-mining.html#pour-aller-plus-loin"><i class="fa fa-check"></i><b>4.2.7</b> Pour aller plus loin</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="data-mining.html"><a href="data-mining.html#chaine-de-traitement"><i class="fa fa-check"></i><b>4.3</b> Chaîne de traitement</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Notes de Cours sur R FIN403</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-mining" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Data Mining</h1>
+<div id="importer-ou-exporter-des-donnees" class="section level2">
+<h2><span class="header-section-number">4.1</span> Importer ou exporter des données</h2>
+<p>Ci-dessous il y a une liste de liens web, qui sont un bon point de départ pour rechercher des données de finance et d’économie :</p>
+<ul>
+<li><a href="https://www.quandl.com/" class="uri">https://www.quandl.com/</a></li>
+<li><a href="https://www.economicsnetwork.ac.uk/links/data_free" class="uri">https://www.economicsnetwork.ac.uk/links/data_free</a></li>
+<li><a href="http://www.quantmod.com/" class="uri">http://www.quantmod.com/</a> (package R)</li>
+<li><a href="https://www.economicsnetwork.ac.uk/links/data_free" class="uri">https://www.economicsnetwork.ac.uk/links/data_free</a></li>
+<li><a href="https://aws.amazon.com/fr/public-datasets/" class="uri">https://aws.amazon.com/fr/public-datasets/</a></li>
+<li><a href="https://www.google.com/publicdata/directory" class="uri">https://www.google.com/publicdata/directory</a></li>
+<li><a href="https://trends.google.fr/trends/" class="uri">https://trends.google.fr/trends/</a></li>
+<li><a href="https://www.r-bloggers.com/financial-data-accessible-from-r-part-iii/" class="uri">https://www.r-bloggers.com/financial-data-accessible-from-r-part-iii/</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></li>
+</ul>
+<div id="format-texte" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Format Texte</h3>
+<p>Il se peut que les données que vous essayez de télécharger et d’ouvrir sur R soient sous cette forme. Les fichiers sous format texte sont généralement des tableaux séparés par des espaces, virgules, des points vigurles, des lettres etc…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## source Google trend sur le terme Blockchain
+
+ data_blockchain =<span class="st">  </span><span class="kw">read.table</span>(<span class="dt">file=</span><span class="st">&quot;data/BlockChain.txt&quot;</span>,<span class="dt">sep =</span> <span class="st">&quot; &quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+<span class="kw">head</span>(<span class="dt">x =</span> data_blockchain )</code></pre></div>
+<pre><code>##      Mois blockchain
+## 1 2004-01          0
+## 2 2004-02          0
+## 3 2004-03          0
+## 4 2004-04          0
+## 5 2004-05          0
+## 6 2004-06          0</code></pre>
+</div>
+<div id="format-csv" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Format Csv</h3>
+<p>Le type de fichier appelé <strong>comma-separated values</strong> (CSV) stocke des données sous forme de colonnes de nombres et de textes séparées par des virgules. Chaque ligne du fichier est un enregistrement de données. Chaque ligne consiste en un ou plusieurs champs de données, séparés par des virgules, d’où le nom du format.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## source Google trend sur le terme Blockchain
+
+ data_BigData =<span class="st">  </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;data/BigData.csv&quot;</span>,<span class="dt">header=</span><span class="ot">TRUE</span>)
+<span class="kw">head</span>(data_BigData )</code></pre></div>
+<pre><code>##         Catégorie...Toutes.les.catégories
+## Mois       Big data: (Dans tous les pays)
+## 2004-01                                 8
+## 2004-02                                 6
+## 2004-03                                 7
+## 2004-04                                 6
+## 2004-05                                 6</code></pre>
+<p>Dans cet exemple, le fichier ne posséde pas le bon nom de colonne. Pour utiliser les bons noms des colonnes, il est nécessaire d’utiliser une option de la fonction <code>read.csv</code>.</p>
+<p><strong>Question</strong> : <em>Quelle est l’option, qui permet de passer des lignes dans le début de la lecture du fichier ?</em></p>
+<pre><code>##      Mois Big.data...Dans.tous.les.pays.
+## 1 2004-01                              8
+## 2 2004-02                              6
+## 3 2004-03                              7
+## 4 2004-04                              6
+## 5 2004-05                              6
+## 6 2004-06                              7</code></pre>
+</div>
+<div id="format-excel" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Format excel</h3>
+<p>Un format très utiliser dans le monde professionnel les formats de type excel. Ils sont plus difficille à lire que les autres avec le logiciel R.</p>
+<pre><code>## # A tibble: 6 × 2
+##                  Date `Close Price`
+##                 &lt;chr&gt;         &lt;dbl&gt;
+## 1 2010-07-18 00:00:00          0.09
+## 2 2010-07-19 00:00:00          0.08
+## 3 2010-07-20 00:00:00          0.07
+## 4 2010-07-21 00:00:00          0.08
+## 5 2010-07-22 00:00:00          0.05
+## 6 2010-07-23 00:00:00          0.06</code></pre>
+</div>
+<div id="html-et-webscraping" class="section level3">
+<h3><span class="header-section-number">4.1.4</span> Html et webscraping</h3>
+<p>Le webscaping consiste en traduire la page généralement codé en html d’un site web en données numérique come dans l’exemple ci dessous. Ces techniques de web scraping demande une connaisance en code html et même dans certain des connaissances en java script.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rvest)</code></pre></div>
+<pre><code>## Loading required package: xml2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">url=<span class="st">&#39;http://statbel.fgov.be/en/statistics/figures/economy/indicators/prix_prod_con/&#39;</span>
+TAB=<span class="kw">read_html</span>(url)%&gt;%<span class="kw">html_nodes</span>(<span class="st">&#39;td&#39;</span>)%&gt;%<span class="kw">html_text</span>()
+NAMES=<span class="kw">read_html</span>(url)%&gt;%<span class="kw">html_nodes</span>(<span class="st">&#39;th&#39;</span>)%&gt;%<span class="kw">html_text</span>()
+M=<span class="kw">data.frame</span>(<span class="kw">matrix</span>(TAB,<span class="dt">ncol=</span><span class="dv">5</span>,<span class="dt">nrow=</span><span class="dv">9</span>,<span class="dt">byrow=</span>T))
+M=<span class="kw">cbind</span>(NAMES[<span class="dv">7</span>:<span class="dv">15</span>],M)
+<span class="kw">names</span>(M)=NAMES[<span class="dv">1</span>:<span class="dv">6</span>]</code></pre></div>
+</div>
+</div>
+<div id="traiter-vos-donnees" class="section level2">
+<h2><span class="header-section-number">4.2</span> Traiter vos données</h2>
+<p>Dans cette partie nous allons voir comment organiser nos données et les traiter. Nous avons appris comment les visualiser précédemments. Mais en général elles ne sont généralement pas dans une forme expoitable pour notre étude. Une des étapes importantes avant toute étude est de les organiser. Pour cela R dispose de paquets qui permettent de faciliter cette tâche. Nous allons découvrir la librairie dplyr. Généralement, nous voulons tout simplement créer une nouvelle variable, filtrer les données en fonction de certaines caractéristiques et connaître des métriques statistiques résumant nos échantillons.</p>
+<p>Nous allons commencer par découvrir 6 fonctions du paquet dplyr, qui permettent de résoudre les classiques problèmes rencontrés lors de la manipulation de vos données.</p>
+<ul>
+<li>Filtrer les valeurs de vos échantillons en fonction de divers paramètres `filter</li>
+<li>Séléctionner les lignes les collones <code>select()</code></li>
+<li>Séléctionner les lignes de votre data.frame <code>arrange()</code>.</li>
+<li>Créer de nouvelles variables dépendants de vos données <code>mutate()</code></li>
+<li>Simplifier vos données en statitiques résumant par divers métriques votre échantillon <code>summarise()</code></li>
+</ul>
+<p>Nous allons utiliser les données du Penn World Table qui permettent d’avoir le produit intérieur brut au cours du temps et dans différents pays. <a href="https://cran.r-project.org/web/packages/pwt/index.html" class="uri">https://cran.r-project.org/web/packages/pwt/index.html</a></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(pwt)</span>
+<span class="kw">library</span>(pwt)</code></pre></div>
+<pre><code>##  Package &#39;pwt&#39; provides Penn World Table versions 5.6, 6.x, 7.x.
+##  For more recent versions see package &#39;pwt8&#39; (or subsequent packages).</code></pre>
+<p><strong>Exercice 1</strong></p>
+<ul>
+<li><em>Quelles sont les dimensions et le type de l’objet <code>pwt7.1</code> ?</em></li>
+</ul>
+<div id="pourquoi-utiliser-dplyr" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Pourquoi utiliser dplyr ?</h3>
+<pre><code>* Efficace pour la manipulation des données et leurs traitements 
+
+* Facile à comprendre et à lire comme façon de coder
+
+* La rapidité des commandes `dplyr`
+
+* Etape incontournable </code></pre>
+<p>Exemple :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+<span class="kw">data</span>(pwt7<span class="fl">.1</span>)
+<span class="kw">ggplot</span>(<span class="dt">data=</span>pwt7<span class="fl">.1</span>) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year , <span class="dt">y=</span>ppp,<span class="dt">color=</span>country))+<span class="kw">guides</span>(<span class="dt">color=</span>F)</code></pre></div>
+<pre><code>## Warning: Removed 2630 rows containing missing values (geom_path).</code></pre>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+</div>
+<div id="filter" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> filter()</h3>
+<p><img src="Picture/filter.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon" /> filter() permet de sélectionner des observations en fonction de leurs valeurs ou caractéristiques. Le premier argument est le nom de votre <code>data.frame</code>. Le deuxième argument est un booléen les relations logiques qui permettent de filtrer les valeurs de votre data.frame.</p>
+<p>Utilisation classique sous R</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span>[pwt7<span class="fl">.1</span>$country ==<span class="st"> &quot;France&quot;</span> &amp;<span class="st"> </span>pwt7<span class="fl">.1</span>$year &gt;<span class="dv">2000</span> , ]</code></pre></div>
+<pre><code>##          country isocode year      pop     xrat currency       ppp   tcgdp
+## FRA-2001  France     FRA 2001 61479.30 1.117510     Euro 0.8947424 1671491
+## FRA-2002  France     FRA 2002 61828.99 1.062550     Euro 0.8967158 1720644
+## FRA-2003  France     FRA 2003 62171.39 0.886034     Euro 0.8946320 1774923
+## FRA-2004  France     FRA 2004 62534.16 0.805365     Euro 0.8863145 1867928
+## FRA-2005  France     FRA 2005 62911.52 0.804120     Euro 0.8744382 1964744
+## FRA-2006  France     FRA 2006 63292.51 0.797141     Euro 0.8676881 2072306
+## FRA-2007  France     FRA 2007 63681.74 0.730638     Euro 0.8586755 2197328
+## FRA-2008  France     FRA 2008 64057.79 0.682675     Euro 0.8505519 2272871
+## FRA-2009  France     FRA 2009 64420.07 0.719843     Euro 0.8440548 2238280
+## FRA-2010  France     FRA 2010 64768.39 0.755045     Euro 0.8472349 2281305
+##              cgdp    cgdp2     cda2       cc       cg       ci         p
+## FRA-2001 27187.86 27191.38 26881.00 69.83545 6.906094 22.11699  80.06572
+## FRA-2002 27829.07 27837.22 27410.60 70.28920 6.917705 21.26055  84.39281
+## FRA-2003 28548.87 28583.43 28326.49 71.59628 6.941152 20.56368 100.97039
+## FRA-2004 29870.52 29912.87 29791.32 70.89277 6.896153 21.80470 110.05128
+## FRA-2005 31230.27 31290.86 31490.01 71.31478 6.875205 22.44646 108.74474
+## FRA-2006 32741.73 32808.43 33153.25 71.00828 6.844822 23.19792 108.85001
+## FRA-2007 34504.84 34559.96 35097.85 70.66513 6.825179 24.06608 117.52407
+## FRA-2008 35481.58 35520.07 36271.90 71.34059 6.874723 23.90132 124.59104
+## FRA-2009 34745.07 34734.71 35367.42 73.57137 7.360990 20.88920 117.25540
+## FRA-2010 35222.51 35250.28 36082.29 73.85041 7.410363 21.09953 112.20985
+##                 p2        pc        pg        pi    openc        y
+## FRA-2001  79.71638  81.14159  98.93786  70.79320 55.58391 75.73611
+## FRA-2002  83.98223  85.61586 104.61468  73.79742 53.48350 75.63022
+## FRA-2003 100.39991 101.72032 123.88921  90.64287 50.92718 74.74381
+## FRA-2004 109.34387 111.53888 136.09178  96.98921 51.88287 74.19543
+## FRA-2005 107.98375 110.10664 133.73781  96.74696 53.35249 73.51346
+## FRA-2006 108.05626 110.16195 132.28502  97.89343 55.09251 73.42715
+## FRA-2007 116.72591 118.85091 139.84129 107.25933 55.26104 74.53116
+## FRA-2008 123.75740 125.77477 147.48886 114.40983 56.00247 75.95152
+## FRA-2009 116.66900 117.96453 138.50639 107.21521 48.49163 76.94224
+## FRA-2010 111.44593 112.82410 132.32334 102.92026 53.27246 75.63581
+##                y2    rgdpl   rgdpl2   rgdpch       kc       kg       ki
+## FRA-2001 75.74591 30028.62 30049.55 30036.83 70.03381 7.038954 22.00989
+## FRA-2002 75.65237 30105.91 30157.42 30112.25 70.94396 7.015455 21.14531
+## FRA-2003 74.83429 30213.19 30270.20 30218.62 71.63854 6.999233 21.03111
+## FRA-2004 74.30063 30834.48 30857.78 30834.50 71.03727 6.971097 21.92968
+## FRA-2005 73.65608 31230.27 31230.27 31230.27 71.31478 6.875205 22.44646
+## FRA-2006 73.57673 31830.87 31808.08 31830.87 70.99265 6.775338 22.85073
+## FRA-2007 74.65022 32399.71 32330.65 32403.34 70.90139 6.671340 23.90677
+## FRA-2008 76.03392 32172.48 32116.39 32175.73 71.33719 6.741480 23.75086
+## FRA-2009 76.91930 31012.11 31091.49 31011.97 74.02736 7.131338 20.96849
+## FRA-2010 75.69544 31299.30 31377.41 31299.28 73.90334 7.132403 21.01475
+##             openk  rgdpeqa  rgdpwok rgdpl2wok   rgdptt
+## FRA-2001 51.28158 33151.56 65187.22  65214.82 30097.20
+## FRA-2002 51.71185 33217.56 65209.92  65307.75 30301.74
+## FRA-2003 51.10485 33315.65 65384.81  65496.41 30386.96
+## FRA-2004 52.43385 33973.86 66813.94  66864.38 30941.21
+## FRA-2005 53.62444 34391.00 67721.34  67721.34 31230.27
+## FRA-2006 54.97286 35042.18 68860.35  68811.05 31694.99
+## FRA-2007 55.79003 35668.67 70157.69  70000.32 32376.28
+## FRA-2008 56.03421 35420.96 70105.34  69976.05 32083.50
+## FRA-2009 51.09646 34146.36 67547.15  67720.36 31103.87
+## FRA-2010 55.00765 34464.31 68386.06  68556.76 31203.40</code></pre>
+<p>Avec dplyr</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+
+pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">filter</span>(country ==<span class="st"> &quot;France&quot;</span> &amp;<span class="st"> </span>year &gt;<span class="dv">2000</span>)</code></pre></div>
+<pre><code>##    country isocode year      pop     xrat currency       ppp   tcgdp
+## 1   France     FRA 2001 61479.30 1.117510     Euro 0.8947424 1671491
+## 2   France     FRA 2002 61828.99 1.062550     Euro 0.8967158 1720644
+## 3   France     FRA 2003 62171.39 0.886034     Euro 0.8946320 1774923
+## 4   France     FRA 2004 62534.16 0.805365     Euro 0.8863145 1867928
+## 5   France     FRA 2005 62911.52 0.804120     Euro 0.8744382 1964744
+## 6   France     FRA 2006 63292.51 0.797141     Euro 0.8676881 2072306
+## 7   France     FRA 2007 63681.74 0.730638     Euro 0.8586755 2197328
+## 8   France     FRA 2008 64057.79 0.682675     Euro 0.8505519 2272871
+## 9   France     FRA 2009 64420.07 0.719843     Euro 0.8440548 2238280
+## 10  France     FRA 2010 64768.39 0.755045     Euro 0.8472349 2281305
+##        cgdp    cgdp2     cda2       cc       cg       ci         p
+## 1  27187.86 27191.38 26881.00 69.83545 6.906094 22.11699  80.06572
+## 2  27829.07 27837.22 27410.60 70.28920 6.917705 21.26055  84.39281
+## 3  28548.87 28583.43 28326.49 71.59628 6.941152 20.56368 100.97039
+## 4  29870.52 29912.87 29791.32 70.89277 6.896153 21.80470 110.05128
+## 5  31230.27 31290.86 31490.01 71.31478 6.875205 22.44646 108.74474
+## 6  32741.73 32808.43 33153.25 71.00828 6.844822 23.19792 108.85001
+## 7  34504.84 34559.96 35097.85 70.66513 6.825179 24.06608 117.52407
+## 8  35481.58 35520.07 36271.90 71.34059 6.874723 23.90132 124.59104
+## 9  34745.07 34734.71 35367.42 73.57137 7.360990 20.88920 117.25540
+## 10 35222.51 35250.28 36082.29 73.85041 7.410363 21.09953 112.20985
+##           p2        pc        pg        pi    openc        y       y2
+## 1   79.71638  81.14159  98.93786  70.79320 55.58391 75.73611 75.74591
+## 2   83.98223  85.61586 104.61468  73.79742 53.48350 75.63022 75.65237
+## 3  100.39991 101.72032 123.88921  90.64287 50.92718 74.74381 74.83429
+## 4  109.34387 111.53888 136.09178  96.98921 51.88287 74.19543 74.30063
+## 5  107.98375 110.10664 133.73781  96.74696 53.35249 73.51346 73.65608
+## 6  108.05626 110.16195 132.28502  97.89343 55.09251 73.42715 73.57673
+## 7  116.72591 118.85091 139.84129 107.25933 55.26104 74.53116 74.65022
+## 8  123.75740 125.77477 147.48886 114.40983 56.00247 75.95152 76.03392
+## 9  116.66900 117.96453 138.50639 107.21521 48.49163 76.94224 76.91930
+## 10 111.44593 112.82410 132.32334 102.92026 53.27246 75.63581 75.69544
+##       rgdpl   rgdpl2   rgdpch       kc       kg       ki    openk  rgdpeqa
+## 1  30028.62 30049.55 30036.83 70.03381 7.038954 22.00989 51.28158 33151.56
+## 2  30105.91 30157.42 30112.25 70.94396 7.015455 21.14531 51.71185 33217.56
+## 3  30213.19 30270.20 30218.62 71.63854 6.999233 21.03111 51.10485 33315.65
+## 4  30834.48 30857.78 30834.50 71.03727 6.971097 21.92968 52.43385 33973.86
+## 5  31230.27 31230.27 31230.27 71.31478 6.875205 22.44646 53.62444 34391.00
+## 6  31830.87 31808.08 31830.87 70.99265 6.775338 22.85073 54.97286 35042.18
+## 7  32399.71 32330.65 32403.34 70.90139 6.671340 23.90677 55.79003 35668.67
+## 8  32172.48 32116.39 32175.73 71.33719 6.741480 23.75086 56.03421 35420.96
+## 9  31012.11 31091.49 31011.97 74.02736 7.131338 20.96849 51.09646 34146.36
+## 10 31299.30 31377.41 31299.28 73.90334 7.132403 21.01475 55.00765 34464.31
+##     rgdpwok rgdpl2wok   rgdptt
+## 1  65187.22  65214.82 30097.20
+## 2  65209.92  65307.75 30301.74
+## 3  65384.81  65496.41 30386.96
+## 4  66813.94  66864.38 30941.21
+## 5  67721.34  67721.34 31230.27
+## 6  68860.35  68811.05 31694.99
+## 7  70157.69  70000.32 32376.28
+## 8  70105.34  69976.05 32083.50
+## 9  67547.15  67720.36 31103.87
+## 10 68386.06  68556.76 31203.40</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ou plus classique </span>
+
+<span class="kw">filter</span>(pwt7<span class="fl">.1</span>,country ==<span class="st"> &quot;France&quot;</span> &amp;<span class="st"> </span>year &gt;<span class="dv">2000</span>)</code></pre></div>
+<pre><code>##    country isocode year      pop     xrat currency       ppp   tcgdp
+## 1   France     FRA 2001 61479.30 1.117510     Euro 0.8947424 1671491
+## 2   France     FRA 2002 61828.99 1.062550     Euro 0.8967158 1720644
+## 3   France     FRA 2003 62171.39 0.886034     Euro 0.8946320 1774923
+## 4   France     FRA 2004 62534.16 0.805365     Euro 0.8863145 1867928
+## 5   France     FRA 2005 62911.52 0.804120     Euro 0.8744382 1964744
+## 6   France     FRA 2006 63292.51 0.797141     Euro 0.8676881 2072306
+## 7   France     FRA 2007 63681.74 0.730638     Euro 0.8586755 2197328
+## 8   France     FRA 2008 64057.79 0.682675     Euro 0.8505519 2272871
+## 9   France     FRA 2009 64420.07 0.719843     Euro 0.8440548 2238280
+## 10  France     FRA 2010 64768.39 0.755045     Euro 0.8472349 2281305
+##        cgdp    cgdp2     cda2       cc       cg       ci         p
+## 1  27187.86 27191.38 26881.00 69.83545 6.906094 22.11699  80.06572
+## 2  27829.07 27837.22 27410.60 70.28920 6.917705 21.26055  84.39281
+## 3  28548.87 28583.43 28326.49 71.59628 6.941152 20.56368 100.97039
+## 4  29870.52 29912.87 29791.32 70.89277 6.896153 21.80470 110.05128
+## 5  31230.27 31290.86 31490.01 71.31478 6.875205 22.44646 108.74474
+## 6  32741.73 32808.43 33153.25 71.00828 6.844822 23.19792 108.85001
+## 7  34504.84 34559.96 35097.85 70.66513 6.825179 24.06608 117.52407
+## 8  35481.58 35520.07 36271.90 71.34059 6.874723 23.90132 124.59104
+## 9  34745.07 34734.71 35367.42 73.57137 7.360990 20.88920 117.25540
+## 10 35222.51 35250.28 36082.29 73.85041 7.410363 21.09953 112.20985
+##           p2        pc        pg        pi    openc        y       y2
+## 1   79.71638  81.14159  98.93786  70.79320 55.58391 75.73611 75.74591
+## 2   83.98223  85.61586 104.61468  73.79742 53.48350 75.63022 75.65237
+## 3  100.39991 101.72032 123.88921  90.64287 50.92718 74.74381 74.83429
+## 4  109.34387 111.53888 136.09178  96.98921 51.88287 74.19543 74.30063
+## 5  107.98375 110.10664 133.73781  96.74696 53.35249 73.51346 73.65608
+## 6  108.05626 110.16195 132.28502  97.89343 55.09251 73.42715 73.57673
+## 7  116.72591 118.85091 139.84129 107.25933 55.26104 74.53116 74.65022
+## 8  123.75740 125.77477 147.48886 114.40983 56.00247 75.95152 76.03392
+## 9  116.66900 117.96453 138.50639 107.21521 48.49163 76.94224 76.91930
+## 10 111.44593 112.82410 132.32334 102.92026 53.27246 75.63581 75.69544
+##       rgdpl   rgdpl2   rgdpch       kc       kg       ki    openk  rgdpeqa
+## 1  30028.62 30049.55 30036.83 70.03381 7.038954 22.00989 51.28158 33151.56
+## 2  30105.91 30157.42 30112.25 70.94396 7.015455 21.14531 51.71185 33217.56
+## 3  30213.19 30270.20 30218.62 71.63854 6.999233 21.03111 51.10485 33315.65
+## 4  30834.48 30857.78 30834.50 71.03727 6.971097 21.92968 52.43385 33973.86
+## 5  31230.27 31230.27 31230.27 71.31478 6.875205 22.44646 53.62444 34391.00
+## 6  31830.87 31808.08 31830.87 70.99265 6.775338 22.85073 54.97286 35042.18
+## 7  32399.71 32330.65 32403.34 70.90139 6.671340 23.90677 55.79003 35668.67
+## 8  32172.48 32116.39 32175.73 71.33719 6.741480 23.75086 56.03421 35420.96
+## 9  31012.11 31091.49 31011.97 74.02736 7.131338 20.96849 51.09646 34146.36
+## 10 31299.30 31377.41 31299.28 73.90334 7.132403 21.01475 55.00765 34464.31
+##     rgdpwok rgdpl2wok   rgdptt
+## 1  65187.22  65214.82 30097.20
+## 2  65209.92  65307.75 30301.74
+## 3  65384.81  65496.41 30386.96
+## 4  66813.94  66864.38 30941.21
+## 5  67721.34  67721.34 31230.27
+## 6  68860.35  68811.05 31694.99
+## 7  70157.69  70000.32 32376.28
+## 8  70105.34  69976.05 32083.50
+## 9  67547.15  67720.36 31103.87
+## 10 68386.06  68556.76 31203.40</code></pre>
+<div id="rappels-sur-les-operateurs-logiques" class="section level4">
+<h4><span class="header-section-number">4.2.2.1</span> Rappels sur les opérateurs logiques</h4>
+<p>En plus de connaître les opérateurs de comparaison classiques (<code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>, et<code>==</code>), il est nécessaire de possèder les notions d’opérateurs logiques.</p>
+<div class="figure">
+<img src="Picture/logiques.png" alt="Les opérations logiques où x est le cercle de gauche et y celui de droite. La zone grise illustre le résultat de l’opération" />
+<p class="caption">Les opérations logiques où <code>x</code> est le cercle de gauche et <code>y</code> celui de droite. La zone grise illustre le résultat de l’opération</p>
+</div>
+</div>
+<div id="les-donnees-manquantes-na" class="section level4">
+<h4><span class="header-section-number">4.2.2.2</span> Les données manquantes NA</h4>
+<p>La fonction filter() exclut les données, qui sont <code>FALSE</code> mais aussi les <code>NA</code>. Si vous souhaitez les garder, il faut explicitement le mentionner avec <code>is.na()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(pwt7<span class="fl">.1</span>,country ==<span class="st"> &quot;Afghanistan&quot;</span> &amp;<span class="st"> </span>ppp &gt;<span class="fl">0.1</span>)</code></pre></div>
+<pre><code>##        country isocode year      pop       xrat currency        ppp
+## 1  Afghanistan     AFG 1994 18287.71  0.4250999  Afghani  0.1456677
+## 2  Afghanistan     AFG 1995 19225.94  0.8333333  Afghani  0.2858570
+## 3  Afghanistan     AFG 1996 19864.65  2.5000225  Afghani  0.8612063
+## 4  Afghanistan     AFG 1997 20490.22  3.0000300  Afghani  1.0396686
+## 5  Afghanistan     AFG 1998 21132.12  3.0000525  Afghani  1.0464535
+## 6  Afghanistan     AFG 1999 21821.57 46.6195311  Afghani 15.7580666
+## 7  Afghanistan     AFG 2000 22020.95 47.3575747  Afghani 21.5065849
+## 8  Afghanistan     AFG 2001 22022.20 47.5000145  Afghani 22.7826618
+## 9  Afghanistan     AFG 2002 23050.74 47.2630000  Afghani 15.8984400
+## 10 Afghanistan     AFG 2003 24388.58 48.7627536  Afghani 15.6672382
+## 11 Afghanistan     AFG 2004 25001.34 47.8453125  Afghani 16.3465377
+## 12 Afghanistan     AFG 2005 25538.04 49.4945975  Afghani 17.0887683
+## 13 Afghanistan     AFG 2006 26235.21 49.9253308  Afghani 18.1290202
+## 14 Afghanistan     AFG 2007 26911.53 49.9620178  Afghani 18.8263812
+## 15 Afghanistan     AFG 2008 27658.89 50.2500123  Afghani 18.9155295
+## 16 Afghanistan     AFG 2009 28395.72 50.2333333  Afghani 19.0954558
+## 17 Afghanistan     AFG 2010 29121.29 46.4783333  Afghani 23.8140581
+##        tcgdp      cgdp     cgdp2      cda2        cc        cg       ci
+## 1   6171.008  337.4402  357.9458  418.0962  84.64966  8.140324 24.01435
+## 2   9434.496  490.7170  520.5918  626.3558  87.53356  8.327031 24.45552
+## 3   9069.799  456.5799  483.7519  599.1693  90.59236  8.586088 24.68035
+## 4   8703.699  424.7733  449.7798  573.1770  94.06810  9.132245 24.23468
+## 5   8348.228  395.0492  417.6807  547.3798  97.69376  9.427623 23.93084
+## 6   8046.974  368.7624  390.1225  524.9973 100.69842  9.683396 24.19061
+## 7   7777.189  353.1722  374.3647  516.9093 103.50321  9.940586 24.63261
+## 8   7548.503  342.7679  362.3935  505.8554 103.91261 10.141187 25.53355
+## 9  12364.484  536.4028  568.0210  734.2712  99.83864  9.165623 20.26405
+## 10 14894.967  610.7353  644.8455  938.7368 108.26260 10.666573 26.64629
+## 11 16682.860  667.2787  717.8116 1020.1029  98.83641 12.773164 30.50334
+## 12 19810.731  775.7341  813.4359 1163.3143  98.73730 15.303782 28.97134
+## 13 22487.316  857.1426  906.5040 1248.9466  95.08500 15.698567 26.99261
+## 14 26857.472  997.9912 1061.2579 1436.5821  92.71561 18.170592 24.47977
+## 15 28662.534 1036.2864 1098.8628 1452.9744  92.79031 17.006386 22.42858
+## 16 32855.670 1157.0643 1199.6876 1540.9918  92.75729 16.049876 19.64226
+## 17 30594.202 1050.5787 1078.9042 1525.8294 104.22775 17.405445 19.79080
+##           p       p2       pc       pg       pi     openc         y
+## 1  34.26669 34.64211 40.20783 20.87283 19.60042  60.30097 1.2628969
+## 2  34.30284 34.72005 40.30321 21.16303 19.40235  68.90959 1.7755402
+## 3  34.44794 34.89860 40.45032 21.27547 19.44148  77.51820 1.5802052
+## 4  34.65527 35.07703 40.48660 20.80226 20.05601  86.12682 1.3989120
+## 5  34.88117 35.27092 40.48368 21.05689 20.58356  94.73544 1.2467217
+## 6  33.80143 34.18707 39.26643 20.22781 19.86690 103.34405 1.1063395
+## 7  45.41319 45.89177 52.85034 27.49527 26.39053 111.95267 1.0067514
+## 8  47.96348 48.60775 55.91337 29.28857 28.34117 110.92146 0.9548346
+## 9  33.63824 33.69133 38.40661 19.87328 19.31607  92.15672 1.4577656
+## 10 32.12952 32.65043 37.45938 19.45660 19.55748 132.77983 1.5989665
+## 11 34.16539 35.67589 42.58091 17.96619 19.49633 107.82782 1.6574545
+## 12 34.52653 35.26125 37.81152 15.02983 37.26498  96.46660 1.8260133
+## 13 36.31227 37.39979 38.77541 15.70017 44.15948  86.89906 1.9222423
+## 14 37.68139 39.38283 41.23320 15.07349 47.07524  73.88006 2.1556814
+## 15 37.64284 39.11531 40.98933 15.17595 46.34265  69.96848 2.2182649
+## 16 38.01352 38.27806 42.05442 22.60387 33.94784  58.54041 2.5622950
+## 17 51.23690 52.89882 45.62738 72.53946 68.50815  83.58889 2.2559824
+##          y2     rgdpl    rgdpl2    rgdpch       kc        kg       ki
+## 1  1.339641  431.8470  443.2930  432.4810 82.67646  8.010209 22.38997
+## 2  1.883635  619.0443  635.7064  619.8246 85.17006  8.256817 22.43223
+## 3  1.674246  570.3823  586.0418  570.9475 87.65806  8.480753 22.47694
+## 4  1.481266  527.1998  541.8857  527.5742 90.10163  8.722595 22.51833
+## 5  1.318144  490.5893  504.3033  490.8766 92.47442  9.007833 22.55272
+## 6  1.170423  453.9753  467.1788  454.2413 94.98377  9.132571 22.60945
+## 7  1.067162  427.4116  439.8223  427.6500 97.28643  9.433899 22.64001
+## 8  1.009505  406.1703  417.6921  406.4724 97.12978  9.634225 23.68402
+## 9  1.543693  614.7943  632.7476  615.0989 95.11297  8.773441 19.02304
+## 10 1.688270  703.8569  724.5717  704.6688 99.47435  9.876890 25.02503
+## 11 1.782973  696.6012  706.8714  696.6976 97.93053 12.767608 30.33516
+## 12 1.914760  775.7341  775.7341  775.7341 98.73730 15.303782 28.97134
+## 13 2.032941  799.4455  794.9804  799.4455 99.08946 16.197197 27.71450
+## 14 2.292339  894.2076  874.6509  894.1770 97.48816 18.613051 25.48428
+## 15 2.352215  894.0372  879.0273  893.7143 97.51866 17.527417 23.42421
+## 16 2.656683 1018.1215 1007.2068 1017.4956 94.67330 15.772571 20.00013
+## 17 2.316808 1049.3561 1040.4424 1048.5992 92.79286 14.903953 17.53617
+##        openk   rgdpeqa  rgdpwok rgdpl2wok    rgdptt
+## 1   48.71891  561.0602 1663.160  1704.738  415.5417
+## 2   55.35760  805.5154 2394.800  2456.162  591.8786
+## 3   61.93692  743.9526 2212.107  2270.589  541.9669
+## 4   68.44278  689.1886 2054.112  2109.834  497.9064
+## 5   74.86147  642.9632 1920.317  1972.842  460.6032
+## 6   81.29400  596.1641 1784.382  1835.204  423.7464
+## 7   87.57229  562.5414 1702.706  1751.171  396.7107
+## 8   86.06410  535.5935 1618.526  1663.201  376.0714
+## 9   74.58082  808.5660 2447.145  2517.359  580.8702
+## 10 101.30618  922.7164 2798.789  2877.839  643.0926
+## 11  92.94931  910.0864 2754.977  2795.208  678.4057
+## 12  90.07864 1010.8384 3052.306  3052.306  775.7341
+## 13  85.20744 1038.7444 3134.798  3117.289  826.6138
+## 14  76.57616 1158.8517 3485.032  3408.929  930.6425
+## 15  76.27597 1155.4512 3452.745  3396.003  932.3537
+## 16  66.93546 1311.0841 3901.608  3862.155 1040.4227
+## 17  57.46605 1346.5908 3979.863  3948.905  934.2637</code></pre>
+<p><em>Exercice 2</em></p>
+<ul>
+<li><p>Sélectionner 5 pays d’Europe, les Etats-Unis, la Chine et l’inde</p></li>
+<li><p>Sélectionner les pays au-dessus du quantile 95% de <code>tcgdp</code> pour l’année 2010 et refaire le graphe ? <img src="bookdown-demo_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p></li>
+<li><p>Sélectionner les pays en-dessous du quantile 5% de <code>tcgdp</code> pour l’année 2010 ?</p></li>
+</ul>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+</div>
+</div>
+<div id="select" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> select()</h3>
+<div class="figure">
+<img src="Picture/select.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon" />
+<p class="caption">Les fonctions de sélection d’un sous ensemble de données de votre échantillon</p>
+</div>
+<p>Comme filter() qui sélectionne les lignes en fonction de caractéristique, select() permet de selectionner les colonnes d’une data.frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(pwt7<span class="fl">.1</span>[,<span class="kw">c</span>(<span class="st">&quot;year&quot;</span>,<span class="st">&quot;pop&quot;</span>)])</code></pre></div>
+<pre><code>##          year      pop
+## AFG-1950 1950 8150.368
+## AFG-1951 1951 8284.473
+## AFG-1952 1952 8425.333
+## AFG-1953 1953 8573.217
+## AFG-1954 1954 8728.408
+## AFG-1955 1955 8891.209</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">select</span>(year,pop,ppp) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>##          year      pop ppp
+## AFG-1950 1950 8150.368  NA
+## AFG-1951 1951 8284.473  NA
+## AFG-1952 1952 8425.333  NA
+## AFG-1953 1953 8573.217  NA
+## AFG-1954 1954 8728.408  NA
+## AFG-1955 1955 8891.209  NA</code></pre>
+<p>Nous ne sommes pas obligés d’utiliser le “pipe” <code>%&gt;%</code>.Même, si je vous le conseille pour plus de clarté dans votre code.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(pwt7<span class="fl">.1</span> ,year,pop,ppp))</code></pre></div>
+<pre><code>##          year      pop ppp
+## AFG-1950 1950 8150.368  NA
+## AFG-1951 1951 8284.473  NA
+## AFG-1952 1952 8425.333  NA
+## AFG-1953 1953 8573.217  NA
+## AFG-1954 1954 8728.408  NA
+## AFG-1955 1955 8891.209  NA</code></pre>
+<p>On peut encore simplifier la ligne de code précedente.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(pwt7<span class="fl">.1</span> ,year:ppp))</code></pre></div>
+<pre><code>##          year      pop   xrat currency ppp
+## AFG-1950 1950 8150.368     NA     &lt;NA&gt;  NA
+## AFG-1951 1951 8284.473     NA     &lt;NA&gt;  NA
+## AFG-1952 1952 8425.333     NA     &lt;NA&gt;  NA
+## AFG-1953 1953 8573.217     NA     &lt;NA&gt;  NA
+## AFG-1954 1954 8728.408     NA     &lt;NA&gt;  NA
+## AFG-1955 1955 8891.209 0.0168  Afghani  NA</code></pre>
+<p>ou faire l’inverse</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(pwt7<span class="fl">.1</span> ,-(year:ppp)))</code></pre></div>
+<pre><code>##              country isocode tcgdp cgdp cgdp2 cda2 cc cg ci  p p2 pc pg pi
+## AFG-1950 Afghanistan     AFG    NA   NA    NA   NA NA NA NA NA NA NA NA NA
+## AFG-1951 Afghanistan     AFG    NA   NA    NA   NA NA NA NA NA NA NA NA NA
+## AFG-1952 Afghanistan     AFG    NA   NA    NA   NA NA NA NA NA NA NA NA NA
+## AFG-1953 Afghanistan     AFG    NA   NA    NA   NA NA NA NA NA NA NA NA NA
+## AFG-1954 Afghanistan     AFG    NA   NA    NA   NA NA NA NA NA NA NA NA NA
+## AFG-1955 Afghanistan     AFG    NA   NA    NA   NA NA NA NA NA NA NA NA NA
+##          openc  y y2 rgdpl rgdpl2 rgdpch kc kg ki openk rgdpeqa rgdpwok
+## AFG-1950    NA NA NA    NA     NA     NA NA NA NA    NA      NA      NA
+## AFG-1951    NA NA NA    NA     NA     NA NA NA NA    NA      NA      NA
+## AFG-1952    NA NA NA    NA     NA     NA NA NA NA    NA      NA      NA
+## AFG-1953    NA NA NA    NA     NA     NA NA NA NA    NA      NA      NA
+## AFG-1954    NA NA NA    NA     NA     NA NA NA NA    NA      NA      NA
+## AFG-1955    NA NA NA    NA     NA     NA NA NA NA    NA      NA      NA
+##          rgdpl2wok rgdptt
+## AFG-1950        NA     NA
+## AFG-1951        NA     NA
+## AFG-1952        NA     NA
+## AFG-1953        NA     NA
+## AFG-1954        NA     NA
+## AFG-1955        NA     NA</code></pre>
+<p>De plus, il y a pas de fonction utile que nous pouvons insérer dans cette fonction :</p>
+<ul>
+<li><p>starts_with(“p”): sélectionne les noms des colonnes qui commence par p</p></li>
+<li><p>ends_with (“p”): la même chose mais par la fin</p></li>
+<li><p>contains(“abc”): les noms des colonnes doivent contenir “abc”</p></li>
+</ul>
+<p><strong>Exercice 3</strong></p>
+<ul>
+<li><p>Choisir les variables dans <code>pwt7.1</code> qui contiennent “gdp”.</p></li>
+<li><p>Prendre les variables dans <code>pwt7.1</code> qui commencent par “p.</p></li>
+</ul>
+</div>
+<div id="arrange" class="section level3">
+<h3><span class="header-section-number">4.2.4</span> arrange()</h3>
+<p>arrange() marche de la même manière que filter() mais la fonction change l’ordre des lignes de la <code>data.frame</code>.</p>
+<p>Exemple :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># R classique</span>
+<span class="kw">head</span>(pwt7<span class="fl">.1</span>[<span class="kw">order</span>(pwt7<span class="fl">.1</span>$pop), <span class="kw">c</span>(<span class="st">&quot;pop&quot;</span>, <span class="st">&quot;year&quot;</span>)])</code></pre></div>
+<pre><code>##            pop year
+## PLW-1950 7.251 1950
+## PLW-1951 7.448 1951
+## PLW-1952 7.651 1952
+## PLW-1953 7.859 1953
+## PLW-1954 8.073 1954
+## PLW-1955 8.292 1955</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;Début - Fin&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;Début - Fin&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">tail</span>(pwt7<span class="fl">.1</span>[<span class="kw">order</span>(pwt7<span class="fl">.1</span>$year), <span class="kw">c</span>(<span class="st">&quot;pop&quot;</span>, <span class="st">&quot;year&quot;</span>)])</code></pre></div>
+<pre><code>##                pop year
+## VUT-2010   221.552 2010
+## VEN-2010 27223.228 2010
+## VNM-2010 89571.130 2010
+## YEM-2010 23495.361 2010
+## ZMB-2010 13460.305 2010
+## ZWE-2010 11651.858 2010</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dplyr </span>
+pwt7<span class="fl">.1</span> %&gt;%
+<span class="st">    </span><span class="kw">select</span>(pop,year) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(year) %&gt;%<span class="kw">head</span>()</code></pre></div>
+<pre><code>##         pop year
+## 1  8150.368 1950
+## 2  1227.156 1950
+## 3  8892.718 1950
+## 4  4117.617 1950
+## 5    45.816 1950
+## 6 17150.336 1950</code></pre>
+<p><strong>Exercice 4</strong></p>
+<ul>
+<li>Selectionner les valeurs pour la France de <code>cgdp</code>,<code>ppp</code> et <code>year</code>. Recréer le graphe ci dessous ?</li>
+</ul>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<ul>
+<li>Recréer le graphe ci dessous à l’aide du code de l’exercice 2.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df =pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">filter</span>( year ==<span class="st"> </span><span class="dv">2010</span>) %&gt;%<span class="st"> </span><span class="kw">filter</span>(<span class="kw">quantile</span>(tcgdp,<span class="fl">0.05</span>,<span class="dt">na.rm =</span> T)&gt;<span class="st"> </span>tcgdp )%&gt;%
+<span class="kw">arrange</span>(tcgdp)
+
+<span class="kw">ggplot</span>(<span class="dt">data=</span>df) +<span class="st"> </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x=</span>country , <span class="dt">y=</span>tcgdp,<span class="dt">fill=</span>country),<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>)+<span class="kw">guides</span>(<span class="dt">color=</span>F)+
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) +<span class="kw">scale_x_discrete</span> (<span class="dt">limits =</span>df$country )</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">4.2.5</span> mutate()</h3>
+<div class="figure">
+<img src="Picture/mutate_1.png" alt="Les fonctions de création de nouvelles variables" />
+<p class="caption">Les fonctions de création de nouvelles variables</p>
+</div>
+<p>La fonction mutate() est utilisé pour créer de nouvelle varaible dans la data.frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R approach to create a new variable Speed (in mph)</span>
+pwt7<span class="fl">.1</span>$pop_percent &lt;-<span class="st"> </span>pwt7<span class="fl">.1</span>$pop/<span class="kw">mean</span>(pwt7<span class="fl">.1</span>$pop)*<span class="dv">100</span>
+<span class="kw">head</span>(pwt7<span class="fl">.1</span>$pop_percent)</code></pre></div>
+<pre><code>## [1] 28.37131 28.83813 29.32846 29.84324 30.38346 30.95017</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dplyr approach (prints the new variable but does not store it)</span>
+pwt7<span class="fl">.1</span> %&gt;%
+<span class="st">    </span><span class="kw">select</span>(pop) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">pop_percent =</span>pop/<span class="kw">mean</span>(pop,<span class="dt">na.rm=</span>T)*<span class="dv">100</span>) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>##        pop pop_percent
+## 1 8150.368    28.37131
+## 2 8284.473    28.83813
+## 3 8425.333    29.32846
+## 4 8573.217    29.84324
+## 5 8728.408    30.38346
+## 6 8891.209    30.95017</code></pre>
+</div>
+<div id="summarise" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> summarise()</h3>
+<div class="figure">
+<img src="Picture/summarise_1.png" alt="Les fonctions de calcul de métriques stat" />
+<p class="caption">Les fonctions de calcul de métriques stat</p>
+</div>
+<p>Nous allons calculer en fonction de variables groupées au préalable avec group_by() des statistiques (mean,max,min,ect…).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R </span>
+<span class="kw">head</span>(<span class="kw">aggregate</span>(<span class="dt">x =</span> pwt7<span class="fl">.1</span>$pop,<span class="dt">by=</span> <span class="kw">list</span>(pwt7<span class="fl">.1</span>$country), sd,<span class="dt">na.rm=</span>T))</code></pre></div>
+<pre><code>##               Group.1           x
+## 1         Afghanistan 5848.750668
+## 2             Albania  672.475612
+## 3             Algeria 8472.054402
+## 4              Angola 2636.693920
+## 5 Antigua and Barbuda    9.978749
+## 6           Argentina 7355.045582</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dplyr approach: </span>
+pwt7<span class="fl">.1</span> %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">sd_pop =</span> <span class="kw">sd</span>(pop, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>## # A tibble: 6 × 2
+##               country      sd_pop
+##                &lt;fctr&gt;       &lt;dbl&gt;
+## 1         Afghanistan 5848.750668
+## 2             Albania  672.475612
+## 3             Algeria 8472.054402
+## 4              Angola 2636.693920
+## 5 Antigua and Barbuda    9.978749
+## 6           Argentina 7355.045582</code></pre>
+<p>``` Nous pouvons ordonner ces résultats :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span> %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">sd_pop =</span> <span class="kw">sd</span>(pop, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(sd_pop) %&gt;%<span class="st"> </span><span class="kw">tail</span>(<span class="dv">10</span>)</code></pre></div>
+<pre><code>## # A tibble: 10 × 2
+##                     country    sd_pop
+##                      &lt;fctr&gt;     &lt;dbl&gt;
+## 1                    Mexico  26468.45
+## 2                Bangladesh  34652.56
+## 3                   Nigeria  36477.95
+## 4                  Pakistan  44715.51
+## 5  United States of America  45615.60
+## 6                    Brazil  45715.15
+## 7                 Indonesia  49789.04
+## 8                     India 246486.85
+## 9           China Version 1 257096.90
+## 10          China Version 2 257096.90</code></pre>
+<p>Pour calculer des statistiques sur plusieurs variables, la fonction <code>summarise_each</code> est à utiliser.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span> %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(country) %&gt;%
+<span class="st">    </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="kw">mean</span>(.,<span class="dt">na.rm=</span>T),<span class="kw">sd</span>(., <span class="dt">na.rm=</span><span class="ot">TRUE</span>)), pop, ppp,tcgdp) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##               country    pop_mean   ppp_mean  tcgdp_mean      pop_sd
+##                &lt;fctr&gt;       &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+## 1         Afghanistan 15234.55869  5.5524263  11388.8892 5848.750668
+## 2             Albania  2469.71454 23.8752038   8158.4529  672.475612
+## 3             Algeria 20137.77244 14.4589328  76089.0551 8472.054402
+## 4              Angola  7389.84857 15.2161872  18421.4477 2636.693920
+## 5 Antigua and Barbuda    65.70082  1.6640378    624.5787    9.978749
+## 6           Argentina 28754.70697  0.4321812 154526.3853 7355.045582
+## # ... with 2 more variables: ppp_sd &lt;dbl&gt;, tcgdp_sd &lt;dbl&gt;</code></pre>
+</div>
+<div id="pour-aller-plus-loin" class="section level3">
+<h3><span class="header-section-number">4.2.7</span> Pour aller plus loin</h3>
+<ul>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></li>
+<li><a href="https://pages.rstudio.net/Webinar-Series-Recording-Essential-Tools-for-R.html" class="uri">https://pages.rstudio.net/Webinar-Series-Recording-Essential-Tools-for-R.html</a></li>
+</ul>
+<p>La fonction lag() :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span> %&gt;%
+<span class="kw">filter</span>(country==<span class="st">&quot;France&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">change =</span> pop -<span class="st"> </span><span class="kw">lag</span>(pop,<span class="dt">n=</span><span class="dv">1</span>)) %&gt;%<span class="st"> </span><span class="kw">select</span>(change,year,country,pop) %&gt;%<span class="st"> </span><span class="kw">head</span>()</code></pre></div>
+<pre><code>##    change year country      pop
+## 1      NA 1950  France 42517.69
+## 2 344.159 1951  France 42861.85
+## 3 321.720 1952  France 43183.57
+## 4 311.461 1953  France 43495.03
+## 5 326.544 1954  France 43821.57
+## 6 396.283 1955  France 44217.86</code></pre>
+<p><strong>Exercice 5</strong></p>
+<ul>
+<li><p>Sélectionner 5 mesures de la data.frame <code>pwt7.1</code> de façon aléatoire.</p></li>
+<li><p>Calculer les métriques d’une boîte à moustache pour chaque pays dans la data.frame <code>pwt7.1</code>.(Max, Min, Median, IQR, quantile)</p></li>
+</ul>
+<p>Pour rappel :</p>
+<div class="figure">
+<img src="Picture/boite_moustache.png" alt="Schéma de la définition de la boîte à moustache de Rstudio" />
+<p class="caption">Schéma de la définition de la boîte à moustache de Rstudio</p>
+</div>
+<ul>
+<li>Reproduire ce graphe avec la fonction <code>filter()</code></li>
+</ul>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+</div>
+</div>
+<div id="chaine-de-traitement" class="section level2">
+<h2><span class="header-section-number">4.3</span> Chaîne de traitement</h2>
+<p>Charger les données de pays et des coordonnées de leur frontière.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
+<span class="kw">library</span>(<span class="st">&quot;maps&quot;</span>)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(pwt)
+df =<span class="st"> </span>pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">filter</span>(year==<span class="dv">2010</span> )
+map =<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;world&quot;</span>) <span class="co"># load world map</span>
+df.map =<span class="st"> </span><span class="kw">inner_join</span>(df, map, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;country&quot;</span> =<span class="st">&quot;region&quot;</span>)) </code></pre></div>
+<pre><code>## Warning in inner_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
+## factor and character vector, coercing into character vector</code></pre>
+<p>Recréer ce graphique à l’aide de filter().</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>Pourquoi manque t il des pays ?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R </span>
+  df$country[!<span class="kw">unique</span>(df$country) %in%<span class="st"> </span><span class="kw">unique</span>(map$region)]</code></pre></div>
+<pre><code>##  [1] Antigua and Barbuda        China Version 1           
+##  [3] China Version 2            Congo, Democratic Republic
+##  [5] Congo, Republic of         Cote d&#39;Ivoire             
+##  [7] Gambia, The                Hong Kong                 
+##  [9] Korea, Republic of         Macao                     
+## [11] Micronesia, Fed. Sts.      Slovak Republic           
+## [13] St. Kitts &amp; Nevis          St. Lucia                 
+## [15] St. Vincent &amp; Grenadines   Trinidad &amp; Tobago         
+## [17] United Kingdom             United States of America  
+## 190 Levels: Afghanistan Albania Algeria Angola ... Zimbabwe</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># dplyr</span>
+  df %&gt;%<span class="st"> </span><span class="kw">filter</span>(  !<span class="kw">unique</span>(country) %in%<span class="st"> </span><span class="kw">unique</span>(map$region))  %&gt;%<span class="st">  </span><span class="kw">select</span>(country)</code></pre></div>
+<pre><code>##                       country
+## 1         Antigua and Barbuda
+## 2             China Version 1
+## 3             China Version 2
+## 4  Congo, Democratic Republic
+## 5          Congo, Republic of
+## 6               Cote d&#39;Ivoire
+## 7                 Gambia, The
+## 8                   Hong Kong
+## 9          Korea, Republic of
+## 10                      Macao
+## 11      Micronesia, Fed. Sts.
+## 12            Slovak Republic
+## 13          St. Kitts &amp; Nevis
+## 14                  St. Lucia
+## 15   St. Vincent &amp; Grenadines
+## 16          Trinidad &amp; Tobago
+## 17             United Kingdom
+## 18   United States of America</code></pre>
+<p>Comment peut on résoudre ce problème ?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;countrycode&quot;)</span>
+<span class="kw">library</span>(<span class="st">&quot;countrycode&quot;</span>)
+map$iso3c =<span class="st">  </span><span class="kw">countrycode</span>(map$region, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>,<span class="st">&quot;iso3c&quot;</span>)</code></pre></div>
+<pre><code>## Warning in countrycode(map$region, origin = &quot;country.name&quot;, &quot;iso3c&quot;): Some values were not matched unambiguously: Ascension Island, Azores, Barbuda, Bonaire, Canary Islands, Chagos Archipelago, Grenadines, Heard Island, Kosovo, Madeira Islands, Micronesia, Saba, Saint Martin, Siachen Glacier, Sint Eustatius, Virgin Islands</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df.map =<span class="st"> </span><span class="kw">inner_join</span>(df, map, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;isocode&quot;</span> =<span class="st">&quot;iso3c&quot;</span>)) </code></pre></div>
+<pre><code>## Warning in inner_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
+## factor and character vector, coercing into character vector</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">ggplot</span>(df.map, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> (tcgdp)))
+p +<span class="st"> </span><span class="kw">geom_polygon</span>( <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) +
+<span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$isocode =<span class="st"> </span><span class="kw">as.character</span>(df$isocode)
+germ =<span class="st">  </span>df %&gt;%<span class="st"> </span><span class="kw">filter</span>( country==<span class="st">&quot;Germany&quot;</span>)  %&gt;%<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">isocode=</span><span class="st">&quot;DEU&quot;</span>) 
+df[df$country==<span class="st">&quot;Germany&quot;</span>,<span class="st">&quot;isocode&quot;</span>]=<span class="st"> </span>germ[<span class="dv">1</span>,<span class="dv">1</span>]
+
+p =<span class="st"> </span><span class="kw">ggplot</span>(df.map, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> (tcgdp)))
+p +<span class="st"> </span><span class="kw">geom_polygon</span>( <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) +
+<span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p>Recréer ce graphique à l’aide de filter().</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualisation-ii.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-workflow.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
