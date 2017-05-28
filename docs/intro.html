@@ -173,7 +173,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
 <li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
 <li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
-<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-de-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple de Script</a></li>
+<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-dun-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple d’un Script</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data visualisation</a><ul>
@@ -307,7 +307,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <img src="Picture/IDE4.png" alt="Environnement de R" />
 <p class="caption">Environnement de R</p>
 </div>
-<p>La fenêtre en haut à droite sont composées de deux tableaux :</p>
+<p>La fenêtre en haut à droite est composée de deux tableaux :</p>
 <ul>
 <li>La fenêtre d’environnement (objets, fonction chargée)</li>
 <li>L’historique</li>
@@ -359,7 +359,7 @@ f &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</sp
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(f)</code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<p>Attention le vecteur <code>f</code> ne peut pas mélanger les types de variables. R traduit en string les éléments du vecteurs de type numérique.</p>
+<p>Attention le vecteur <code>f</code> ne peut pas mélanger les types de variables. R traduit en chaîne de caractère les éléments du vecteur de type numérique.</p>
 <p>Les matrices permettent de stocker des numériques ou des caractères en 2 dimensions. Mais pas les deux en même temps cette action est impossible. Il faudra utiliser une dataframe pour cela.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  f.m &lt;-<span class="st"> </span><span class="kw">cbind</span>(f)
 f.m</code></pre></div>
@@ -389,7 +389,7 @@ f.m</code></pre></div>
 ## [2,] 2 2
 ## [3,] 3 3
 ## [4,] 4 4</code></pre>
-<p>Ci dessus nous avons avons vu la limitation des matrices. La matisse est soit de type numérique ou caractère. Pour résoudre ce problème, nous allons initialiser un nouveau objet une dataframe, qui très semblable à une matrice.</p>
+<p>Ci-dessus nous avons avons vu la limitation des matrices. La matrice est soit de type numérique ou caractère. Pour résoudre ce problème, nous allons initialiser un nouveau objet `dataframe()’, qui très semblable à une matrice.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> c.m, <span class="dt">ncol=</span><span class="dv">4</span>,<span class="dt">nrow =</span> <span class="dv">3</span>)
 mat</code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
@@ -454,13 +454,17 @@ liste_objet</code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <div id="dates" class="section level4">
 <h4><span class="header-section-number">1.2.4.1</span> Dates</h4>
-<p>Les dates et les heures sont gérer par R : * les dates avec <code>as.Date()</code> * les dates avec heures à l’aide de <code>as.POSIXct()</code></p>
+<p>Les dates et les heures sont gérer par R :</p>
+<ul>
+<li>les dates avec <code>as.Date()</code></li>
+<li>les dates avec heures à l’aide de <code>as.POSIXct()</code></li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-04-26 12:59:09 CEST&quot;</code></pre>
+<pre><code>## [1] &quot;2017-05-28 23:28:36 CEST&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.time</span>())</code></pre></div>
 <pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.Date</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-04-26&quot;</code></pre>
+<pre><code>## [1] &quot;2017-05-28&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(<span class="kw">Sys.Date</span>())</code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 </div>
@@ -524,16 +528,18 @@ liste_objet</code></pre></div>
 </div>
 <div id="les-packages-r" class="section level3">
 <h3><span class="header-section-number">1.2.6</span> Les Packages R</h3>
-<p>Les paquets sont constitués de fonctions, données et de code compilé dans un format bien précis. Le répertoire, où le paquet est stocké, est appelé librairie. Le logiciel R vient avec un nombre standard de paquet. D’autres sont disponibles pour le téléchargement. Une fois installé, ils doivent être installé dans la session pour être utilisé.</p>
-<p>La fonction <code>install.packages(&quot;devtools&quot;)</code> permet d’installer et de télécharger le pacquer deltoïdes.</p>
+<p>Les paquets sont constitués de fonctions, données et de code compilé dans un format bien précis. Le répertoire, où le paquet est stocké, est appelé librairie. Le logiciel R vient avec un nombre standard de paquets. D’autres sont disponibles par le téléchargement. Une fois installé, ils doivent être chargée dans la session pour être utilisé.</p>
+<p>La fonction <code>install.packages(&quot;devtools&quot;)</code> permet d’installer et de télécharger les paquets plus facilement.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;devtools&quot;</span>) ### Pour plus facilement installer les packets 
 <span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>) ### pour faire de la data visualisation 
 <span class="co"># install.packages(&quot;ggmap&quot;)</span>
 <span class="co"># </span>
 <span class="co"># install.packages(&quot;leaflet&quot;)</span></code></pre></div>
 </div>
-<div id="exemple-de-script" class="section level3">
-<h3><span class="header-section-number">1.2.7</span> Exemple de Script</h3>
+<div id="exemple-dun-script" class="section level3">
+<h3><span class="header-section-number">1.2.7</span> Exemple d’un Script</h3>
+<p>Dans cette partie un code est écrit afin de créer les graphes du début de l’introduction. La question sous jacente est de connaître la dynamique de l’utilisation de R. Si le nombre des questions sur ce forum d’entraide augmente alors il et possible de conclure que ce logiciel est plus utilisé qu’auparavant.</p>
+<p>Afin de lancer cette mini étude pour connaître la tendance et l’évolution du nombre de question par langage. La première étape est de télécgarger les données disponible sous</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># réquétes </span>
 <span class="co"># https://data.stackexchange.com/stackoverflow/query/338993/r-trends-questions-per-tag-per-month#resultSets</span>
 

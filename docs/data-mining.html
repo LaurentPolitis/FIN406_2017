@@ -173,7 +173,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
 <li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
 <li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
-<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-de-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple de Script</a></li>
+<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-dun-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple d’un Script</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data visualisation</a><ul>
@@ -330,14 +330,14 @@ M=<span class="kw">cbind</span>(NAMES[<span class="dv">7</span>:<span class="dv"
 </div>
 <div id="traiter-vos-donnees" class="section level2">
 <h2><span class="header-section-number">4.2</span> Traiter vos données</h2>
-<p>Dans cette partie nous allons voir comment organiser nos données et les traiter. Nous avons appris comment les visualiser précédemment. Mais en général elles ne sont généralement pas dans une forme exploitable pour notre étude. Une des étapes importantes avant toute étude est de les organiser. Pour cela R dispose de paquets qui permettent de faciliter cette tâche. Nous allons découvrir la librairie dplyr. Généralement, nous voulons tout simplement créer une nouvelle variable, filtrer les données en fonction de certaines caractéristiques et connaître des métriques statistiques résumant nos échantillons.</p>
+<p>Dans cette partie nous allons voir comment organiser nos données et les traiter. Nous avons appris comment les visualiser précédemment. Elles ne sont généralement pas dans une forme exploitable pour notre étude. Une des étapes importantes avant toute étude est de les organiser. Pour cela R dispose de paquets qui permettent de faciliter cette tâche. Nous allons découvrir la librairie dplyr. Généralement, nous voulons tout simplement créer une nouvelle variable, filtrer les données en fonction de certaines caractéristiques et connaître des métriques statistiques résumant nos échantillons.</p>
 <p>Nous allons commencer par découvrir 6 fonctions du paquet dplyr, qui permettent de résoudre les classiques problèmes rencontrés lors de la manipulation de vos données.</p>
 <ul>
 <li>Filtrer les valeurs de vos échantillons en fonction de divers paramètres <code>filter</code></li>
 <li>Sélectionner les colonnes <code>select()</code></li>
 <li>Ordonner les lignes de votre data.frame <code>arrange()</code>.</li>
 <li>Créer de nouvelles variables en fonction de vos données <code>mutate()</code></li>
-<li>Simplifier vos données en statistiques résumant par divers métriques votre échantillon <code>summarise()</code></li>
+<li>Simplifier vos données en statistiques qui résument par divers métriques vos jeux de données <code>summarise()</code></li>
 </ul>
 <p>Nous allons utiliser les données du Penn World Table qui permettent d’avoir le produit intérieur brut au cours du temps et dans différents pays. <a href="https://cran.r-project.org/web/packages/pwt/index.html" class="uri">https://cran.r-project.org/web/packages/pwt/index.html</a></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(pwt)</span>
@@ -350,23 +350,24 @@ M=<span class="kw">cbind</span>(NAMES[<span class="dv">7</span>:<span class="dv"
 </ul>
 <div id="pourquoi-utiliser-dplyr" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> Pourquoi utiliser dplyr ?</h3>
-<pre><code>* Efficace pour la manipulation des données et leurs traitements 
-
-* Facile à comprendre et à lire comme façon de coder
-
-* La rapidité des commandes `dplyr`
-
-* Etape incontournable </code></pre>
+<p>Les raisons pour lesquelles dplyr est intérressant à utiliser :</p>
+<ul>
+<li><p>Efficace pour la manipulation des données et leurs traitements</p></li>
+<li><p>Facile à comprendre et à lire grâce à la manière de coder</p></li>
+<li><p>La rapidité des commandes <code>dplyr</code></p></li>
+<li><p>Etape incontournable de toutes études statistiques (certains parlent de 50% à 80% du temps de travail d’un datascientist consacré au datamining)</p></li>
+</ul>
 <p>Exemple :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 <span class="kw">data</span>(pwt7<span class="fl">.1</span>)
 <span class="kw">ggplot</span>(<span class="dt">data=</span>pwt7<span class="fl">.1</span>) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x=</span>year , <span class="dt">y=</span>ppp,<span class="dt">color=</span>country))+<span class="kw">guides</span>(<span class="dt">color=</span>F)</code></pre></div>
 <pre><code>## Warning: Removed 2630 rows containing missing values (geom_path).</code></pre>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p>Le graphe d’au dessus n’est pas très visible. Il représente les séries temporelles par pays de l’observation depuis les années 50 de la parité de pouvoir d’achat (variable ppp de la data.frame pwt7.1). Les données du graphe ont besoin d’un traitement au préalable pour que le graphe soit plus pertinent. Les traitements effectués sur les données sont une partie inhérente au data mining.</p>
 </div>
 <div id="filter" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> filter()</h3>
-<p><img src="Picture/filter.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon par les lignes" /> filter() permet de sélectionner des observations en fonction de leurs valeurs ou caractéristiques. Le premier argument est le nom de votre <code>data.frame</code>. Le deuxième argument est un booléen. Les relations logiques qui permettent de filtrer les valeurs de votre data.frame.</p>
+<p><img src="Picture/filter.png" alt="Les fonctions de sélection d’un sous ensemble de données de votre échantillon par les lignes" /> filter() permet de sélectionner des observations en fonction de leurs valeurs ou caractéristiques. Le premier argument est le nom de votre <code>data.frame</code>. Le deuxième argument est un booléen (pour rappel <code>TRUE</code> ou <code>FALSE</code>), qui est le résultat des relations logiques pour filtrer les valeurs de votre data.frame.</p>
 <p>Utilisation classique sous R :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pwt7<span class="fl">.1</span>[pwt7<span class="fl">.1</span>$country ==<span class="st"> &quot;France&quot;</span> &amp;<span class="st"> </span>pwt7<span class="fl">.1</span>$year &gt;<span class="dv">2000</span> , ]</code></pre></div>
 <pre><code>##          country isocode year      pop     xrat currency       ppp   tcgdp
@@ -543,7 +544,7 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 ## 10 68386.06  68556.76 31203.40</code></pre>
 <div id="rappels-sur-les-operateurs-logiques" class="section level4">
 <h4><span class="header-section-number">4.2.2.1</span> Rappels sur les opérateurs logiques</h4>
-<p>En plus de connaître les opérateurs de comparaison classiques (<code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>, et<code>==</code>), il est nécessaire de posséder les notions d’opérateurs logiques.</p>
+<p>En plus de connaître les opérateurs de comparaison classiques (<code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code>, et<code>==</code>), il est nécessaire de connaître un minimun les opérateurs logiques.</p>
 <div class="figure">
 <img src="Picture/logiques.png" alt="Les opérations logiques où x est le cercle de gauche et y celui de droite. La zone grise illustre le résultat de l’opération" />
 <p class="caption">Les opérations logiques où <code>x</code> est le cercle de gauche et <code>y</code> celui de droite. La zone grise illustre le résultat de l’opération</p>
@@ -645,7 +646,7 @@ pwt7<span class="fl">.1</span> %&gt;%<span class="st"> </span><span class="kw">f
 ## 17  57.46605 1346.5908 3979.863  3948.905  934.2637</code></pre>
 <p><em>Exercice 2</em></p>
 <ul>
-<li><p>Sélectionner 5 pays d’Europe, les Etats-Unis, la Chine et l’inde.</p></li>
+<li><p>Sélectionner 5 pays d’Europe, les Etats-Unis, la Chine et l’Inde.</p></li>
 <li><p>Sélectionner les pays au-dessus du quantile 95% de <code>tcgdp</code> pour l’année 2010 et refaire le graphe. <img src="bookdown-demo_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p></li>
 <li><p>Sélectionner les pays en-dessous du quantile 5% de <code>tcgdp</code> pour l’année 2010 et faire le graphe ci-dessous.</p></li>
 </ul>
@@ -892,21 +893,22 @@ pwt7<span class="fl">.1</span> %&gt;%
 <ul>
 <li>Reproduire ce graphe avec la fonction <code>filter()</code></li>
 </ul>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 </div>
 </div>
 <div id="chaine-de-traitement" class="section level2">
 <h2><span class="header-section-number">4.3</span> Chaîne de traitement</h2>
+<p>Nous allons dans l’exemple ci dessous voir un exemple de l’utilisation des commandes dplyr dans un cas réel que nous pourrons appeler chaîne de traitement et de visualisation des données de la librarie <code>pwt</code> introduites dans les exemples ci-dessus.</p>
 <p>Charger les données de pays et des coordonnées de leur frontière.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)
 <span class="kw">library</span>(<span class="st">&quot;maps&quot;</span>)
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(pwt)</code></pre></div>
-<p>Recréer ce graphique à l’aide de filter() et de inner_join(). Le graphique montre le <code>tcgdp</code> de l’année 2010.</p>
+<p>Recréer ce graphique à l’aide de filter() et de inner_join(). Le graphique montre le <code>tcgdp</code> de l’année 2010. La fonction <code>inner_join()</code> n’a pas été présenté pour l’instant. <code>inner_join()</code> permet de joindre deux data.frame en fonction de l’égalité des élements de deux variable de chaque data.frame</p>
 <pre><code>## Warning in inner_join_impl(x, y, by$x, by$y, suffix$x, suffix$y): joining
 ## factor and character vector, coercing into character vector</code></pre>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
-<p>Pourquoi manque t il des pays ?</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><em>Pourquoi manque-t-il des pays ?</em> (Indice regarder le code R ci-dessous)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># base R </span>
   df$country[!<span class="kw">unique</span>(df$country) %in%<span class="st"> </span><span class="kw">unique</span>(map$region)]</code></pre></div>
 <pre><code>##  [1] Antigua and Barbuda        China Version 1           
@@ -940,7 +942,7 @@ pwt7<span class="fl">.1</span> %&gt;%
 ## 16          Trinidad &amp; Tobago
 ## 17             United Kingdom
 ## 18   United States of America</code></pre>
-<p>Comment peut on résoudre ce problème ?</p>
+<p><em>Comment peut on résoudre ce problème ?</em></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;countrycode&quot;)</span>
 <span class="kw">library</span>(<span class="st">&quot;countrycode&quot;</span>)
 map$iso3c =<span class="st">  </span><span class="kw">countrycode</span>(map$region, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>,<span class="st">&quot;iso3c&quot;</span>)</code></pre></div>
@@ -951,20 +953,31 @@ map$iso3c =<span class="st">  </span><span class="kw">countrycode</span>(map$reg
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p =<span class="st"> </span><span class="kw">ggplot</span>(df.map, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> (tcgdp)))
 p +<span class="st"> </span><span class="kw">geom_polygon</span>( <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) +
 <span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
-<p>Ce n’est pas tout a fait ça encore.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p>Ce n’est pas tout a fait ça encore. Il y encore des pays qui sont absent l’Allemagne, la république du Cango, et la république démocratique du Cango. Nous devons pour résoudre ce bug changer le nom du pays “à la main” pour faire fonctionner notre programme.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df$isocode =<span class="st"> </span><span class="kw">as.character</span>(df$isocode)
 germ =<span class="st">  </span>df %&gt;%<span class="st"> </span><span class="kw">filter</span>( country==<span class="st">&quot;Germany&quot;</span>)  %&gt;%<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">isocode=</span><span class="st">&quot;DEU&quot;</span>) 
 df[df$country==<span class="st">&quot;Germany&quot;</span>,<span class="st">&quot;isocode&quot;</span>]=<span class="st"> </span>germ[<span class="dv">1</span>,<span class="dv">1</span>]
 
+congoR =<span class="st">  </span>df %&gt;%<span class="st"> </span><span class="kw">filter</span>( country==<span class="st">&quot;Congo, Democratic Republic&quot;</span>)  %&gt;%<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">isocode=</span><span class="st">&quot;COD&quot;</span>) 
+df[df$country==<span class="st">&quot;Congo, Democratic Republic&quot;</span>,<span class="st">&quot;isocode&quot;</span>]=<span class="st"> </span>congoR[<span class="dv">1</span>,<span class="dv">1</span>]
+
+congo=<span class="st">  </span>df %&gt;%<span class="st"> </span><span class="kw">filter</span>( country==<span class="st">&quot;Congo, Republic of&quot;</span>)  %&gt;%<span class="st">  </span><span class="kw">transmute</span>(<span class="dt">isocode=</span><span class="st">&quot;COG&quot;</span>) 
+df[df$country==<span class="st">&quot;Congo, Republic of&quot;</span>,<span class="st">&quot;isocode&quot;</span>]=<span class="st"> </span>congo[<span class="dv">1</span>,<span class="dv">1</span>]
+
+df.map =<span class="st"> </span><span class="kw">inner_join</span>(df, map, <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;isocode&quot;</span> =<span class="st">&quot;iso3c&quot;</span>)) 
+
+
+
 p =<span class="st"> </span><span class="kw">ggplot</span>(df.map, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> (tcgdp)))
 p +<span class="st"> </span><span class="kw">geom_polygon</span>( <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) +
 <span class="st">  </span><span class="kw">coord_quickmap</span>()</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<p>Recréer ce graphique.</p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><em>Recréer ce graphe ci-dessous à ’aide de la fonction filter.</em></p>
+<p>Pour cela, il faut créer une autre variable “continent” à notre data.frame <code>df.map</code>, qu nous permettra de créer des panneaux différents en fonction.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df.map$continent =<span class="st"> </span><span class="kw">countrycode</span>(df.map$region,
                                  <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">destination =</span> <span class="st">&quot;continent&quot;</span>)</code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 
 </div>
 </div>

@@ -173,7 +173,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="1.2.4" data-path="intro.html"><a href="intro.html#variables"><i class="fa fa-check"></i><b>1.2.4</b> Variables</a></li>
 <li class="chapter" data-level="1.2.5" data-path="intro.html"><a href="intro.html#relation-logique"><i class="fa fa-check"></i><b>1.2.5</b> Relation logique</a></li>
 <li class="chapter" data-level="1.2.6" data-path="intro.html"><a href="intro.html#les-packages-r"><i class="fa fa-check"></i><b>1.2.6</b> Les Packages R</a></li>
-<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-de-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple de Script</a></li>
+<li class="chapter" data-level="1.2.7" data-path="intro.html"><a href="intro.html#exemple-dun-script"><i class="fa fa-check"></i><b>1.2.7</b> Exemple d’un Script</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>2</b> Data visualisation</a><ul>
@@ -309,83 +309,33 @@ p</code></pre></div>
 <p>Une fois que nous avons installé leaflet. Nous allons créer une data.frame des liens de l’Essca à travers le monde.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(leaflet)
 <span class="kw">library</span>(ggmap)
-essca=<span class="kw">geocode</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;Angers&quot;</span>,<span class="st">&quot;Aix en Provence&quot;</span>,<span class="st">&quot;cholet&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Budapest&quot;</span>,<span class="st">&quot;Paris&quot;</span>,<span class="st">&quot;Toulouse&quot;</span>,<span class="st">&quot;Lyon&quot;</span>,<span class="st">&quot;Bordeaux&quot;</span>,<span class="st">&quot;Shanghai&quot;</span>))</code></pre></div>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Angers&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Aix en Provence&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;cholet&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Nantes&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Nantes&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Budapest&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Paris&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Toulouse&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Lyon&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Bordeaux&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<pre><code>## Warning in readLines(connect, warn = FALSE): unable to resolve
-## &#39;maps.googleapis.com&#39;</code></pre>
-<pre><code>## Warning in FUN(X[[i]], ...):   geocoding failed for &quot;Shanghai&quot;.
-##   if accompanied by 500 Internal Server Error with using dsk, try google.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">essca$ville=<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Angers&quot;</span>,<span class="st">&quot;Aix en Provence&quot;</span>,<span class="st">&quot;cholet&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Budapest&quot;</span>,<span class="st">&quot;Paris&quot;</span>,<span class="st">&quot;Toulouse&quot;</span>,<span class="st">&quot;Lyon&quot;</span>,<span class="st">&quot;Bordeaux&quot;</span>,<span class="st">&quot;Shanghai&quot;</span>)
+essca=<span class="kw">geocode</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;Angers&quot;</span>,<span class="st">&quot;Aix en Provence&quot;</span>,<span class="st">&quot;cholet&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Budapest&quot;</span>,<span class="st">&quot;Paris&quot;</span>,<span class="st">&quot;Toulouse&quot;</span>,<span class="st">&quot;Lyon&quot;</span>,<span class="st">&quot;Bordeaux&quot;</span>,<span class="st">&quot;Shanghai&quot;</span>))
+essca$ville=<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Angers&quot;</span>,<span class="st">&quot;Aix en Provence&quot;</span>,<span class="st">&quot;cholet&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Nantes&quot;</span>,<span class="st">&quot;Budapest&quot;</span>,<span class="st">&quot;Paris&quot;</span>,<span class="st">&quot;Toulouse&quot;</span>,<span class="st">&quot;Lyon&quot;</span>,<span class="st">&quot;Bordeaux&quot;</span>,<span class="st">&quot;Shanghai&quot;</span>)
 <span class="kw">head</span>(essca)</code></pre></div>
-<pre><code>##   lon lat           ville
-## 1  NA  NA          Angers
-## 2  NA  NA Aix en Provence
-## 3  NA  NA          cholet
-## 4  NA  NA          Nantes
-## 5  NA  NA          Nantes
-## 6  NA  NA        Budapest</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() %&gt;%<span class="st"> </span><span class="kw">addTiles</span>()  %&gt;%<span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng =</span> essca$lon ,<span class="dt">lat =</span> essca$lat,<span class="dt">popup =</span> essca$ville) </code></pre></div>
-<pre><code>## Warning in validateCoords(lng, lat, funcName): Data contains 11 rows with
-## either missing or invalid lat/lon values and will be ignored</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m</code></pre></div>
+<pre><code>##         lon      lat           ville
+## 1 -0.563166 47.47842          Angers
+## 2  5.447427 43.52974 Aix en Provence
+## 3 -0.879787 47.05941          cholet
+## 4 -1.553621 47.21837          Nantes
+## 5 -1.553621 47.21837          Nantes
+## 6 19.040235 47.49791        Budapest</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() %&gt;%<span class="st"> </span><span class="kw">addTiles</span>()  %&gt;%<span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng =</span> essca$lon ,<span class="dt">lat =</span> essca$lat,<span class="dt">popup =</span> essca$ville) 
+m</code></pre></div>
 <div id="htmlwidget-eb1a0b4aefec87af0ec3" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-eb1a0b4aefec87af0ec3">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"],null,null,null,null,null,null]}],"limits":[]},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-eb1a0b4aefec87af0ec3">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[47.478419,43.529742,47.059407,47.218371,47.218371,47.497912,48.856614,43.604652,45.764043,44.837789,31.2303904],[-0.563166,5.447427,-0.879787,-1.553621,-1.553621,19.040235,2.3522219,1.444209,4.835659,-0.57918,121.4737021],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"],null,null,null,null,null,null]}],"limits":{"lat":[31.2303904,48.856614],"lng":[-1.553621,121.4737021]}},"evals":[],"jsHooks":[]}</script>
 <p>Comme pour ggplot nous pouvons ajouter des couches supplémentaires à l’aide d’un pipe <code>%&gt;%</code>, qui est un opérateur du paquet magrittr. <a href="https://github.com/tidyverse/magrittr" class="uri">https://github.com/tidyverse/magrittr</a></p>
 <p>L’équivalent sans pipe du code précédent est :</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() 
 m &lt;-<span class="st"> </span><span class="kw">addTiles</span>(m)  
-m &lt;-<span class="st"> </span><span class="kw">addMarkers</span>(m,<span class="dt">lng =</span> essca$lon ,<span class="dt">lat =</span> essca$lat,<span class="dt">popup =</span> essca$ville) </code></pre></div>
-<pre><code>## Warning in validateCoords(lng, lat, funcName): Data contains 11 rows with
-## either missing or invalid lat/lon values and will be ignored</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m </code></pre></div>
+m &lt;-<span class="st"> </span><span class="kw">addMarkers</span>(m,<span class="dt">lng =</span> essca$lon ,<span class="dt">lat =</span> essca$lat,<span class="dt">popup =</span> essca$ville) 
+m </code></pre></div>
 <div id="htmlwidget-ae34a53a3c4fe6f73bf5" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ae34a53a3c4fe6f73bf5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"],null,null,null,null,null,null]}],"limits":[]},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-ae34a53a3c4fe6f73bf5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[47.478419,43.529742,47.059407,47.218371,47.218371,47.497912,48.856614,43.604652,45.764043,44.837789,31.2303904],[-0.563166,5.447427,-0.879787,-1.553621,-1.553621,19.040235,2.3522219,1.444209,4.835659,-0.57918,121.4737021],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"],null,null,null,null,null,null]}],"limits":{"lat":[31.2303904,48.856614],"lng":[-1.553621,121.4737021]}},"evals":[],"jsHooks":[]}</script>
 <p>Ajoutons un “mètre” à cette carte !</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() %&gt;%<span class="st"> </span><span class="kw">addTiles</span>()  %&gt;%<span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng =</span> essca$lon ,<span class="dt">lat =</span> essca$lat,<span class="dt">popup =</span> essca$ville) %&gt;%<span class="st"> </span><span class="kw">addScaleBar</span>()</code></pre></div>
-<pre><code>## Warning in validateCoords(lng, lat, funcName): Data contains 11 rows with
-## either missing or invalid lat/lon values and will be ignored</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">leaflet</span>() %&gt;%<span class="st"> </span><span class="kw">addTiles</span>()  %&gt;%<span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng =</span> essca$lon ,<span class="dt">lat =</span> essca$lat,<span class="dt">popup =</span> essca$ville) %&gt;%<span class="st"> </span><span class="kw">addScaleBar</span>()
+m</code></pre></div>
 <div id="htmlwidget-f4c2209ad8066f09b969" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f4c2209ad8066f09b969">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"],null,null,null,null,null,null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"topright"}]}],"limits":[]},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-f4c2209ad8066f09b969">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[[47.478419,43.529742,47.059407,47.218371,47.218371,47.497912,48.856614,43.604652,45.764043,44.837789,31.2303904],[-0.563166,5.447427,-0.879787,-1.553621,-1.553621,19.040235,2.3522219,1.444209,4.835659,-0.57918,121.4737021],null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["Angers","Aix en Provence","cholet","Nantes","Nantes","Budapest","Paris","Toulouse","Lyon","Bordeaux","Shanghai"],null,null,null,null,null,null]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"topright"}]}],"limits":{"lat":[31.2303904,48.856614],"lng":[-1.553621,121.4737021]}},"evals":[],"jsHooks":[]}</script>
 <p><strong>Exercice 1</strong></p>
 <ul>
 <li><p>Quelle est l’école de l’Essca la plus éloignée par rapport à celle d’Angers en Europe ?</p></li>
