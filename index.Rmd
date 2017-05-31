@@ -209,6 +209,6 @@ J'adresse mes remerciements aux personnes qui m'ont aidé dans la réalisation d
 
 En premier lieu, je remercie M. Jean Louis Bertrand et Miia Parnaudeau, tous les deux professeurs à l'ESCCA. Ils m'ont donné l'occasion d'enseigner et de partager mes connaissances sur R.
 
-Je remercie aussi M.Arthur ROUSSEAU et Samia BEN AMAR, qui m'ont aidé respectivement pour les questions informatique et administrative.
+Je remercie aussi M.Arthur ROUSSEAU et Samia BEN AMAR, qui m'ont aidé respectivement pour les questions informatiques et administratives.
 
 Enfin je remercie les etudiants pour leurs attentions et leurs feedbacks, qu'ils appportent aux cours. 

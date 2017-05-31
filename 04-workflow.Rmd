@@ -1,0 +1,612 @@
+# Data Mining 
+
+
+
+```{r,echo=F}
+# generate pairs of x-y values
+nx = 100
+ny = 80
+x = sample(x = 1:nx, size = 90, replace = TRUE)
+y = seq(-1, -ny, length = 90)
+ 
+# set graphical parameters
+op = par(bg = "black", mar = c(0, 0.2, 0, 0.2))
+ 
+# plot
+plot(1:nx, seq(-1, -nx), type = "n", xlim = c(1, nx), ylim = c(-ny+10, 1))
+for (i in seq_along(x))
+{
+  aux = sample(1:ny, 1)
+  points(rep(x[i], aux), y[1:aux], pch = sample(letters, aux, replace = TRUE), 
+         col = hsv(0.35, 1, 1, runif(aux, 0.3)), cex = runif(aux, 0.3))
+}
+ 
+# signature
+```
+http://www.r-graph-gallery.com/56-matrix-abstract-painting/
+
+
+
+
+## Importer ou exporter des données
+
+Ci-dessous il y a une liste de liens web, qui sont un bon point de départ pour rechercher des données de finance et d'économie : 
+
+* https://www.quandl.com/
+* https://www.economicsnetwork.ac.uk/links/data_free
+* http://www.quantmod.com/ (package R)
+* https://www.economicsnetwork.ac.uk/links/data_free
+* https://aws.amazon.com/fr/public-datasets/
+* https://www.google.com/publicdata/directory
+* https://trends.google.fr/trends/
+* https://www.r-bloggers.com/financial-data-accessible-from-r-part-iii/
+* https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+
+
+
+### Format Texte 
+
+Il se peut que les données que vous essayez de télécharger et d'ouvrir sur R soient sous cette forme. Les fichiers sous format texte sont généralement des tableaux séparés par des espaces, virgules, des points virgules, des lettres etc...
+
+```{r blockchain }
+## source Google trend sur le terme Blockchain
+
+ data_blockchain =  read.table(file="data/BlockChain.txt",sep = " ",header=TRUE)
+head(x = data_blockchain )
+
+```
+
+*Tracer la série temporelle en ggplot que vous venez d'importer* 
+
+
+### Format Csv
+
+Le type de fichier  appelé **comma-separated values** (CSV) stocke des données sous forme de colonnes de nombres et de textes séparées par des virgules.  Chaque ligne du fichier est un enregistrement de données. Chaque ligne consiste en un ou plusieurs champs de données, séparés par des virgules, d'où le nom du format. 
+
+```{r BigData}
+## source Google trend sur le terme Blockchain
+
+ data_BigData =  read.csv(file="data/BigData.csv",header=TRUE)
+head(data_BigData )
+
+```
+
+Dans cet exemple, le fichier ne possède pas le bon nom de colonne. Pour manipuler les noms des colonnes adéquates, il est nécessaire d'utiliser une option de la fonction `read.csv`. 
+
+**Question** :  
+
+*Quelle est l'option, qui permet de passer des lignes dans le début de la lecture du fichier ?* 
+
+
+
+```{r BigData1,echo=FALSE}
+## source Google trend sur le terme Blockchain
+
+ data_BigData =  read.csv(file="data/BigData.csv",header=TRUE,skip=2)
+head(data_BigData )
+
+```
+
+
+*Tracer la série temporelle en ggplot que vous venez d'importer* 
+
+
+
+
+### Format excel 
+
+Le  format très utilisé dans le monde professionnel est Excel. Ils sont plus difficile à lire que les autres avec le logiciel R. Il nécessite un paquet de R à installer.
+
+
+
+```{r bitcoin,echo=FALSE}
+## source https://www.quandl.com/
+
+library(readxl)
+ data_BitCoin =  read_xlsx(path ="data/bitcoin.xlsx")
+head(data_BitCoin)
+
+```
+
+*Tracer la série temporelle en ggplot que vous venez d'importer* 
+
+
+### Html et webscraping 
+
+Le webscraping consiste à traduire  de la page généralement codée en html d'un site web en  données numérique comme dans l'exemple ci dessous. Ces techniques de web scraping demande une connaissance en code html et même dans certain cas des connaissances en java script, pour simuler des requêtes faites au serveur web. 
+
+```{r,eval=FALSE}
+library(rvest)
+url='http://statbel.fgov.be/en/statistics/figures/economy/indicators/prix_prod_con/'
+TAB=read_html(url)%>%html_nodes('td')%>%html_text()
+NAMES=read_html(url)%>%html_nodes('th')%>%html_text()
+M=data.frame(matrix(TAB,ncol=5,nrow=9,byrow=T))
+M=cbind(NAMES[7:15],M)
+names(M)=NAMES[1:6]
+
+
+```
+
+
+
+## Traiter vos données 
+
+
+Dans cette partie nous allons voir comment organiser nos données et les traiter. Nous avons appris comment les visualiser précédemment. Elles ne  sont généralement pas dans une forme exploitable pour notre étude. Une des étapes importantes avant toute étude est de les organiser. Pour cela R dispose de paquets qui permettent de faciliter   cette tâche. Nous allons découvrir la librairie dplyr. Généralement, nous voulons tout simplement créer une nouvelle variable, filtrer les données en fonction de certaines caractéristiques et connaître des métriques statistiques résumant nos échantillons. 
+
+Nous allons commencer par découvrir 6 fonctions du paquet dplyr, qui permettent de résoudre les classiques problèmes rencontrés lors de la manipulation de vos données. 
+
+*  Filtrer les valeurs de vos échantillons en fonction de divers paramètres `filter`
+*  Sélectionner les colonnes `select()`
+*  Ordonner les lignes de votre data.frame `arrange()`.
+*  Créer de nouvelles variables  en fonction de vos données `mutate()`
+*  Simplifier vos données en statistiques qui résument par divers métriques vos jeux de données `summarise()`
+
+
+Nous allons utiliser les données du Penn World Table qui permettent d'avoir le produit intérieur brut au cours du temps et dans différents pays. https://cran.r-project.org/web/packages/pwt/index.html
+
+```{r,eval=T}
+#install.packages(pwt)
+library(pwt)
+```
+
+**Exercice 1**
+
+ * *Quelles sont les dimensions et le type de l'objet `pwt7.1` ?*
+
+
+
+### Pourquoi utiliser dplyr ? 
+
+Les raisons pour lesquelles dplyr est intéressant à utiliser :
+
+* Efficace pour la manipulation des données et leurs traitements 
+    
+* Facile à comprendre et à lire grâce à la manière de coder
+    
+* La rapidité des commandes `dplyr`
+
+* Etape incontournable de toutes études statistiques (certains parlent de 50% à 80% du temps 
+de travail d'un datascientist consacré au datamining)
+    
+Exemple : 
+
+```{r}
+library(ggplot2)
+data(pwt7.1)
+ggplot(data=pwt7.1) + geom_line(aes(x=year , y=ppp,color=country))+guides(color=F)
+```
+
+Le graphe  d'au dessus n'est pas très visible. Il représente les séries temporelles par pays de l'observation depuis 
+les années 50  de la parité de pouvoir d'achat (variable ppp de la data.frame pwt7.1). Les données du graphe ont besoin 
+d'un traitement au préalable pour que le graphe soit plus pertinent. Les traitements effectués sur les données sont une partie inhérente au data mining.
+
+
+
+
+
+
+###filter()
+
+![Les fonctions de sélection d'un sous ensemble de données de votre échantillon par les lignes](/home/mrrobot/Documents/FIN406_2017/Picture/filter.png)
+filter() permet de sélectionner des observations en fonction de leurs valeurs ou caractéristiques. Le premier argument est le nom de votre `data.frame`. Le deuxième argument est un booléen (pour rappel `TRUE` ou `FALSE`), qui est le résultat des relations logiques pour filtrer les valeurs de votre data.frame. 
+
+Utilisation classique sous R :
+```{r}
+pwt7.1[pwt7.1$country == "France" & pwt7.1$year >2000 , ]
+```
+
+Avec dplyr 
+```{r}
+library(dplyr)
+
+pwt7.1 %>% filter(country == "France" & year >2000)
+
+# ou plus classique 
+
+filter(pwt7.1,country == "France" & year >2000)
+
+
+```
+
+
+#### Rappels sur les opérateurs logiques 
+
+En plus de connaître les opérateurs de comparaison classiques (`>`, `>=`, `<`, `<=`, `!=`, et`==`), il est nécessaire de connaître un minimum les opérateurs logiques.
+
+![Les opérations logiques où `x` est le cercle de gauche et `y` celui de droite. La zone grise illustre le résultat de l'opération](/home/mrrobot/Documents/FIN406_2017/Picture/logiques.png)
+
+#### Les données manquantes NA
+
+La fonction filter() exclut les données, qui sont `FALSE` mais aussi les `NA`. Si vous souhaitez les garder, il faut explicitement le mentionner avec `is.na()` 
+
+```{r}
+
+filter(pwt7.1,country == "Afghanistan" & ppp >0.1)
+
+```
+
+
+*Exercice 2* 
+
+* Sélectionner  5 pays d'Europe, les Etats-Unis, la Chine et l'Inde.
+
+* Sélectionner les pays au-dessus du quantile 95% de `tcgdp` pour l'année 2010 et refaire le graphe. 
+```{r,echo=FALSE}
+df =pwt7.1 %>% filter( year == 2010) %>% filter(quantile(tcgdp,0.95,na.rm = T)< tcgdp )
+
+library(ggplot2)
+ggplot(data=df) + geom_bar(aes(x=country , y=tcgdp,fill=country),sta="identity")+guides(color=F)+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+* Sélectionner les pays en-dessous du quantile 5% de `tcgdp` pour l'année 2010 et faire le graphe ci-dessous.
+
+
+```{r,echo=FALSE}
+df =pwt7.1 %>% filter( year == 2010) %>% filter(quantile(tcgdp,0.05,na.rm = T)> tcgdp )
+
+library(ggplot2)
+ggplot(data=df) + geom_bar(aes(x=country , y=tcgdp,fill=country),stat="identity")+guides(color=F)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +scale_x_discrete (limits =df$country )
+```
+
+###select()
+
+![Les fonctions de sélection d'un sous ensemble de données de votre échantillon en fonction des colonnes](/home/mrrobot/Documents/FIN406_2017/Picture/select.png)
+
+
+Comme filter() qui sélectionne les lignes en fonction de lignes présentes dans vos données, select() permet de sélectionner les colonnes d'une data.frame. 
+```{r}
+head(pwt7.1[,c("year","pop")])
+```
+
+```{r}
+pwt7.1 %>% select(year,pop,ppp) %>% head()
+
+
+```
+
+Nous ne sommes pas obligés d'utiliser le "pipe" `%>%`.Même, si je vous le conseille pour plus de clarté dans votre code. 
+
+```{r}
+head(select(pwt7.1 ,year,pop,ppp))
+
+```
+
+On peut encore simplifier la ligne de code précédente. 
+```{r}
+head(select(pwt7.1 ,year:ppp))
+
+```
+ou faire l'inverse 
+
+```{r}
+head(select(pwt7.1 ,-(year:ppp)))
+
+```
+
+De plus, il y a d'autres,  que nous pouvons insérer dans cette fonction : 
+
+* starts_with("p"): sélectionne les noms des colonnes qui commence par p 
+
+* ends_with ("p"): la même chose mais par la fin 
+
+* contains("abc"): les noms des colonnes doivent  contenir "abc"
+
+
+**Exercice 3**
+
+* Choisir les variables dans `pwt7.1` qui contiennent "gdp". 
+
+* Prendre les variables dans `pwt7.1` qui commencent par "p. 
+
+
+
+###arrange()
+
+
+arrange() marche de la même manière que filter() mais la fonction change l'ordre des lignes de la `data.frame`. 
+
+Exemple :
+
+```{r}
+# R classique
+head(pwt7.1[order(pwt7.1$pop), c("pop", "year")])
+print("Début - Fin")
+tail(pwt7.1[order(pwt7.1$year), c("pop", "year")])
+
+```
+
+
+```{r}
+# dplyr 
+pwt7.1 %>%
+    select(pop,year) %>%
+    arrange(year) %>%head()
+```
+
+
+
+
+
+**Exercice 4**
+
+* Sélectionner les valeurs pour la  France de `cgdp`,`ppp` et `year`. Recréer le graphe ci dessous ? 
+
+```{r,echo=FALSE}
+df = pwt7.1 %>%
+  filter(country == "France" | country == "Germany" ) %>%
+    select(pop,year,ppp,country) %>%
+    arrange((year))
+
+ggplot(data=df) + geom_line(aes(x=year,y=pop,color=country))
+```
+
+* Recréer le graphe ci dessous à l'aide du code de l'exercice 2. 
+```{r}
+   
+df =pwt7.1 %>% filter( year == 2010) %>% filter(quantile(tcgdp,0.05,na.rm = T)> tcgdp )%>%
+arrange(tcgdp)
+
+ggplot(data=df) + geom_bar(aes(x=country , y=tcgdp,fill=country),stat="identity")+guides(color=F)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +scale_x_discrete (limits =df$country )
+
+
+```
+
+
+
+### mutate()
+
+![Les fonctions de création de nouvelles variables](/home/mrrobot/Documents/FIN406_2017/Picture/mutate_1.png)
+
+
+La fonction mutate() est utilisé pour créer de nouvelle variable dans la data.frame. 
+```{r}
+pwt7.1$pop_percent <- pwt7.1$pop/mean(pwt7.1$pop)*100 # base R approach to create a new variable Speed (in mph)
+
+head(pwt7.1$pop_percent)
+# dplyr approach (prints the new variable but does not store it)
+pwt7.1 %>%
+    select(pop) %>%
+    mutate(pop_percent =pop/mean(pop,na.rm=T)*100) %>% head()
+```
+
+### summarise()
+![Les fonctions de calcul de métriques stat](/home/mrrobot/Documents/FIN406_2017/Picture/summarise_1.png)
+
+
+Nous allons calculer en fonction de variables groupées au préalable avec group_by() des statistiques (mean,max,min, ...). 
+
+```{r}
+head(aggregate(x = pwt7.1$pop,by= list(pwt7.1$country), sd,na.rm=T))
+```
+```{r}
+# dplyr approach: 
+pwt7.1 %>%
+    group_by(country) %>%
+    summarise(sd_pop = sd(pop, na.rm=TRUE)) %>% head()
+```
+```
+Nous pouvons ordonner ces résultats :
+
+
+```{r tam}
+pwt7.1 %>%
+    group_by(country) %>%
+    summarise(sd_pop = sd(pop, na.rm=TRUE)) %>%
+    arrange(sd_pop) %>% tail(10)
+```
+
+
+Pour calculer des statistiques sur plusieurs variables, la fonction `summarise_each` est à utiliser. 
+
+
+```{r}
+pwt7.1 %>%
+    group_by(country) %>%
+    summarise_each(funs(mean(.,na.rm=T),sd(., na.rm=TRUE)), pop, ppp,tcgdp) %>% head()
+```
+
+### Pour aller plus loin 
+
+* https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+* https://pages.rstudio.net/Webinar-Series-Recording-Essential-Tools-for-R.html
+
+La fonction lag() :
+
+```{r}
+pwt7.1 %>%
+filter(country=="France") %>%
+    mutate(change = pop - lag(pop,n=1)) %>% select(change,year,country,pop) %>% head()
+```
+
+
+**Exercice 5**
+
+* Sélectionner 5 mesures de la data.frame `pwt7.1` de façon aléatoire.
+
+* Calculer les métriques d'une boîte à moustache pour chaque pays dans la data.frame `pwt7.1`.(Max, Min, Median, IQR, quantile)
+
+Pour rappel : 
+
+
+![Schéma de la définition de la boîte à moustache de Rstudio](/home/mrrobot/Documents/FIN406_2017/Picture/boite_moustache.png)
+
+* Reproduire ce graphe avec la fonction `filter()`
+
+```{r,echo=FALSE}
+df <-pwt7.1 %>% filter(pop> 100000)
+ggplot(df)+ geom_boxplot(aes(x=country,y=pop))+scale_y_log10()+ theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+
+
+
+## Chaîne de traitement 
+
+Nous allons dans l'exemple ci dessous voir un exemple de l'utilisation des commandes dplyr dans un cas réel que nous pourrons appeler chaîne de traitement et de visualisation des données  de la librarie `pwt` introduites dans les exemples ci-dessus. 
+
+Charger les données de produit intérieur brut réel qui prend en compte le pouvoir d'achat du pays en question et  des coordonnées des frontières.
+
+```{r}
+library("ggplot2")
+library("maps")
+library(dplyr)
+library(pwt)
+
+```
+
+
+Nous allons utiliser les données de l'année de 2010 de la data.frame `pwt7.1` en utilisant la fonction filter() et les données du paquet "world" en chargeant les données avec la fonction `map_data`.
+```{r,echo=FALSE}
+df = pwt7.1 %>% filter(year==2010 ) # données par pays
+map = map_data("world") # load world map # frontières par pays
+
+```
+
+
+Recréer ce graphique à l'aide de filter() et de inner_join(). Le graphique montre le `tcgdp` de l'année 2010. La fonction `inner_join()` n'a pas été présenté pour l'instant. `inner_join()` permet de joindre deux data.frame en fonction de l'égalité des élements de deux variables de chaque data.frame.
+
+![](/home/mrrobot/Documents/FIN406_2017/Picture/inner_join.png)
+
+Nous allons fusioner les données des data.frame `map`des par leurs pays en une seule data.frame. 
+
+
+```{r,echo=FALSE,warning=FALSE}
+
+df.map = inner_join(df, map, by = c("country" ="region")) 
+p = ggplot(df.map, aes(x = long, y = lat, group = group, fill = tcgdp))
+p + geom_polygon() +
+  coord_quickmap()
+
+  
+```
+
+
+*Pourquoi manque-t-il des pays ?*
+(Indice regarder le code R ci-dessous)
+```{r}
+  df$country[!unique(df$country) %in% unique(map$region)]
+  
+  df %>% filter(  !unique(country) %in% unique(map$region))  %>%  select(country)
+  
+
+```
+
+*Comment peut on résoudre ce problème ?*
+
+
+```{r}
+#install.packages("countrycode")
+library("countrycode")
+map$iso3c =  countrycode(map$region, origin = "country.name","iso3c")
+
+```
+
+
+
+
+```{r,echo=FALSE}
+
+
+df.map = inner_join(df, map, by = c("isocode" ="iso3c")) 
+
+p = ggplot(df.map, aes(x = long, y = lat, group = group, fill = (tcgdp)))
+p + geom_polygon( color="black") +
+  coord_quickmap()
+  
+```
+
+
+Ce n'est pas tout a fait ça encore. 
+Il y encore des pays qui sont absent l'Allemagne, la république du Cango, et la république démocratique du Cango. Nous devons pour résoudre ce bug changer le nom du pays "à la main" pour faire fonctionner notre programme. 
+
+
+```{r,echo=FALSE}
+df$isocode = as.character(df$isocode)
+germ =  df %>% filter( country=="Germany")  %>%  transmute(isocode="DEU") 
+df[df$country=="Germany","isocode"]= germ[1,1]
+
+congoR =  df %>% filter( country=="Congo, Democratic Republic")  %>%  transmute(isocode="COD") 
+df[df$country=="Congo, Democratic Republic","isocode"]= congoR[1,1]
+
+congo=  df %>% filter( country=="Congo, Republic of")  %>%  transmute(isocode="COG") 
+df[df$country=="Congo, Republic of","isocode"]= congo[1,1]
+
+df.map = inner_join(df, map, by = c("isocode" ="iso3c")) 
+
+
+
+p = ggplot(df.map, aes(x = long, y = lat, group = group, fill = (tcgdp)))
+p + geom_polygon( color="black") +
+  coord_quickmap()
+  
+
+```
+
+
+*Recréer ce graphe ci-dessous à l'aide de la fonction filter.* 
+
+Pour cela, il faut créer une autre variable "continent" à notre data.frame `df.map`, qui nous permettra de créer des panneaux différents en fonction du pays concerné.
+
+```{r,echo=T}
+df.map$continent = countrycode(df.map$region,
+                                 origin = "country.name", destination = "continent")
+```
+
+
+Nous allons ensuite enlever les valeurs manquantes des lon et lat à l'aide de filter(). 
+```{r,echo =T}
+library("dplyr")
+df.map.2 = df.map %>%
+  filter(!is.na(long)) %>%
+  filter(!is.na(lat))
+```
+
+De la même manière, il est nécessaire d'enlever les pays qui sont trop excentrés par rapport aux continent d'études. Pour cela nous allons Filter et d'un test pour selectionner  les latitudes et longitudes du pays qui ne sont pas supérieures à 99% ou inférieures à 1%.
+
+
+```{r,echo =T}
+df.map.2 = df.map.2 %>%
+  group_by(continent) %>%
+  filter(lat >= quantile(lat, probs = .01, names = FALSE)) %>%
+  filter(lat < quantile(lat, probs = .99, names = FALSE)) %>%
+  filter(long >= quantile(long, probs = .01, names = FALSE)) %>%
+  filter(long < quantile(long, probs = .99, names = FALSE))
+  
+  
+```
+
+```{r,echo =FALSE}
+p = ggplot(df.map.2, aes(x = long, y = lat, group = group, fill = log10(tcgdp)))
+p_final = p + geom_polygon(color="black") +coord_quickmap()+facet_wrap(~ continent, scales = "free") 
+p_final
+```  
+
+
+
+Vous venez de créer votre graphique en ggplot2 "statique". Vous pouvez le rendre plus intéractif en utilisant la `plotly`. 
+
+Charger la librairie "plotly"
+
+```{r}
+library(plotly)
+```
+
+Puis nous allons utiliser la fonction `ggplotly` pour transformer le graphe en format html.
+
+```{r}
+ggplotly(p_final)
+```
+
+
+
+
+
+
+
+
+
+

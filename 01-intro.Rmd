@@ -132,7 +132,7 @@ La fenêtre en bas à droite est composée de plusieurs tableaux :
    ![Environnement de R](/home/mrrobot/Documents/FIN406_2017/Picture/IDE4.png)
 
  
-La fenêtre en haut à droite sont composées de deux tableaux : 
+La fenêtre en haut à droite est  composée de deux tableaux : 
 
 * La fenêtre d'environnement (objets, fonction chargée)
 * L'historique 
@@ -189,7 +189,7 @@ class(d)
 class(e)
 class(f)
 ```
- Attention le vecteur `f` ne peut pas mélanger les types de variables. R traduit en string les éléments du vecteurs de type numérique. 
+ Attention le vecteur `f` ne peut pas mélanger les types de variables. R traduit en chaîne de caractère les éléments du vecteur de type numérique. 
 
 Les matrices permettent de stocker des numériques ou des caractères en 2 dimensions. Mais pas les deux en même temps cette action est impossible. Il faudra utiliser une dataframe  pour cela. 
 
@@ -209,7 +209,7 @@ f.m
         n.m
 
 ```
-Ci dessus nous avons avons vu la limitation des matrices. La matisse est soit de type numérique ou caractère. Pour résoudre ce problème, nous allons initialiser un nouveau objet une dataframe, qui très semblable à une matrice.
+Ci-dessus nous avons avons vu la limitation des matrices. La matrice est soit de type numérique ou caractère. Pour résoudre ce problème, nous allons initialiser un nouveau objet `dataframe()', qui très semblable à une matrice.
 
 ```{r dataframe, echo=TRUE, message=TRUE}
 mat <- matrix(data = c.m, ncol=4,nrow = 3)
@@ -249,6 +249,7 @@ liste_objet
 #### Dates 
 
  Les dates et les heures sont gérer par R : 
+ 
  * les dates avec `as.Date()`
  * les dates avec heures à l'aide de `as.POSIXct()`
  
@@ -325,9 +326,9 @@ return(texte)  #  return  renvoie le r?sultat de la fonction
 
 
 
-Les paquets sont constitués de fonctions, données et de code compilé dans un format bien précis. Le répertoire, où le paquet est stocké, est appelé librairie. Le logiciel R vient avec un nombre standard de paquet. D'autres sont disponibles pour le téléchargement. Une fois installé, ils doivent être installé dans la session pour être utilisé. 
+Les paquets sont constitués de fonctions, données et de code compilé dans un format bien précis. Le répertoire, où le paquet est stocké, est appelé librairie. Le logiciel R vient avec un nombre standard de paquets. D'autres sont disponibles par le téléchargement. Une fois installé, ils doivent être chargée dans la session pour être utilisé. 
 
- La fonction `install.packages("devtools")` permet d’installer et de télécharger le pacquer deltoïdes. 
+ La fonction `install.packages("devtools")` permet d’installer et de télécharger les paquets plus facilement. 
 
 ```{r,eval=F}
 install.packages("devtools") ### Pour plus facilement installer les packets 
@@ -342,7 +343,11 @@ install.packages("ggplot2") ### pour faire de la data visualisation
 ```
 
 
-### Exemple de Script
+### Exemple d'un Script
+
+Dans cette partie un code est écrit afin de créer les graphes du début de l'introduction. La question sous jacente est de connaître la dynamique de l'utilisation de R. Si le nombre des questions sur ce forum d'entraide augmente alors il et possible de conclure que ce logiciel est plus utilisé qu'auparavant.
+
+Afin de lancer cette mini étude pour connaître la tendance et l'évolution du nombre de question par langage. La première étape est de télécgarger les données disponible sous 
 
 ```{r,eval=F}
 

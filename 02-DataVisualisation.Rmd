@@ -923,3 +923,46 @@ ggplot(data=diamonds)+geom_histogram(aes(x=price))+
 
 ```
 
+
+### Courbe de densité 
+
+En stat., l'estimation par noyau "kernel density estimation" (KDE) est une méthode non paramétrique pour définir la fonction de la densité de probabilité d'une variable aléatoire. 
+
+
+
+Si $ x_1 ... x_n \simeq f$ est un échantillon  d'une variable aléatoire, alors l'estimateur non-paramétrique par la méthode du noyau de la densité est :
+$$\widehat{f}_h(x)=\frac{1}{Nh}\sum_{i=1}^N K\left(\frac{x-x_i}{h}\right)$$
+
+où {$K$ est un Noyau (''kernel'' en anglais) et $h$ un paramètre nommé ''fenêtre'', qui régit le degré de lissage de l'estimation. 
+
+
+Dans ggplot2, $K$ est la densité d'une loi gaussienne. La fonction `geom_density()` utilise cette méthode ainsi que la méthode "stat" `..density..`. Elle fonctionne de la même manière que la fonction `geom_histogram()` 
+
+
+
+
+```{r}
+ggplot(data=diamonds)+geom_density(aes(x=price))
+
+```
+C'est généralement, la première étape pour avoir une idée de la loi que suit notre échantillon. 
+
+```{r}
+ggplot(data=diamonds)+geom_density(aes(x=price))+geom_density(aes(x=rweibull(n=53940,shape=1.3, scale=2000)),color="red")
+
+
+```
+
+### Combinaison des deux 
+
+```{r}
+ggplot(data=diamonds,aes(x=price))+geom_histogram(aes(y=..density..),fill="grey98",color="black")+geom_density(aes(x=price),fill="red",alpha=0.2)
+
+```
+```{r}
+ggplot(data=diamonds,aes(x=price))+geom_histogram(aes(y=..density..),fill="grey98",color="black")+geom_density(aes(x=price),fill="red",alpha=0.2)+
+  facet_wrap(facets = ~clarity,scales = "free")
+
+
+```
+
